@@ -641,7 +641,7 @@
                         <ul>
                             <li>Uses neural networks to model PDFs without assuming a specific functional form.</li>
                             <li>Trained on experimental data from deep inelastic scattering and hadron collider experiments.</li>
-                            <li>Provides uncertainty estimates through ensemble methods.</li>
+                            <li>Provides uncertainty estimates through MC replicas and ensemble methods.</li>
                         </ul>
                         <div style="text-align:center">
                                 <a href="https://arxiv.org/abs/2109.02653" style="text-align:center">
@@ -652,44 +652,22 @@
                 </section>
                 <!-- Slide 14.2 -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values</h3>
-                    <span style="text-align: left;">
-                        Shapley Values are inherited from game theory: represent the value of the <b>contribution \(\phi\)</b> of a player \(i\) within a coalition \(S\). 
-                    </span>
-                    \[
-                    \phi_i = \sum_{S \subseteq N \setminus \{i\}}  \frac{|S|! \, (|N| - |S| - 1)!}{|N|!} \left[ v(S \cup \{i\}) - v(S) \right]
-                    \]
-                    <span style="text-align: left;">
-                        where \(N\) is the set of all players, \(S\) is a subset of players not including \(i\), and \(v(S)\) is the value of the coalition \(S\). The main problem being the computational cost as it scales exponentially with the number of players \(2^N\). 
-                    </span>
-                    <span style="text-align: left;">
-                        Largely popularized for its application to Machine Learning and Deep Learning, with methods like SHAP (SHapley Additive exPlanations) that makes them computable for high amount of players (features) given certain assumptions and approximations.
-                    </span>
-                    <div style="text-align:center">
-                                <a href="https://arxiv.org/abs/1705.07874" style="text-align:center">
-                                <img src="https://img.shields.io/badge/cs.AI-arXiv%3A1705.07874-B31B1B?logo=arxiv" height="25">                                </a>
-                    </div>
-                </section>
-            </section>
-            
-            <!-- Slide 15: Shapley Values for NNPDF -->
-            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
-
-                <!-- Slide 15.1 -->
-                <section>
                 <h3 class="slide-title highlight" style="text-align: left;">Shapley Values For NNPDF</h3>
-                    <span style="text-align: left;">    
-                        NNPDF is an inverse problem: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
-                        
-                    </span>
+                    <p style="text-align: left;">    
+                        NNPDF solves an inverse problem: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
+                    </p>
                     <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <p style="text-align: left;">    
+                        QCD allows us to compute the Observables (\(\mathcal{O_n}\)) values from the PDF space, but the inverse is not true. 
+                        
+                    </p>
                 </section>
 
-                <!-- Slide 15.2 -->
+                <!-- Slide 14.3 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
                     <p style="text-align: left;">    
-                        The PDF space is a high-dimensional space, (9 in the flavor basis and 14 in the evolution basis). Based on QCD we are allowed to compute the Observables values from this space. 
+                        The PDF space is a high-dimensional space, (9 in the flavor basis and 14 in the evolution basis).  
                     </p>
                     <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
                     <div class="fragment" style="text-align:center">  
@@ -701,19 +679,57 @@
                         <span>Multidimensionality of the PDF space combined with the rotation and convolutions makes it difficult to perform systematic test and obtain a clear understanding of each flavor on the fit.</span>  
                     </div>
                 </section>
-                <!-- Slide 15.3 -->
+                <!-- Slide 14.4 -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric ?</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">NNPDF a black box model ?</h3>
                     <p style="text-align: left;">    
                         Black box system is a recurrent interpretability issue in modern DL. We can inspire from the method developed there to solve the interpretability problem of NNPDF. 
                     </p>
+                    <img data-src="img_contents/blackbox_nnpdf.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <p style="text-align: left;">    
+                       XAI answer : What's the impact of one feature \(\phi_j\) on the output of the model ?
+                    </p>
+                </section>
+            </section>
+            
+            <!-- Slide 15: Shapley Values for NNPDF -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+
+                <!-- Slide 15.1 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values</h3>
+                    <p style="text-align: left;">
+                        Shapley Values are inherited from game theory: represent the value of the <b>contribution \(\phi\)</b> of a player \(i\) within a coalition \(S\). 
+                    </p>
+                    \[
+                    \phi_i = \sum_{S \subseteq N \setminus \{i\}}  \frac{|S|! \, (|N| - |S| - 1)!}{|N|!} \left[ v(S \cup \{i\}) - v(S) \right]
+                    \]
+                    <p style="text-align: left;">
+                        where \(N\) is the set of all players, \(S\) is a subset of players not including \(i\), and \(v(S)\) is the value of the coalition \(S\). The main problem being the computational cost as it scales exponentially with the number of players \(2^N\). 
+                    </p>
+                    <p style="text-align: left;">
+                        Largely popularized for its application to Machine Learning and Deep Learning, with methods like SHAP (SHapley Additive exPlanations) that makes them computable for high amount of players (features) given certain assumptions and approximations.
+                    </p>
+                    <div style="text-align:center">
+                                <a href="https://arxiv.org/abs/1705.07874" style="text-align:center">
+                                <img src="https://img.shields.io/badge/cs.AI-arXiv%3A1705.07874-B31B1B?logo=arxiv" height="25">                                </a>
+                    </div>
+                </section>
+
+                <!-- Slide 15.2 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric ?</h3>
+                    <p style="text-align: left;">    
+                        Applying Shapley Values to NNPDF, we treat each flavor as the feature of our black box model.  
+                    </p>
                     <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: left;">    
-                       One \(\phi_j\) value for each flavor \(j\) of the PDF, representing the contribution of this flavor to the fit.
+                       We obtain one Shapley Value \(\phi_j\) for each flavor \(j\), representing its contribution to the model's output.
                     </p>
                 </section>
 
-                <!-- Slide 15.4 -->
+
+                <!-- Slide 15.3 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
                     <div class="container">
@@ -742,20 +758,20 @@
                     </div>
                 </section>
 
-                <!-- Slide 15.5 -->
+                <!-- Slide 15.4 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">Coalitions and complexity</h3>
 
                     <p><strong>What we compute:</strong> the <em>exact</em> Shapley value for each PDF flavor by averaging its marginal contribution across all coalitions (all subsets of flavors).</p>
-                    <p><strong>Computational cost:</strong> Exponential in the number of flavors, as we need to evaluate the fit for each coalition. For \(9\) flavors, we have \(2^9 = 512\) coalitions.</p>
-                    <p><strong>No assumption of independence of the features:</strong> Using exact Shapley values, no assumption of independence is required.</p>
+                    <p><strong>Computational cost:</strong> Exponential in the number of flavors, as we need to evaluate the fit for each coalition. In the flavor basis, \(N=9\) flavors, we have \(2^9 = 512\) coalitions.</p>
+                    <p  style="text-align:left">Using exact Shapley values, we make <strong>no assumption of independence of the features.</strong></p>
                 </section>
 
 
 
                 
                 
-                <!-- Slide 15.6 -->
+                <!-- Slide 15.5 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">How to interpret the SV?</h3>
                     <div class="container">
@@ -771,16 +787,20 @@
                         <br>
                         <strong>Dataset dependency:</strong>
                         <span>
-                            \(v(s)=\chi^2\) which is computed based on experimental dataset. We expect different contributions for different datasets.
+                            \(\chi^2\) which is computed based on experimental dataset. We expect different contributions for different datasets.
                         </span>
                         </div>
                         <div class="col" style="align-items: center;">
                             <img data-src="img_contents/SV.png" style="width: 500px; height: auto;" class="plain"></img>
-
+                            Exact Shapley Value have a completness property: 
+                            \[\sum_{j \in N} \phi_j = v(N)-v(\emptyset)\]
+                            and \(v(s)=\chi^2\) so they share the same unit. 
                         </div>
                     </div>
                 </section>
             </section>
+
+            <!-- Slide 16: Next steps -->
             <section data-background-image="img_contents/LHC.jpg">
                 <h3 class="slide-title highlight" style="text-align: left;">Next steps:</h3>
                 <div style="text-align: left;">   
