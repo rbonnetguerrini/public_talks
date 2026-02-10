@@ -96,12 +96,6 @@
             height: 80vh;
             border: none;
         }
-        .highlight {
-            background: rgba(150, 150, 150, 0.582);
-            padding: 0.1em 0.25em;
-            border-radius: 4px;
-            display: inline-block;
-        }
         .reveal section[data-background-image="img_contents/LHC.jpg"] h1,
         .reveal section[data-background-image="img_contents/LHC.jpg"] h2,
         .reveal section[data-background-image="img_contents/LHC.jpg"] h3,
@@ -116,17 +110,52 @@
             border-radius: 4px;
             display: inline-block;
         }
-        .reveal section[data-background-image="img_contents/LHC.jpg"]
-        mjx-container[display="true"] {
-            background: rgba(150,150,150,0.58);
-            padding: 0.15em 0.35em;
-            border-radius: 4px;
-            display: inline-block;
+        .reveal mjx-container[display="true"] {
+            display: inline-block !important;
+            width: auto !important;
+            max-width: none !important;
+            background: rgba(0,0,0,0.25);
+            color: #fff;
+            padding: 0.4em 0.65em;
+            border-radius: 12px;
+            border: 1.5px solid rgba(255,255,255,0.45);
         }
         .reveal section[data-background-image="img_contents/LHC.jpg"]
         mjx-container[display="false"] {
             background: none;
             padding: 0;
+        }
+        .title-panel {
+        background: rgba(0, 0, 0, 0.45);
+        padding: 1.7rem 2.6rem;   /* slightly tighter */
+        border-radius: 12px;
+        max-width: 68%;          /* a touch narrower helps scale perception */
+        margin: auto;
+        backdrop-filter: blur(2px);
+        }
+
+        .title-panel h2 {
+        color: #ffffff;
+        font-size: 2.1em;        /* ↓ from 2.4 */
+        margin-bottom: 0.45em;
+        }
+
+        .title-panel h3 {
+        color: #e0e0e0;
+        font-weight: 300;
+        font-size: 1em;       /* explicit control */
+        line-height: 1.3;
+        margin-bottom: 1em;
+        }
+
+        .title-panel .meta {
+        color: #cccccc;
+        font-size: 0.75em;       /* ↓ from 0.8 */
+        line-height: 1.4;
+        }
+
+        .title-panel .affiliation {
+        opacity: 0.75;
         }
     </style>
 </head>
@@ -136,29 +165,20 @@
         <div class="slides">
             <!-- Slide 1 -->
             <section data-background-image="img_contents/gen_intro_img.png">
+                <div class="title-panel">
+                    <h2>Interpretable Deep Learning for Fundamental Physics</h2>
+                    <h3>
+                    From Supernovae detection to Neutrinos passing by Parton Distribution Functions.
+                    </h3>
 
-                <h2 class="highlight">
-                    Interpretable Deep Learning for fundamental physics
-                </h2>
-
-                <h3 class="highlight">
-                    From Uncertainty quantification for SNIa to Mechanistic Interpretability for Neutrino
-                </h3>
-
-                <span class="highlight" style="font-size: smaller;">
-                    <b>Raphael Bonnet-Guerrini<sup>1</sup></b>
-                </span>
-                <br>
-
-                <span class="highlight" style="font-size: smaller;">
-                    16/02/2026
-                </span>
-                <br><br>
-
-                <span class="highlight" style="font-size: small;">
-                    <sup>1</sup>Computer Science Department, University of Milan
-                </span>
-
+                    <p class="meta">
+                    <strong>Raphael Bonnet-Guerrini<sup>1</sup></strong><br>
+                    16/02/2026<br>
+                    <span class="affiliation">
+                        <sup>1</sup>Computer Science Department, University of Milan
+                    </span>
+                    </p>
+                </div>
             </section>
 
 
@@ -167,7 +187,7 @@
             <!-- Slide 2 ML4transients title -->
             <section data-background-image="img_contents/vera_rubin_obs.png">
                 <h2>Interpretable Deep Learning for Real/Bogus classification with Uncertainty Quantification</h2>
-                <span style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Dominique Fouchez<sup>2</sup>, Bruno Sanchez<sup>2</sup>, Benjamin Racine<sup>2</sup></span>
+                <span style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Dominique Fouchez<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, Benjamin Racine<sup>2</sup></span>, Bruno Sanchez<sup>2</sup>
                 <br>
                 <br>
                 <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; <sup>2</sup>Centre de Physique des Particules de Marseille</span>
@@ -693,7 +713,7 @@
                     </span>
                     <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
                     <span style="text-align: left;">    
-                       One \(\phi_j\) value for each flavor \(j\), representing the contribution of this flavor to the fit.
+                       One \(\phi_j\) value for each flavor \(j\) of the PDF, representing the contribution of this flavor to the fit.
                     </span>
                 </section>
 
@@ -703,6 +723,7 @@
                     <div class="container">
                         <div class="col" style="text-align: left;">
                         <span>
+                        How do we perturb a PDF ? 
                         A smooth gaussian bump :
                         </span>
                         \[
@@ -724,6 +745,14 @@
                         <li>Do we want similar perturbations for all flavors, or proportional to their contribution ?</li>
                     </div>
                 </section>
+
+                <!-- Slide 15.5 -->
+
+
+
+                
+                
+                <!-- Slide 15.6 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">How to interpret the SV?</h3>
                     <div class="container">
@@ -766,6 +795,106 @@
 
 
 
+            <section>
+                <section data-background-image="img_contents/LHC.jpg">
+                    <h3 class="slide-title highlight" style="text-align: left;">Backup Slides</h3>
+                </section>
+
+                <section data-background-image="img_contents/LHC.jpg">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values Pseudo code</h3>
+
+                    <div style="margin-top:0.6rem; padding:0.6rem; background:#0f1724; color:#e6eef6; border-radius:6px; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace; font-size:0.85rem; line-height:1.25;">
+                    <pre style="margin:0;">
+# INPUT: observables, mu,sigma,amplitude, n_samples, n_flavors = n
+# OUTPUT: shapley_vals[], baseline_chi2, cache
+
+baseline_chi2 = evaluate_chi2(observables, flavor_subset=[])   # v({})
+
+cache = {}   # map subset -> v(S)
+all_subsets = power_set(0..n-1)     # exclude full-set if desired
+
+for i in 0..n-1:
+SV = 0
+for S in all_subsets:
+    if i in S: continue
+
+    # v(S)
+    if S not in cache:
+    cache[S] = evaluate_chi2(observables, flavor_subset=list(S), mu,sigma,amplitude, n_samples)
+    vS = cache[S]
+
+    # v(S ∪ {i})
+    S_with = S ∪ {i}
+    if S_with not in cache:
+    cache[S_with] = evaluate_chi2(observables, flavor_subset=list(S_with), mu,sigma,amplitude, n_samples)
+    vSw = cache[S_with]
+
+    Δ = vSw - vS                                   # marginal contribution
+    s = |S|
+    w = factorial(s) * factorial(n - s - 1) / factorial(n)
+    SV += w * Δ
+
+shapley_vals[i] = SV
+
+# RETURN: shapley_vals, baseline_chi2, evaluated_coalitions=|cache|
+# COMPLEXITY: time ~ O(n · 2^n · cost_eval), space ~ O(2^n) (memoized)
+                    </pre>
+                    </div>
+                </section>
+                <section data-background-image="img_contents/LHC.jpg">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values weight</h3>
+                    <span>
+                        In game theory, Shapley Values represent the contribution \(\phi_i\) of a player \(i\) within a coalition \(S\) by comparing the outcomes of scenarios where the player is present  \(v(S \cup \{i\})\) versus absent \(v(S)\).
+                    </span>
+                    
+                        \[
+                        \phi_i = \sum_{S \subseteq N \setminus \{i\}} \text{w}(S) \left[ v(S \cup \{i\}) - v(S) \right]
+                        \label{eq:comb_SV}
+                        \]
+                    <span>
+                        With:
+                    </span>
+                        \[
+                        w(S) = \frac{|S|! \, (|N| - |S| - 1)!}{|N|!}    
+                        \] 
+                    <span>
+                        \(w(S)\)  weights for the importance of the coalition \(S\) being tested. It is the probability that the set of players who come after \(i\) is exactly \(S\).
+                    </span>
+                        <ul>
+                        <li>\(|S|!\) is the number of ways to order the predecessors of \(i\)</li>
+                        <li>\((|N| - |S| - 1)!\) is the number of way to order the players after \(i\)</li>
+                        <li>\(|N|!\) is the number of way to order all players</li>
+                        </ul>
+                </section>
+                <section data-background-image="img_contents/LHC.jpg">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values weight</h3>
+                    <span>
+                        This result is derived in the following way: 
+                        Given \( |N| = n \), for a fixed player \(i\), let \( S \subseteq N \setminus \{i\} \) with \( |S| = s \).
+                        The probability that player before \(i\) are exactly \(S\) can be decomposed in two conditions: 
+
+                        First, \(i\) can be in any position in \(N\), so: 
+                    </span>
+                        \[
+                        p(\text{pos}_i = s+1) = \frac{1}{n}
+                        \]
+                    <span>
+                        Second, given that \( i \) is in position \( s+1 \), the \( s \) players before \( i \) form a uniformly random subset of the remaining \( n-1 \) players of size \(\binom{n-1}{s}\):
+                    </span>
+                        \[
+                        p(\text{predecessors} = S \mid \text{pos}_i = s+1) = \frac{1}{\binom{n-1}{s}}
+                        \]
+
+                        <span>To fulfill these conditions, we multiply those probabilities:</span>
+                        \[
+                        \frac{1}{n}\cdot \frac{1}{\binom{n-1}{s}} = \frac{1}{n}\cdot \frac{s!(n-1-s)!}{(n-1)!} = w(S)
+                        \] 
+                </section>
+                 <section data-background-image="img_contents/LHC.jpg">
+
+                 </section>
+
+            </section>
 
 
 
@@ -789,8 +918,7 @@
 
 
 
-
-            <section  data-background-image="img_contents/vera_rubin_obs_2.png">
+            <section  data-background-image="img_contents/gen_intro_img.png">
                 <h1 style="text-align:center">Thank you ! </h1>
                 <div>Contact : raphael.bonnet-guerrini@unimi.it</div>
                 <br>
@@ -800,8 +928,8 @@
                 <br>
                 <br>
                 <br>
-                <div style="font-size: x-small; text-align:center">
-                    This work has received funding from the European Union’s Horizon 2020 research and innovation programme under a Marie Skłodowska-Curie grant agreement.
+                <div style="font-size: small; text-align:center">
+                    This work has received funding from the European Union's Horizon 2020 research and innovation programme under a Marie Skłodowska-Curie grant agreement.
                 </div>
             </section>
         </div>
