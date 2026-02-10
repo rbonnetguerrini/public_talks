@@ -619,14 +619,14 @@
             <!-- Slide 13: intro NNPDF -->
             <section data-background-image="img_contents/LHC.jpg">
                 <h2 >Shapley Values meets NNPDF</h2>
-                <span  style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, and Ramon Winterhalder<sup>2</sup></span>
+                <span  style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span>
                 <br>
                 <br>
                 <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;         <sup>2</sup>Physics Department, University of Milan</span>
             </section>
 
             <!-- Slide 14: Context -->
-            <section data-background-image="img_contents/LHC.jpg" >
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
                 <!-- Slide 14.1 -->
                 <section>
                     <h3 class="slide-title highlight">Parton Distribution Functions (PDFs) and NNPDF</h3>
@@ -673,7 +673,7 @@
             </section>
             
             <!-- Slide 15: Shapley Values for NNPDF -->
-            <section data-background-image="img_contents/LHC.jpg">
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
 
                 <!-- Slide 15.1 -->
                 <section>
@@ -688,13 +688,13 @@
                 <!-- Slide 15.2 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
-                    <span style="text-align: left;">    
+                    <p style="text-align: left;">    
                         The PDF space is a high-dimensional space, (9 in the flavor basis and 14 in the evolution basis). Based on QCD we are allowed to compute the Observables values from this space. 
-                    </span>
+                    </p>
                     <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
                     <div class="fragment" style="text-align:center">  
                         <span>                
-                        What if we perturb the PDF directly in the PDF space ? 
+                        What if we perturb the PDF directly in the <b>PDF space </b>? 
                         </span>
                     </div>
                     <div class="fragment" style="text-align:left">                  
@@ -704,13 +704,13 @@
                 <!-- Slide 15.3 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric ?</h3>
-                    <span style="text-align: left;">    
-                        The black box problem has been a recurrent issue in modern DL. We can inspire from the method developed there to solve the interpretability problem of NNPDF. 
-                    </span>
+                    <p style="text-align: left;">    
+                        Black box system is a recurrent interpretability issue in modern DL. We can inspire from the method developed there to solve the interpretability problem of NNPDF. 
+                    </p>
                     <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
-                    <span style="text-align: left;">    
+                    <p style="text-align: left;">    
                        One \(\phi_j\) value for each flavor \(j\) of the PDF, representing the contribution of this flavor to the fit.
-                    </span>
+                    </p>
                 </section>
 
                 <!-- Slide 15.4 -->
@@ -763,14 +763,13 @@
                         <li>\(\phi_j< 0 \) flavor \(j\) is poorly constrained for this dataset.</li>  
                         <li>\(\phi_j> 0 \) flavor \(j\) is well constrained.</li>
                         <br>
-                        <br>
-                        <h4>\(x\) region dependency:</h4>
+                        <strong>\(x\) region dependency:</strong>
                         <span>
                         Perturbation is local and we can expect different contributions for different \(x\) regions.
                         </span>
                         <br>    
                         <br>
-                        <h4>\(x\) dataset dependency:</h4>
+                        <strong>Dataset dependency:</strong>
                         <span>
                             \(v(s)=\chi^2\) which is computed based on experimental dataset. We expect different contributions for different datasets.
                         </span>
