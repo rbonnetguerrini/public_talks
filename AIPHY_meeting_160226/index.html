@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AIPHY Midterm 02 2026</title>
+
+    <meta name="description" content="AIPHY_midterm_02_2026">
+    <link rel="stylesheet" href="../assets/reveal/dist/reveal.css">
+    <link rel="stylesheet" href="../assets/reveal/dist/theme/darkenergy.css" id="theme">
+
+    <!-- Highlight.js library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
+    <!-- Include Bokeh CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.css" type="text/css">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js"></script>
+
+    <!-- Include math -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- code rendering-->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <script src="plugin/highlight/highlight.js"></script>
+
+    <!-- Box creations -->
+    <style>
+        /* Basic styling for the vertical boxes */
+        .double_box_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .double_box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 44%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-title {
+            background: rgba(255, 255, 255, 0.2);
+            /* Lighter background for title */
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* Container to center and stack boxes vertically */
+        .vertical-center-container {
+            display: flex;
+            flex-direction: column;
+            /* Stack children vertically */
+            align-items: center;
+            /* Center children horizontally */
+            gap: 20px;
+            /* Space between boxes */
+            height: 100vh;
+            /* Full viewport height (optional) */
+            padding: 20px;
+        }
+
+        /* Styling for the boxes */
+        .centered-box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            /* Width of the boxes */
+            max-width: 800px;
+            /* Max width to limit size */
+        }
+
+        .reveal .slide-title {
+            border-left: 5px solid white;
+            text-align: left;
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        .bokeh-iframe {
+            width: 80vw;
+            height: 80vh;
+            border: none;
+        }
+        .highlight {
+            background: rgba(150, 150, 150, 0.582);
+            padding: 0.1em 0.25em;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .reveal section[data-background-image="img_contents/LHC.jpg"] h1,
+        .reveal section[data-background-image="img_contents/LHC.jpg"] h2,
+        .reveal section[data-background-image="img_contents/LHC.jpg"] h3,
+        .reveal section[data-background-image="img_contents/LHC.jpg"] h4,
+        .reveal section[data-background-image="img_contents/LHC.jpg"] h5,
+        .reveal section[data-background-image="img_contents/LHC.jpg"] h6,
+        .reveal section[data-background-image="img_contents/LHC.jpg"] p,
+        .reveal section[data-background-image="img_contents/LHC.jpg"] span,
+        .reveal section[data-background-image="img_contents/LHC.jpg"] li {
+            background: rgba(150, 150, 150, 0.58);
+            padding: 0.1em 0.25em;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .reveal section[data-background-image="img_contents/LHC.jpg"]
+        mjx-container[display="true"] {
+            background: rgba(150,150,150,0.58);
+            padding: 0.15em 0.35em;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .reveal section[data-background-image="img_contents/LHC.jpg"]
+        mjx-container[display="false"] {
+            background: none;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1 -->
+            <section data-background-image="img_contents/gen_intro_img.png">
+
+                <h2 class="highlight">
+                    Interpretable Deep Learning for fundamental physics
+                </h2>
+
+                <h3 class="highlight">
+                    From Uncertainty quantification for SNIa to Mechanistic Interpretability for Neutrino
+                </h3>
+
+                <span class="highlight" style="font-size: smaller;">
+                    <b>Raphael Bonnet-Guerrini<sup>1</sup></b>
+                </span>
+                <br>
+
+                <span class="highlight" style="font-size: smaller;">
+                    16/02/2026
+                </span>
+                <br><br>
+
+                <span class="highlight" style="font-size: small;">
+                    <sup>1</sup>Computer Science Department, University of Milan
+                </span>
+
+            </section>
+
+
+
+            <!-- PART A: ML4TRANSIENTS-->
+            <!-- Slide 2 ML4transients title -->
+            <section data-background-image="img_contents/vera_rubin_obs.png">
+                <h2>Interpretable Deep Learning for Real/Bogus classification with Uncertainty Quantification</h2>
+                <span style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Dominique Fouchez<sup>2</sup>, Bruno Sanchez<sup>2</sup>, Benjamin Racine<sup>2</sup></span>
+                <br>
+                <br>
+                <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; <sup>2</sup>Centre de Physique des Particules de Marseille</span>
+
+            </section>
+
+            <!-- Slide 3 SN and LSST presentation title -->
+             <section>
+                <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
+                    <h3 class="slide-title">Cosmology: a data driven era.</h3>
+                    <div style="text-align:left">Vera Rubin Observatory has started operations in 2025. 10 years survey. Expectations are up to 100k spectroscopically confirmed Type Ia supernovae, up to 1M in total. 15PB of data.
+                    </div>  
+                    <div class="fragment"style="text-align:left"> 
+                    1 image every every 60 seconds during 10 years. 
+                    </div>
+                    <div class="fragment" style="text-align:left">                  
+                    <ul>
+                    <li>Calibrate the image</li>
+                    <li>Find all differences (~10k/image)</li>
+                    <li>
+                        For each difference
+                        <ul>
+                        <li>Perform photometry</li>
+                        <li>Crossmatch with known catalogs</li>
+                        <li>Find nearest Solar System objects</li>
+                        <li>Compute various features</li>
+                        <li>Find past LSST detections at this location</li>
+                        <li>Package into an alert</li>
+                        </ul>
+                    </li>
+                    </ul>
+
+                </section>
+            </section>
+
+            <!-- Slide 4 DIA -->
+            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
+                <!-- Slide 4.1 -->
+                <section >
+                    <h3 class="slide-title">Difference Image analysis: </h3>
+                    <div class=" container" style="align-items: start; text-align: center;">
+                        <div class="col">
+                            <br>
+                            <br>                                
+                            <img src="img_contents/DIA.png" style="width: 300px; height: auto;">
+                        </div>
+                        <div class="fragment col">
+                            <img src="img_contents/key_intuition3.png" style="width: 700px; height: auto;">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4.2 -->      
+                <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
+                    <h3 class="slide-title">Weakly supervised learning problem</h3>
+                    <div style="text-align: left;">
+                        No ground truth. During training, we are interested in the <b>False Positives</b>
+                    </div>
+                    <div class="container" style="align-items: start; text-align: center;">
+                        <div class="col">
+                            <br><br><br><br><br><br><br><br>
+                            <img src="img_contents/key_intuition3.png" style="width: 700px; height: auto;">
+
+                        </div>
+                        <div class="col" style="align-items: start; text-align: right;"">
+                            <img class ="fragment" src="img_contents/key_intuition4.png" style="width: 700px; height: auto;">
+                        </div>
+
+                    
+                    </div>
+                </section>
+            </section>
+
+            <!-- Slide 5 : Data Presentation -->
+            <section>      
+                <!-- Slide 5.1 Training data -->
+                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                    <h3 class="slide-title">Training Data Presentation</h3>
+                    The HSC RC2 subset is composed of 6 detectors, with 8 visits per filter.
+                    <div class="container" style="align-items: start; text-align: left;">
+                        <div class="col" style="margin-top: 10px;">
+                            <br><br>
+                            <h4>Producing the Cutouts: </h4>
+                            <li>Cutout coordinates are extracted from the DIA source tables and produced from the Calexps.</li>
+                            <li>Final format: (30x30), normalized grayscale.</li>
+                            <br><br>
+                            <span>
+                                <h4>Classes and Labels: </h4>
+                                <li>Inferring the injected data from the matchDiaSrc.</li>
+                            </span>
+                        </div>
+                        <div class="col" style="margin-top: 10px;">
+                            <br>
+                            <img src="img_contents/cutouts_examples.png" style="width: 500px; height: auto;">
+                        </div>
+                    </div>
+                </section>
+                <!-- Slide 5.2 Evaluation data -->
+                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                    <h3 class="slide-title">Evaluation Data Presentation</h3>
+                    <div class="container" style="align-items: start; text-align: left;">
+                    We use the full UDEEP dataset to build light curves. It is composed of 862 visits across 103 detectors. Those light curves are first filtered and then manually inspected for transient identification.
+                    </div>
+                    <div class="container" style="align-items: start; text-align: left;">
+                        <div class="col" style="margin-top: 10px;">
+                            <br>
+                            <br>
+                            <br>
+                            <h4>Filtering steps: from 8M to 342 LCs </h4>
+
+                            <h4>Human labeling: </h4>
+                                <img src="img_contents/table_labels.png" style="width: 500px; height: auto;">
+                            
+                        </div>
+                        <div class="col" style="margin-top: 10px;">
+                            <br>
+                            <img src="img_contents/band_dia.png" style="width: 200px; height: auto;">
+                            <img src="img_contents/lc_sn.png" style="width: 500px; height: auto;">
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Slide 6 : Network presentation -->
+            <section>
+                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                    <h3 class="slide-title">Network Architecture</h3>
+                    <div style='text-align: left'>
+                        A simple CNN architecture:
+                        <li>3 Conv blocks consists of convolution, batch normalization, ReLU, max pooling, and dropout.</li>
+                        <li>2 fully connected layers (FCC) for high-level abstractions and classification output.</li>
+                        <li>Dropout layers for generalization.</li>
+                    </div>
+                    <img src="img_contents/NN_visu.png" style="width: 700px; height: auto;">
+                </section>
+            </section>
+            <!-- Slide 7 : WSL -->
+            <section>
+                <!-- Slide 7.1 -->
+               <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+                    <h3 class="slide-title">Co-Teaching: A Self-Event-Selection Strategy for Weakly Supervised Learning</h3>
+                    <p>Two models are trained simultaneously with different views on the same dataset.</p>
+                    <div class="container" style="align-items: start; text-align: left">
+                        <div class="col" style="display: flex; flex-direction: column; align-items: center;">
+                            <br><br>
+                            <img data-src="img_contents/coteaching.svg" class="plain" style="width: 300px;">
+                                <div style="text-align: center;">
+                                <br>
+                                <a href="https://arxiv.org/abs/1804.06872">
+                                    <img src="https://img.shields.io/badge/cs-arXiv.1804.06872-B31B1B.svg"
+                                        class="plain" style="height:25px;" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <p>In each batch, each model selects the datum with the smallest loss (most confident predictions).</p>
+                            <p>Avoid training on the wrong labels.</p>
+                            <strong>Pros:</strong>
+                            <ul>
+                                <li>Effective for noisy datasets.</li>
+                            </ul>
+                            <strong>Cons:</strong>
+                            <ul>
+                                <li>Increases computational cost.</li>
+                                <li>Assumes symmetrical noise.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            <!-- Slide 7.2 -->
+               <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+                    <h3 class="slide-title">Asymmetrical Co-Teaching: </h3>
+                    <p>Two models are trained simultaneously with different views on the same dataset.</p>
+                    <div class="container" style="align-items: start; text-align: left">
+                        <div class="col" style="display: flex; flex-direction: column; align-items: center;">
+                            <br><br>
+                            <img data-src="img_contents/coteaching_comparison.svg" class="plain" style="width: 300px;">
+                        </div>
+                        <div class="col">
+                            <br>
+                            <h4>Key Changes:</h4>
+                            <ul>
+                                <li>Implements different remembering rates for each class.</li>
+                                <li>Better fits the needs of our asymmetrically weakly supervised dataset.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <!-- Slide 7.3 -->
+                <section data-background-gradient="linear-gradient(to bottom, black, darkgrey)">
+                    <h3 class="slide-title">Asymmetrical Co-Teaching</h3>
+                    
+                    <img data-src="img_contents/asym_coteaching.png" style="width: 800px; height: auto;" class="plain"></img>
+                </section>
+            </section>
+
+            <!-- Slide 8 : Result WSL -->
+            <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+                <h3 class="slide-title">WSL analysis:</h3>
+                <div class="container" style="align-items: start; text-align: left">
+                    <div class="col">
+                        Four different training sets with varying noise levels, to compare the performances. 
+                        <br> 
+                        <ul>
+                            <li>Co-Teaching methods becomes better for higher noise levels.</li>
+                            <li>Asym-Co-Teaching shows improved performance.</li>
+                            <li>Demonstrate the effectiveness of the approach in real-world scenarios and in future better calibrated photometry context.</li>
+
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <img src="img_contents/WSL_results.png" style="width: 700px; height: auto;">
+                    </div>
+                </div>
+             </section>
+
+
+            <!-- Slide 9 : Uncertainty Quantification -->
+            <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <!-- Slide 9.1 Ensembles and MC Dropout -->
+                <section>
+                    <h3 class="slide-title">Ensembles and MC Dropout</h3>
+                    <div class="container" style="align-items: start; text-align: left">
+                        <div class="col">
+                            <h4>Ensembles:</h4>
+                            <ul>
+                                <li>Train multiple models with different initializations.</li>
+                                <li>Average predictions to reduce variance and improve robustness.</li>
+                                <li>Cost: For N models, N trainings and N inferences.</li>
+                            </ul>
+                            <div style="text-align:center">
+                                <a href="https://arxiv.org/abs/1612.01474" style="text-align:center">
+                                    <img src="https://img.shields.io/badge/stat.ML-arXiv%3A1612.01474-B31B1B?logo=arxiv" height="25">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h4>MC Dropout:</h4>
+                            <ul>
+                                <li>Apply dropout during inference to simulate an ensemble of models.</li>
+                                <li>Perform multiple forward passes to estimate uncertainty.</li>
+                                <li>Cost: For M forward passes, M inferences.</li>
+                            </ul>
+                            <div style="text-align:center">
+                                <a href="https://arxiv.org/abs/1506.02142" style="text-align:center">
+                                    <img src="https://img.shields.io/badge/stat.ML-arXiv%3A1506.02142-B31B1B?logo=arxiv" height="25">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px; text-align: center; font-size: 0.95em;">
+                        <p style="margin-bottom: 10px;">
+                            <strong>Predictive uncertainty (from variance of predictions):</strong>
+                        </p>
+
+                        <p>
+                            \[
+                            \hat{\mu}(x)=\frac{1}{T}\sum_{t=1}^{T}\hat{y}^{(t)}(x),
+                            \qquad
+                            \widehat{\mathrm{Var}}(x)=\frac{1}{T-1}\sum_{t=1}^{T}\left(\hat{y}^{(t)}(x)-\hat{\mu}(x)\right)^{2}
+                            \]
+                        </p>
+
+                        <p style="margin-top: 8px; font-size: 0.85em;">
+                            where \( \hat{y}^{(t)}(x) \) is the prediction from the \(t\)-th model (ensemble) or the \(t\)-th stochastic forward pass (MC Dropout).
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Slide 9.2 UQ for Co-Teaching -->
+                <section>
+                    <h3 class="slide-title">UQ for Co-Teaching</h3>
+                        <div style="text-align: left;">
+                            Co-Teaching methods trains two models simultaneously. <br>
+                            Despite not being completely independent, we can still use them to estimate uncertainty by treating their predictions as an ensemble. <br>
+                            \( N=2\) ensemble is small, we can extend it by performing M stochastic forward passes with MC Dropout for each model, resulting in a total of \(NM\) predictions.
+                            
+
+                            \[    
+                            \bar{p}(\mathbf{x}^*) = \frac{1}{NM} \sum_{n=1}^{N} \sum_{m=1}^{M} p_{n,m}(\mathbf{x}^*),
+                            \]
+                            and 
+                            \[
+                            \mathrm{Var}_{\text{Co-Ens-Dropout}}(\mathbf{x}^*) = \frac{1}{NM} \sum_{n=1}^{N}\sum_{m=1}^{M}\big(p_{n,m}(\mathbf{x}^*) - \bar{p}(\mathbf{x}^*)\big)^2.
+                            \]
+                        </div>
+                </section>
+                
+                <!-- Slide 9.3 Metrics -->
+                <section>
+                    <h3 class="slide-title">Metrics</h3>
+                    <div class="container" style="align-items: start; text-align: left">
+                        <div class="col">
+                            <br><br>
+                            <h4>Calibration Metrics:</h4>
+                            <ul>
+                                <li>Negative Log-Likelihood (NLL): quality of probabilistic predictions.</li>
+                                <li>Brier Score: MSE of probabilistic predictions.</li>
+                                <li>Expected Calibration Error (ECE): difference between predicted probabilities and observed frequencies.</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <br><br>
+                            <h4>Correlations with Physical Quantities:</h4>
+                            <ul>
+                                <li>Correlations with Signal-to-Noise Ratio (SNR).</li>
+                                <li>Correlations with maximum brightness of a SNIa.</li>
+                            </ul>
+                            The correlations are computed using Spearman's rank correlation coefficient, which measures the strength and direction of the monotonic relationship between two variables.
+                            \[
+                                \rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}  
+                            \]
+                        </div>
+                    </div>
+                    
+                </section>
+    
+            </section>
+            
+            <!-- Slide 10: Results of the UQ -->
+            <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+                <h3 class="slide-title">UQ analysis:</h3>
+                <div class="container" style="align-items: start; text-align: left">
+                    <div class="col">
+                        <img src="img_contents/calib_metric.png" style="width: 700px; height: auto;">
+                        <img src="img_contents/physical_metric.png" style="width: 700px; height: auto;">
+                    </div>
+                    <div class="col">
+                        <img src="img_contents/UQ_calib.png" style="width: 700px; height: auto;">
+                    </div>
+                </div>
+                <div>
+                    <li>All methods shows correlation in the correct direction with physical values.</li> 
+                    <li>Our methods surprisingly beats all other methods while costing \(25\) times less training power than ensemble based.</li>
+                </div>
+             </section>
+            
+            <!-- Slide 11: Interpretability -->
+            <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <!-- Slide 11.1 -->
+                <section>
+                        <h3 class="slide-title">Using UMAP for NN Latent Space visualization.</h3>
+                        <div>
+                            <div style="text-align:center">
+                                <a href="https://arxiv.org/abs/1802.03426" style="text-align:center">
+                                    <img src="https://img.shields.io/badge/stat.ML-arXiv%3A1802.03426-B31B1B?logo=arxiv" height="25">
+                                </a>
+                            </div>
+                            <h4>UMAP Overview:</h4>
+                            <ul>
+                                <li>Preserves both local and global structure using non-linear dimensionality reduction.</li>
+                                <li>Builds a nearest-neighbors graph and optimizes it for lower dimensions.</li>
+                            </ul>
+                        </div>
+                        <div style="text-align:center">
+                            <img src="img_contents/umap_explanation.png" style="width: 600px; height: auto;"></img>
+                        </div>
+                        <div class="fragment">
+                            <h4>UMAP in Our Case:</h4>
+                            <ul>
+                                <li>Applied to the output layer of the network.</li>
+                                <li>Provides a visual tool for better understanding network classifications.</li>
+                            </ul>
+                        </div>
+                </section>
+                <!-- Slide 11.2 -->
+                <section>
+                    <h3 class="slide-title">UMAP Results</h3>
+                    <div style="text-align:center">
+                        <iframe src="plot_contents/umap_classes.html" class="bokeh-iframe"></iframe>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="slide-title">UMAP Results: SNR overlay</h3>
+                    <div style="text-align:center">
+                        <iframe src="plot_contents/umap_SNR.html" class="bokeh-iframe"></iframe>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="slide-title">UMAP Results: UQ overlay</h3>
+                    <div style="text-align:center">
+                        <iframe src="plot_contents/umap_UQ.html" class="bokeh-iframe"></iframe>
+                    </div>
+                </section>
+             </section>
+
+            <!-- Slide 12: Outcomes --> 
+            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
+                <h3 class="slide-title">Outcomes of the project:</h3>
+                <div class="fragment" style="text-align: left;">
+                Conclusions: 
+                <ul>
+                    <li>New Asym-Co-Teaching methods that allows a mitigation of the risk in a high stake class.</li>
+                    <li>Novel uncertainty quantification method for Co-Teaching, providing better calibrated uncertainties at lower costs.</li>
+                    <li>UMAP visualization of the latent space confirms our interpretation on global model behavior.</li>
+                </ul>
+                </div>
+                <div class="fragment" style="text-align: left;">
+                Future work:
+                <ul>
+                    <li>Further exploration of the latent space to identify specific features or patterns associated with bogus class.</li>
+                    <li>Expanding work to upcoming datasets.</li>
+                    <li>Exploration of the MC-Ensemble mixture systematic performances.</li>
+                </ul>
+                </div>
+
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- PART B: SHAPLEY VALUES-->
+
+            <!-- Slide 13: intro NNPDF -->
+            <section data-background-image="img_contents/LHC.jpg">
+                <h2 >Shapley Values meets NNPDF</h2>
+                <span  style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, and Ramon Winterhalder<sup>2</sup></span>
+                <br>
+                <br>
+                <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;         <sup>2</sup>Physics Department, University of Milan</span>
+            </section>
+
+            <!-- Slide 14: Context -->
+            <section data-background-image="img_contents/LHC.jpg" >
+                <!-- Slide 14.1 -->
+                <section>
+                    <h3 class="slide-title highlight">Parton Distribution Functions (PDFs) and NNPDF</h3>
+                    <div  style="text-align: left;">
+                        <h4>Parton Distribution Functions (PDFs):</h4>
+                        <ul>
+                            <li>Describe the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\).</li>
+                            <li>Essential for predicting outcomes of high-energy particle collisions.</li>
+                        </ul>
+                        <br><br>
+                        <h4>NNPDF: Neural Network Parton Distribution Functions:</h4>
+                        <ul>
+                            <li>Uses neural networks to model PDFs without assuming a specific functional form.</li>
+                            <li>Trained on experimental data from deep inelastic scattering and hadron collider experiments.</li>
+                            <li>Provides uncertainty estimates through ensemble methods.</li>
+                        </ul>
+                        <div style="text-align:center">
+                                <a href="https://arxiv.org/abs/2109.02653" style="text-align:center">
+                                    <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2109.02653-B31B1B?logo=arxiv" height="25">
+                                </a>
+                        </div>
+                    </div>
+                </section>
+                <!-- Slide 14.2 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values</h3>
+                    <span style="text-align: left;">
+                        Shapley Values are inherited from game theory: represent the value of the <b>contribution \(\phi\)</b> of a player \(i\) within a coalition \(S\). 
+                    </span>
+                    \[
+                    \phi_i = \sum_{S \subseteq N \setminus \{i\}}  \frac{|S|! \, (|N| - |S| - 1)!}{|N|!} \left[ v(S \cup \{i\}) - v(S) \right]
+                    \]
+                    <span style="text-align: left;">
+                        where \(N\) is the set of all players, \(S\) is a subset of players not including \(i\), and \(v(S)\) is the value of the coalition \(S\). The main problem being the computational cost as it scales exponentially with the number of players \(2^N\). 
+                    </span>
+                    <span style="text-align: left;">
+                        Largely popularized for its application to Machine Learning and Deep Learning, with methods like SHAP (SHapley Additive exPlanations) that makes them computable for high amount of players (features) given certain assumptions and approximations.
+                    </span>
+                    <div style="text-align:center">
+                                <a href="https://arxiv.org/abs/1705.07874" style="text-align:center">
+                                <img src="https://img.shields.io/badge/cs.AI-arXiv%3A1705.07874-B31B1B?logo=arxiv" height="25">                                </a>
+                    </div>
+                </section>
+            </section>
+            
+            <!-- Slide 15: Shapley Values for NNPDF -->
+            <section data-background-image="img_contents/LHC.jpg">
+
+                <!-- Slide 15.1 -->
+                <section>
+                <h3 class="slide-title highlight" style="text-align: left;">Shapley Values For NNPDF</h3>
+                    <span style="text-align: left;">    
+                        NNPDF is an inverse problem: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
+                        
+                    </span>
+                    <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
+                </section>
+
+                <!-- Slide 15.2 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
+                    <span style="text-align: left;">    
+                        The PDF space is a high-dimensional space, (9 in the flavor basis and 14 in the evolution basis). Based on QCD we are allowed to compute the Observables values from this space. 
+                    </span>
+                    <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <div class="fragment" style="text-align:center">  
+                        <span>                
+                        What if we perturb the PDF directly in the PDF space ? 
+                        </span>
+                    </div>
+                    <div class="fragment" style="text-align:left">                  
+                        <span>Multidimensionality of the PDF space combined with the rotation and convolutions makes it difficult to perform systematic test and obtain a clear understanding of each flavor on the fit.</span>  
+                    </div>
+                </section>
+                <!-- Slide 15.3 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric ?</h3>
+                    <span style="text-align: left;">    
+                        The black box problem has been a recurrent issue in modern DL. We can inspire from the method developed there to solve the interpretability problem of NNPDF. 
+                    </span>
+                    <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <span style="text-align: left;">    
+                       One \(\phi_j\) value for each flavor \(j\), representing the contribution of this flavor to the fit.
+                    </span>
+                </section>
+
+                <!-- Slide 15.4 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
+                    <div class="container">
+                        <div class="col" style="text-align: left;">
+                        <span>
+                        A smooth gaussian bump :
+                        </span>
+                        \[
+                            f_j^{\text{pert}}(x)=f_j(x) + \delta_j(x)
+                        \]
+
+                        </div>
+                        <div class="col">
+                            <img data-src="img_contents/perturbed_pdf.png" style="width: 300px; height: auto;" class="plain"></img>
+                        </div>
+                    </div>
+
+                    <div class="fragment" style="text-align:left">                  
+                        <span>Choices remains to be done: </span>
+                        <br>
+                        <li>How to choose the width and amplitude of the bump ?</li>
+                        <li>How to choose the location of the bump ?</li>
+                        <li>How to respect the physical constraints of the PDF ?</li> 
+                        <li>Do we want similar perturbations for all flavors, or proportional to their contribution ?</li>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to interpret the SV?</h3>
+                    <div class="container">
+                        <div class="col" style="text-align: left;">
+                        <li>\(\phi_j< 0 \) flavor \(j\) is poorly constrained for this dataset.</li>  
+                        <li>\(\phi_j> 0 \) flavor \(j\) is well constrained.</li>
+                        <br>
+                        <br>
+                        <h4>\(x\) region dependency:</h4>
+                        <span>
+                        Perturbation is local and we can expect different contributions for different \(x\) regions.
+                        </span>
+                        <br>    
+                        <br>
+                        <h4>\(x\) dataset dependency:</h4>
+                        <span>
+                            \(v(s)=\chi^2\) which is computed based on experimental dataset. We expect different contributions for different datasets.
+                        </span>
+                        </div>
+                        <div class="col" style="align-items: center;">
+                            <img data-src="img_contents/SV.png" style="width: 500px; height: auto;" class="plain"></img>
+
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section data-background-image="img_contents/LHC.jpg">
+                <h3 class="slide-title highlight" style="text-align: left;">Next steps:</h3>
+                <div style="text-align: left;">   
+                    <ul>             
+                        <li>Implementation for proton proton collisions (for now only implemented for DIS). </li>
+                        <li>Implementation to NNPDF.</li><br>
+                        <li>Perturbation respectful of physical constraints.</li>
+                        <li>Systematic study of the SV behavior for different perturbations and datasets.</li>
+                    </ul>
+                </div>
+            </section>
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <section  data-background-image="img_contents/vera_rubin_obs_2.png">
+                <h1 style="text-align:center">Thank you ! </h1>
+                <div>Contact : raphael.bonnet-guerrini@unimi.it</div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="font-size: x-small; text-align:center">
+                    This work has received funding from the European Union’s Horizon 2020 research and innovation programme under a Marie Skłodowska-Curie grant agreement.
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+<!-- Include Reveal.js -->
+<script src="../assets/reveal/dist/reveal.js"></script>
+
+<!-- Include Plugins (optional) -->
+<script src="../assets/reveal/plugin/zoom/zoom.js"></script>
+<script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+
+<!-- Include MathJax -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Include Highlight.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+<script>
+    // Initialize Reveal.js with hash and slide number options
+    Reveal.initialize({
+        hash: true,      // Enables URL hash navigation
+        slideNumber: true, // Display slide numbers
+        math: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        },
+        plugins: [RevealZoom, RevealHighlight], // Initialize plugins
+    });
+
+    // Initialize Highlight.js for code blocks
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+
+</body>
+
+</html>
