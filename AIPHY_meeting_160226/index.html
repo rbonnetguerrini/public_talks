@@ -105,10 +105,12 @@
         .reveal section[data-background-image="img_contents/LHC.jpg"] p,
         .reveal section[data-background-image="img_contents/LHC.jpg"] span,
         .reveal section[data-background-image="img_contents/LHC.jpg"] li {
-            background: rgba(150, 150, 150, 0.58);
+            background: rgba(0, 0, 0, 0.45);
             padding: 0.1em 0.25em;
             border-radius: 4px;
             display: inline-block;
+            backdrop-filter: blur(2px);
+
         }
         .reveal mjx-container[display="true"] {
             display: inline-block !important;
@@ -375,12 +377,6 @@
                             </ul>
                         </div>
                     </div>
-                </section>
-                <!-- Slide 7.3 -->
-                <section data-background-gradient="linear-gradient(to bottom, black, darkgrey)">
-                    <h3 class="slide-title">Asymmetrical Co-Teaching</h3>
-                    
-                    <img data-src="img_contents/asym_coteaching.png" style="width: 800px; height: auto;" class="plain"></img>
                 </section>
             </section>
 
@@ -747,6 +743,13 @@
                 </section>
 
                 <!-- Slide 15.5 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Coalitions and complexity</h3>
+
+                    <p><strong>What we compute:</strong> the <em>exact</em> Shapley value for each PDF flavor by averaging its marginal contribution across all coalitions (all subsets of flavors).</p>
+                    <p><strong>Computational cost:</strong> Exponential in the number of flavors, as we need to evaluate the fit for each coalition. For \(9\) flavors, we have \(2^9 = 512\) coalitions.</p>
+                    <p><strong>No assumption of independence of the features:</strong> Using exact Shapley values, no assumption of independence is required.</p>
+                </section>
 
 
 
@@ -795,10 +798,65 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <section>
-                <section data-background-image="img_contents/LHC.jpg">
-                    <h3 class="slide-title highlight" style="text-align: left;">Backup Slides</h3>
+                <section data-background-image="img_contents/gen_intro_img.png" >
+                    <div class="title-panel">
+
+                        <h3>Backup Slides</h3>
+                    </div>
                 </section>
+                <section data-background-gradient="linear-gradient(to bottom, black, darkgrey)">
+                    <h3 class="slide-title">Asymmetrical Co-Teaching</h3>
+                    
+                    <img data-src="img_contents/asym_coteaching.png" style="width: 800px; height: auto;" class="plain"></img>
+                </section>
+                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                    <h3>Calibration Metrics</h3>
+                        <ul>
+                            <li>Negative Log-Likelihood (NLL): quality of probabilistic predictions.</li>
+                            <li>Brier Score: MSE of probabilistic predictions.</li>
+                            <li>Expected Calibration Error (ECE): difference between predicted probabilities and observed frequencies.</li>
+                        </ul>
+                        \[
+                        \text{NLL} = -\frac{1}{N}\sum_{n=1}^{N}
+                        \big[y_n \log \bar{p}_n + (1-y_n)\log(1-\bar{p}_n)\big]
+                        \]
+                        \[
+                        \text{BS} = \frac{1}{N}\sum_{n=1}^{N}(p_n - y_n)^2
+                        \]
+                        \[
+                        \text{ECE}=\sum_{m=1}^{M}\frac{|B_m|}{N}
+                        \left|\text{acc}(B_m)-\text{conf}(B_m)\right|
+                        \]
+
+
+                </section>
+            
 
                 <section data-background-image="img_contents/LHC.jpg">
                     <h3 class="slide-title highlight" style="text-align: left;">Shapley Values Pseudo code</h3>
@@ -919,18 +977,14 @@ shapley_vals[i] = SV
 
 
             <section  data-background-image="img_contents/gen_intro_img.png">
-                <h1 style="text-align:center">Thank you ! </h1>
-                <div>Contact : raphael.bonnet-guerrini@unimi.it</div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div style="font-size: small; text-align:center">
+                <div class="title-panel">
+                    
+                    <h1>Thank you ! </h1>
+                
+                <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
+                <p class="meta" style="font-size: small; text-align:center">
                     This work has received funding from the European Union's Horizon 2020 research and innovation programme under a Marie Skłodowska-Curie grant agreement.
-                </div>
+                </p></div>
             </section>
         </div>
     </div>
