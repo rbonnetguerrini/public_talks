@@ -372,7 +372,7 @@
                             <br>
                             <h4>Key Changes:</h4>
                             <ul>
-                                <li>Implements different remembering rates for each class.</li>
+                                <li>Implements <span style="color: rgba(215, 0, 0, 0.95);">different remembering rates for each class.</span></li>
                                 <li>Better fits the needs of our asymmetrically weakly supervised dataset.</li>
                             </ul>
                         </div>
@@ -410,9 +410,9 @@
                         <div class="col">
                             <h4>Ensembles:</h4>
                             <ul>
-                                <li>Train multiple models with different initializations.</li>
+                                <li><span style="color: rgba(215, 0, 0, 0.95);">Train multiple models with different initializations.</span></li>
                                 <li>Average predictions to reduce variance and improve robustness.</li>
-                                <li>Cost: T trainings and T inferences.</li>
+                                <li>Cost: <span style="color: rgba(215, 0, 0, 0.95);">T trainings and T inferences.</span></li>
                             </ul>
                             <div style="text-align:center">
                                 <a href="https://arxiv.org/abs/1612.01474" style="text-align:center">
@@ -423,9 +423,9 @@
                         <div class="col">
                             <h4>MC Dropout:</h4>
                             <ul>
-                                <li>Apply dropout during inference to simulate an ensemble of models.</li>
+                                <li><span style="color: rgba(215, 0, 0, 0.95);">Apply dropout during inference to simulate an ensemble of models.</span></li>
                                 <li>Perform multiple forward passes to estimate uncertainty.</li>
-                                <li>Cost: T inferences.</li>
+                                <li>Cost: <span style="color: rgba(215, 0, 0, 0.95);">T inferences.</span></li>
                             </ul>
                             <div style="text-align:center">
                                 <a href="https://arxiv.org/abs/1506.02142" style="text-align:center">
@@ -456,20 +456,23 @@
                 <!-- Slide 9.2 UQ for Co-Teaching -->
                 <section>
                     <h3 class="slide-title">UQ for Co-Teaching</h3>
-                        <div style="text-align: left;">
-                            Co-Teaching methods trains two models simultaneously. <br>
-                            Despite not being completely independent, we can still use them to estimate uncertainty by treating their predictions as an ensemble. <br>
-                            \( N=2\) ensemble is small, we can extend it by performing M stochastic forward passes with MC Dropout for each model, resulting in a total of \(NM\) predictions.
-                            
-
+                        <p style="text-align: left;">
+                            Co-Teaching methods trains two models simultaneously.
+                        </p>
+                        <p style="text-align: left;">
+                            Despite not being completely independent, we can still use them to estimate uncertainty by treating their predictions as an ensemble. 
+                        </p>
+                        <p style="text-align: left;">
+                            \( N=2\) ensemble is small, we can extend it by <span style="color: rgba(215, 0, 0, 0.95);">performing M stochastic forward passes with MC Dropout for each model</span>, resulting in a total of \(N\times M\) predictions.
+                        </p>    
+                            <div style="display: flex; flex-direction: column; align-items: center;">
                             \[    
                             \bar{p}(\mathbf{x}^*) = \frac{1}{NM} \sum_{n=1}^{N} \sum_{m=1}^{M} p_{n,m}(\mathbf{x}^*),
-                            \]
-                            and 
-                            \[
+                            \qquad
                             \mathrm{Var}_{\text{Co-Ens-Dropout}}(\mathbf{x}^*) = \frac{1}{NM} \sum_{n=1}^{N}\sum_{m=1}^{M}\big(p_{n,m}(\mathbf{x}^*) - \bar{p}(\mathbf{x}^*)\big)^2.
                             \]
-                        </div>
+                            </div>
+
                 </section>
                 
                 <!-- Slide 9.3 Metrics for Uncertainty Quantification -->
@@ -516,8 +519,8 @@
                     </div>
                 </div>
                 <div>
-                    <li>All methods shows correlation in the correct direction with physical values.</li> 
-                    <li>Our methods surprisingly beats all other methods while costing \(25\) times less training power than ensemble based.</li>
+                    <li>All methods shows <span style="color: rgba(215, 0, 0, 0.95);">correlation in the correct direction with physical values.</span></li> 
+                    <li>Our methods surprisingly beats all other methods while costing <span style="color: rgba(215, 0, 0, 0.95);">\(25\) times less training power than ensemble based.</span></li>
                 </div>
              </section>
             
