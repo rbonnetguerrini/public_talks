@@ -642,7 +642,7 @@
                             </div>
                             <div class="col">
                                 <ul>
-                                    <li>Describe the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\).</li>
+                                    <li>Describe  <span style="color: rgba(215, 0, 0, 0.95);">the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\)</span>.</li>
                                     <li>Essential for predicting outcomes of high-energy particle collisions.</li>
                                     <li>NNPDF uses neural networks to model PDFs without assuming a specific functional form.</li>
                                     <li>Trained on experimental data from different detectors.</li>
@@ -662,7 +662,7 @@
                 <section>
                 <h3 class="slide-title highlight" style="text-align: left;">Shapley Values For NNPDF</h3>
                     <p style="text-align: left;">    
-                        NNPDF solves an inverse problem: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
+                        NNPDF solves an  <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
                     </p>
                     <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: left;">    
@@ -680,7 +680,7 @@
                     <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
                     <div class="fragment" style="text-align:center; font-size: larger">  
                         <span>                
-                        What if we perturb the PDF directly in the <b>PDF space </b>? 
+                        What if we perturb the PDF directly in the <b> <span style="color: rgba(215, 0, 0, 0.95);">PDF space</span> </b>? 
                         </span>
                     </div>
                     <br>
@@ -692,11 +692,11 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">NNPDF a black box model ?</h3>
                     <p style="text-align: left;">    
-                        Black box system is a recurrent interpretability issue in modern DL. We can inspire from the method developed there to solve the interpretability problem of NNPDF. 
+                         <span style="color: rgba(215, 0, 0, 0.95);">Black box system is a recurrent interpretability issue in modern DL.</span> We can inspire from the method developed there to solve the interpretability problem of NNPDF. 
                     </p>
                     <img data-src="img_contents/blackbox_nnpdf.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: center;">    
-                       XAI answer : What's the impact of one feature \(\phi_j\) on the output of the model ?
+                       XAI answer : What's the impact of one feature on the output of the model ?
                     </p>
                 </section>
             </section>
@@ -708,7 +708,7 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">Shapley Values</h3>
                     <p style="text-align: left;">
-                        Shapley Values are inherited from game theory: represent the value of the <b>contribution \(\phi\)</b> of a player \(i\) within a coalition \(S\). 
+                        Shapley Values are inherited from game theory: represent the value of the <span style="color: rgba(215, 0, 0, 0.95);">contribution \(\phi\) of a player \(i\) within a coalition \(S\)</span>. 
                     </p>
                     \[
                     \phi_i = \sum_{S \subseteq N \setminus \{i\}}  \frac{|S|! \, (|N| - |S| - 1)!}{|N|!} \left[ v(S \cup \{i\}) - v(S) \right]
@@ -776,7 +776,7 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">Coalitions and complexity</h3>
 
-                    <p><strong>What we compute:</strong> the <em>exact</em> Shapley value for each PDF flavor by averaging its marginal contribution across all coalitions (all subsets of flavors).</p>
+                    <p><strong>What we compute:</strong> the  <span style="color: rgba(215, 0, 0, 0.95);"><em>exact</em> Shapley value</span> for each PDF flavor by averaging its marginal contribution across all coalitions (all subsets of flavors).</p>
                     <p><strong>Computational cost:</strong> Exponential in the number of flavors, as we need to evaluate the fit for each coalition. In the flavor basis, \(N=9\) flavors, we have \(2^9 = 512\) coalitions.</p>
                     <p  style="text-align:left">Using exact Shapley values, we make <strong>no assumption of independence of the features.</strong></p>
                 </section>
@@ -864,12 +864,12 @@
                 <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px);">
                 <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Foundation models</h3>
                 <p style="text-align: left;">
-                    Foundation models are large-scale machine learning models that are trained on a wide variety of data and can be adapted to a wide range of downstream tasks. They have shown remarkable performance in various domains, including natural language processing, computer vision, and more recently, in scientific domains such as physics.
+                    Foundation models are <strong>large-scale machine learning models</strong> that are trained on a wide variety of data and can be adapted to a wide range of  <span style="color: rgba(215, 0, 0, 0.95);">downstream tasks</span>. They have shown remarkable performance in various domains, including natural language processing, computer vision, and more recently, in scientific domains such as physics.
                 </p>
                 <p style="text-align: left;"> Most foundation models rely on two specificities:</p>
                 <ul>
-                    <li>The self-attention mechanism of the transformer architecture.</li>
-                    <li>The available volume of data and the possibility to perform Self-Supervised Learning.</li>
+                    <li>The <strong>self-attention</strong> mechanism of the Transformer architecture.</li>
+                    <li>The available volume of data and the possibility to perform <strong>Self-Supervised Learning</strong>.</li>
                 </ul>
                 <p>
                     <a href="https://arxiv.org/abs/2108.07258" style="text-align:center">
@@ -891,7 +891,7 @@
                 <div class="container" style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <div class="col" style="flex: 1 1 45%; min-width: 240px; text-align: left;">
                     <p style="text-align: left;">
-                        Neutrino detectors record pulses. <br> A pulse is a time series of the light emitted by the interaction of a neutrino with the detector. <br>It tracks the directions and energies of the incoming neutrinos.                         
+                        Neutrino detectors record pulses. <br> A pulse is a time series of the light emitted by the interaction of a neutrino with the detector. <br>It tracks  <span style="color: rgba(215, 0, 0, 0.95);">the recorded time, the directions and the energies</span> of the incoming neutrinos.                         
                     </p>
                     <p style="text-align: left;">
                         <b>PolarBERT</b> is a foundation model trained on 131,000,000 high-quality Monte Carlo neutrino events.
@@ -920,7 +920,7 @@
                         Foundation Model are able to generalize.
                     </p>
                     <p style="text-align: center; font-size: larger;">
-                        <strong>Mechanistic Interpretability </strong> asks: &#8680; How did my model solve this general class of problems? 
+                        <strong>Mechanistic Interpretability </strong> asks: &#8680; <span style="color: rgba(215, 0, 0, 0.95);">How did my model solve this general class of problems?</span>
                     </p>
                     <div class="fragment">
                         <p style="text-align: left;">
@@ -945,14 +945,14 @@
                     <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px);">
                     <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Sparse representations and Latent Spaces</h3>
                     <p style="text-align: left;">
-                        Polysemanticity is caused by overlapping directions in the activation space. Dimensionality reduction technique may not be able to disentangle the features.
+                        <strong>Polysemanticity</strong> is caused by overlapping directions in the activation space. Dimensionality reduction technique may not be able to disentangle the features.
                     </p>
                     <p style="text-align: left;">
-                        To overcome this we can use Sparse Dictionary Learning (SDL) to find a sparse representation of the latent space.
+                        To overcome this we can use <span style="color: rgba(215, 0, 0, 0.95);">Sparse Dictionary Learning (SDL)</span> to find a sparse representation of the latent space.
                     </p>
                     <img data-src="img_contents/SDL.png" style="width: 500px; height: auto;" class="plain"></img>
-                    <p style="text-align: left;">
-                        This allows the identification of behavior in the sparse latent space, providing insight on the network comprehension of underlying physics.
+                    <p style="text-align: center;">
+                        This allows the identification of behavior in the sparse latent space, providing insight on the <strong>network comprehension of underlying physics.</strong>
                     </p>
                     <a href="https://arxiv.org/abs/2510.23749" style="text-align:center">
                         <img src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2510.23749-B31B1B?logo=arxiv" height="25">
