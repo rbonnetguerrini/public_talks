@@ -129,30 +129,30 @@
         }
         .title-panel {
         background: rgba(0, 0, 0, 0.45);
-        padding: 1.7rem 2.6rem;   /* slightly tighter */
+        padding: 1.7rem 2.6rem;   
         border-radius: 12px;
-        max-width: 68%;          /* a touch narrower helps scale perception */
+        max-width: 68%;          
         margin: auto;
         backdrop-filter: blur(2px);
         }
 
         .title-panel h2 {
         color: #ffffff;
-        font-size: 2.1em;        /* ↓ from 2.4 */
+        font-size: 2.1em;        
         margin-bottom: 0.45em;
         }
 
         .title-panel h3 {
         color: #e0e0e0;
         font-weight: 300;
-        font-size: 1em;       /* explicit control */
+        font-size: 1em;       
         line-height: 1.3;
         margin-bottom: 1em;
         }
 
         .title-panel .meta {
         color: #cccccc;
-        font-size: 0.75em;       /* ↓ from 0.8 */
+        font-size: 0.75em;       
         line-height: 1.4;
         }
 
@@ -174,7 +174,7 @@
                     </h3>
 
                     <p class="meta">
-                    <strong>Raphael Bonnet-Guerrini<sup>1</sup></strong><br>
+                    <strong>Raphaël Bonnet-Guerrini<sup>1</sup></strong><br>
                     16/02/2026<br>
                     <span class="affiliation">
                         <sup>1</sup>Computer Science Department, University of Milan
@@ -189,10 +189,10 @@
             <!-- Slide 2 ML4transients title -->
             <section data-background-image="img_contents/vera_rubin_obs.png">
                 <h2>Interpretable Deep Learning for Real/Bogus classification with Uncertainty Quantification</h2>
-                <span style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Dominique Fouchez<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, Benjamin Racine<sup>2</sup></span>, Bruno Sanchez<sup>2</sup>
+                <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Dominique Fouchez<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, Benjamin Racine<sup>2</sup>, and Bruno Sanchez<sup>2</sup></span>
                 <br>
                 <br>
-                <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; <sup>2</sup>Centre de Physique des Particules de Marseille</span>
+                <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;       <sup>2</sup>Centre de Physique des Particules de Marseille</span>
 
             </section>
 
@@ -412,7 +412,7 @@
                             <ul>
                                 <li>Train multiple models with different initializations.</li>
                                 <li>Average predictions to reduce variance and improve robustness.</li>
-                                <li>Cost: For N models, N trainings and N inferences.</li>
+                                <li>Cost: T trainings and T inferences.</li>
                             </ul>
                             <div style="text-align:center">
                                 <a href="https://arxiv.org/abs/1612.01474" style="text-align:center">
@@ -425,7 +425,7 @@
                             <ul>
                                 <li>Apply dropout during inference to simulate an ensemble of models.</li>
                                 <li>Perform multiple forward passes to estimate uncertainty.</li>
-                                <li>Cost: For M forward passes, M inferences.</li>
+                                <li>Cost: T inferences.</li>
                             </ul>
                             <div style="text-align:center">
                                 <a href="https://arxiv.org/abs/1506.02142" style="text-align:center">
@@ -434,21 +434,21 @@
                             </div>
                         </div>
                     </div>
-                    <div style="margin-top: 30px; text-align: center; font-size: 0.95em;">
-                        <p style="margin-bottom: 10px;">
+                    <div>
+                        <p>
                             <strong>Predictive uncertainty (from variance of predictions):</strong>
                         </p>
 
                         <p>
                             \[
-                            \hat{\mu}(x)=\frac{1}{T}\sum_{t=1}^{T}\hat{y}^{(t)}(x),
+                            \hat{\mu}(x)=\frac{1}{T}\sum_{t=1}^{T}p_t(x),
                             \qquad
-                            \widehat{\mathrm{Var}}(x)=\frac{1}{T-1}\sum_{t=1}^{T}\left(\hat{y}^{(t)}(x)-\hat{\mu}(x)\right)^{2}
+                            \widehat{\mathrm{Var}}(x)=\frac{1}{T-1}\sum_{t=1}^{T}\left(p_t(x)-\hat{\mu}(x)\right)^{2}
                             \]
                         </p>
 
-                        <p style="margin-top: 8px; font-size: 0.85em;">
-                            where \( \hat{y}^{(t)}(x) \) is the prediction from the \(t\)-th model (ensemble) or the \(t\)-th stochastic forward pass (MC Dropout).
+                        <p style="text-align: left;">
+                            where \( p_t(x)=\begin{cases} \sigma(f_t(\mathbf{x}, \hat\theta_t)), & \text{for ensemble}\\ \sigma(f_t(\mathbf{x}, \hat\theta, z_t)), & \text{for MC Dropout} \end{cases} \)
                         </p>
                     </div>
                 </section>
@@ -492,7 +492,7 @@
                                 <li>Correlations with Signal-to-Noise Ratio (SNR).</li>
                                 <li>Correlations with maximum brightness of a SNIa.</li>
                             </ul>
-                            The correlations are computed using Spearman's rank correlation coefficient, which measures the strength and direction of the monotonic relationship between two variables.
+                            <span>Correlations are computed using Spearman's rank correlation coefficient, which measures the strength and direction of the monotonic relationship between two variables.</span><br>
                             \[
                                 \rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}  
                             \]
@@ -619,7 +619,7 @@
             <!-- Slide 13: intro NNPDF -->
             <section data-background-image="img_contents/LHC.jpg">
                 <h2 >Shapley Values meet NNPDF</h2>
-                <span  style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span>
+                <span  style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span>
                 <br>
                 <br>
                 <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;         <sup>2</sup>Physics Department, University of Milan</span>
@@ -631,23 +631,31 @@
                 <section>
                     <h3 class="slide-title highlight">Parton Distribution Functions (PDFs) and NNPDF</h3>
                     <div  style="text-align: left;">
-                        <h4>Parton Distribution Functions (PDFs):</h4>
-                        <ul>
-                            <li>Describe the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\).</li>
-                            <li>Essential for predicting outcomes of high-energy particle collisions.</li>
-                        </ul>
-                        <br><br>
-                        <h4>NNPDF: Neural Network Parton Distribution Functions:</h4>
-                        <ul>
-                            <li>Uses neural networks to model PDFs without assuming a specific functional form.</li>
-                            <li>Trained on experimental data from deep inelastic scattering and hadron collider experiments.</li>
-                            <li>Provides uncertainty estimates through MC replicas and ensemble methods.</li>
-                        </ul>
-                        <div style="text-align:center">
-                                <a href="https://arxiv.org/abs/2109.02653" style="text-align:center">
-                                    <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2109.02653-B31B1B?logo=arxiv" height="25">
-                                </a>
+                        <div class="container">
+                            <div class="col text-cente;">
+                                                        <img src="img_contents/pdf3.1.png" style="width: 300px; height: auto; display: block; margin: 0 auto;">
+                            <div style="text-align: center;">
+                                \[
+                                f(x, Q_0^2) = x^a(1-x)\text{NN}(\phi(x))
+                                \]
+                            </div>
+                            </div>
+                            <div class="col">
+                                <ul>
+                                    <li>Describe the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\).</li>
+                                    <li>Essential for predicting outcomes of high-energy particle collisions.</li>
+                                    <li>NNPDF uses neural networks to model PDFs without assuming a specific functional form.</li>
+                                    <li>Trained on experimental data from different detectors.</li>
+
+                                </ul>
+                                <div style="text-align:center">
+                                    <a href="https://arxiv.org/abs/2109.02653" style="text-align:center">
+                                        <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2109.02653-B31B1B?logo=arxiv" height="25">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                 </section>
                 <!-- Slide 14.2 -->
@@ -658,7 +666,7 @@
                     </p>
                     <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: left;">    
-                        QCD allows us to compute the Observables (\(\mathcal{O_n}\)) values from the PDF space, but the inverse is not true. 
+                        Theory (QCD, QED, EW) allows to compute the Observables (\(\mathcal{O_n}\)) values from the PDF space, and the inverse done fitting precise experimental data from LHC . 
                         
                     </p>
                 </section>
@@ -667,16 +675,17 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
                     <p style="text-align: left;">    
-                        The PDF space is a high-dimensional space, (9 in the flavor basis and 14 in the evolution basis).  
+                        The PDF space is a high-dimensional space, (9 in the flavor basis and 14 in the evolution basis). Question is why a given flavor looks like this in a given x region? What are the dataset responsible for this behavior? 
                     </p>
                     <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
-                    <div class="fragment" style="text-align:center">  
+                    <div class="fragment" style="text-align:center; font-size: larger">  
                         <span>                
                         What if we perturb the PDF directly in the <b>PDF space </b>? 
                         </span>
                     </div>
+                    <br>
                     <div class="fragment" style="text-align:left">                  
-                        <span>Multidimensionality of the PDF space combined with the rotation and convolutions makes it difficult to perform systematic test and obtain a clear understanding of each flavor on the fit.</span>  
+                        <span>Multidimensionality of the PDF space combined with the rotation, convolutions and the PDF-Observable correlations makes it difficult to perform systematic test and obtain a clear understanding of each flavor on the fit.</span>  
                     </div>
                 </section>
                 <!-- Slide 14.4 -->
@@ -686,7 +695,7 @@
                         Black box system is a recurrent interpretability issue in modern DL. We can inspire from the method developed there to solve the interpretability problem of NNPDF. 
                     </p>
                     <img data-src="img_contents/blackbox_nnpdf.png" style="width: 700px; height: auto;" class="plain"></img>
-                    <p style="text-align: left;">    
+                    <p style="text-align: center;">    
                        XAI answer : What's the impact of one feature \(\phi_j\) on the output of the model ?
                     </p>
                 </section>
@@ -723,9 +732,12 @@
                         Applying Shapley Values to NNPDF, we treat each flavor as the feature of our black box model.  
                     </p>
                     <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
-                    <p style="text-align: left;">    
-                       We obtain one Shapley Value \(\phi_j\) for each flavor \(j\), representing its contribution to the model's output.
-                    </p>
+                    <ul>
+                        <li>\(\phi_i\) is the Shapley Value for flavor \(i\)</li>
+                        <li>\(N\) is the total number of flavors.</li>
+                        <li>\(S\) is a subset of flavors not including \(i\).</li>
+                        <li>\(v(S)=\chi^2\) is the value of the coalition when all flavors in coalition \(S\) are perturbed, \(i\) and the rest of the flavors remain untouched.</li>
+                    </ul>
                 </section>
 
 
@@ -751,10 +763,12 @@
                     <div class="fragment" style="text-align:left">                  
                         <span>Choices remains to be done: </span>
                         <br>
-                        <li>How to choose the width and amplitude of the bump ?</li>
-                        <li>How to choose the location of the bump ?</li>
-                        <li>How to respect the physical constraints of the PDF ?</li> 
-                        <li>Do we want similar perturbations for all flavors, or proportional to their contribution ?</li>
+                        <ul>
+                            <li>How to choose the width and amplitude of the bump ?</li>
+                            <li>How to choose the location of the bump ?</li>
+                            <li>How to respect the physical constraints of the PDF ?</li> 
+                            <li>Do we want similar perturbations for all flavors, or proportional to their contribution ?</li>
+                        </ul>
                     </div>
                 </section>
 
@@ -833,41 +847,142 @@
 
             <!-- PART C: Mechanistic Interpretability for Neutrino foundations model-->
  
-            <section data-background-image="img_contents/IceCube_neutrino.jpg">
-                <h2>Mechanistic Interpretability for Neutrino foundations model</h2>
-                <span  style="font-size: smaller;"><b>Raphael Bonnet-Guerrini</b><sup>1</sup>, Johann Ioannou-Nikolaides<sup>2</sup>, Troels Petersen<sup>2</sup>, Vincenzo Piuri <sup>1</sup>, Jean-Loup Tastet<sup>2</sup> and Inar Timiryasov<sup>2</sup></span>
-                <br>
-                <br>
-                <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;         <sup>2</sup>Physics Department, Københavns Universitet, Denmark</span>
-            </section>
-            <section data-background-image="img_contents/IceCube_neutrino.jpg">
-                <section>
-                    Foundation Model
-                </section>
-                <section>
-                    
-                    <h3 class="slide-title highlight" style="text-align: left;">Foundation model in Neutrino Physics</h3>
-                    <p style="text-align: left;">
-                        Foundation models 
-                    </p>
-                </section>    
-            </section>    
-            <section data-background-image="img_contents/IceCube_neutrino.jpg">
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Mechanistic Interpretability</h3>
-                    <p style="text-align: left;">
-                        Mechanistic interpretability is a subfield of interpretability that focuses on understanding the internal workings of a model at a mechanistic level.
-                </section>
-                <section> 
-                    <h3 class="slide-title highlight" style="text-align: left;">Polysemanticity of neurons and Sparse representations of Latent Spaces</h3>
-                </section>
-            </section>
-            <section> 
-                <h3 class="slide-title highlight" style="text-align: left;">Potential behavior to test:</h3>
-                <div style="text-align: left;">   
 
+
+            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+            <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 68%; margin: auto; backdrop-filter: blur(2px);">
+                <h2 style="color: #ffffff; font-size: 2.1em; margin-bottom: 0.45em;">Mechanistic Interpretability for Neutrino foundations model</h2>
+                <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Johann Ioannou-Nikolaides<sup>2</sup>, Troels Petersen<sup>2</sup>, Vincenzo Piuri <sup>1</sup>, Jean-Loup Tastet<sup>2</sup> and Inar Timiryasov<sup>2</sup></span>
+                <br>
+                <br>
+                <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; &nbsp;&nbsp; <sup>2</sup>Physics Department, Københavns Universitet, Denmark</span>
+            </div>
+            </section>
+
+            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+            <section>
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px);">
+                <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Foundation models</h3>
+                <p style="text-align: left;">
+                    Foundation models are large-scale machine learning models that are trained on a wide variety of data and can be adapted to a wide range of downstream tasks. They have shown remarkable performance in various domains, including natural language processing, computer vision, and more recently, in scientific domains such as physics.
+                </p>
+                <p style="text-align: left;"> Most foundation models rely on two specificities:</p>
+                <ul>
+                    <li>The self-attention mechanism of the transformer architecture.</li>
+                    <li>The available volume of data and the possibility to perform Self-Supervised Learning.</li>
+                </ul>
+                <p>
+                    <a href="https://arxiv.org/abs/2108.07258" style="text-align:center">
+                        <img src="https://img.shields.io/badge/cs.ML-arXiv%3A2108.07258-B31B1B?logo=arxiv" height="25">                                
+                    </a>
+                    <a href="https://arxiv.org/abs/1706.03762" style="text-align:center">
+                        <img src="https://img.shields.io/badge/cs.CL-arXiv%3A1706.03762-B31B1B?logo=arxiv" height="25">                                
+                    </a>
+                    <a href="https://arxiv.org/abs/1810.04805" style="text-align:center">
+                        <img src="https://img.shields.io/badge/cs.CL-arXiv%3A1810.04805-B31B1B?logo=arxiv" height="25">                                
+                    </a>
+                </p>
                 </div>
             </section>
+
+            <section>
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Foundation model in Neutrino Physics</h3>
+                <div class="container" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div class="col" style="flex: 1 1 45%; min-width: 240px; text-align: left;">
+                    <p style="text-align: left;">
+                        Neutrino detectors record pulses. <br> A pulse is a time series of the light emitted by the interaction of a neutrino with the detector. <br>It tracks the directions and energies of the incoming neutrinos.                         
+                    </p>
+                    <p style="text-align: left;">
+                        <b>PolarBERT</b> is a foundation model trained on 131,000,000 high-quality Monte Carlo neutrino events.
+                    </p>
+                    <p style="text-align: left;">
+                        Downstream task includes classification or reconstruction of the energy and direction.
+                    </p>
+                    </div>
+
+                    <div class="col" style="flex: 1 1 45%; min-width: 240px;">
+                    <img data-src="img_contents/neutrino_pulse.png" style="width: 400px; height: auto;" class="plain"></img>
+                    <a href="https://ml4physicalsciences.github.io/2024/files/NeurIPS_ML4PS_2024_259.pdf">
+                        <img src="https://img.shields.io/badge/%F0%9F%94%97-POLARBERT-0033A0" height="25">
+                    </a>
+                    </div>
+                </div>
+                </div>
+            </section>    
+            </section>    
+
+            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+            <section>
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px);">
+                <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Mechanistic Interpretability</h3>
+                <p style="text-align: left;">
+                    Foundation Model are able to generalize.
+                </p>
+                <p style="text-align: center; font-size: larger;">
+                    Mechanistic Interpretability ask: &#8680; How did my model solve this general class of problems? 
+                </p>
+                <div class="fragment">
+                    <p style="text-align: left;">
+                    One of the methodological is to reverse engineer the model identifying what"s the function of of each part
+                    </p>
+                    <p style="text-align: left;">
+                    Natural decomposition (Neurons, Layers, Attention heads) fails because of polysemanticity caused by superposition (#feature>#neurons). 
+                    </p>
+
+                    <a href="https://arxiv.org/abs/2501.16496" style="text-align:center">
+                    <img src="https://img.shields.io/badge/cs.LG-arXiv%3A2501.16496-B31B1B?logo=arxiv" height="25">                                
+                    </a>
+
+                    <a href="https://arxiv.org/abs/2209.10652" style="text-align:center">
+                    <img src="https://img.shields.io/badge/cs.LG-arXiv%3A2209.10652-B31B1B?logo=arxiv" height="25">                                
+                    </a>
+                </div>
+                </div>
+            </section>
+
+            <section>
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px);">
+                <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Sparse representations and Latent Spaces</h3>
+                <p style="text-align: left;">
+                    Polysemanticity is caused by overlapping directions in the activation space. Dimensionality reduction technique may not be able to disentangle the features.
+                </p>
+                <p style="text-align: left;">
+                    To overcome this we can use Sparse Dictionary Learning (SDL) to find a sparse representation of the latent space.
+                </p>
+                <img data-src="img_contents/SDL.png" style="width: 500px; height: auto;" class="plain"></img>
+                <p style="text-align: left;">
+                    This allows the identification of behavior in the sparse latent space, providing insight on the network comprehension of underlying physics.
+                </p>
+                <a href="https://arxiv.org/abs/2510.23749" style="text-align:center">
+                    <img src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2510.23749-B31B1B?logo=arxiv" height="25">
+                </a>
+                </div>
+            </section>
+            </section>
+
+            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+            <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 80%; margin: auto; backdrop-filter: blur(2px);">
+                <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Potential behavior to investigate:</h3>
+                <ul>
+                <li>Are there specific region for very long vs very short inputs?</li>
+                <li>Muon vs Neutrino tracks.</li>
+                <li>Does the model learn to identify the different light patterns of different neutrino flavors ?</li>
+                </ul>
+                <p>Any of your ideas!</p>
+            </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1023,13 +1138,12 @@ shapley_vals[i] = SV
 
 
 
-
             <section  data-background-image="img_contents/gen_intro_img.png">
                 <div class="title-panel">
                     
                     <h1>Thank you ! </h1>
                 
-                <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
+                <p class="meta">Contact : Raphaël.bonnet-guerrini@unimi.it</p>
                 <p class="meta" style="font-size: small; text-align:center">
                     This work has received funding from the European Union's Horizon 2020 research and innovation programme under a Marie Skłodowska-Curie grant agreement.
                 </p></div>
