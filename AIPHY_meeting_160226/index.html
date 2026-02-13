@@ -703,7 +703,7 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
                     <p style="text-align: left;">
-                        The PDF space is a high-dimensional space (9 in the flavor basis and 14 in the evolution basis). The question is: why does a given flavor look like this in a given \(x\) region? Which datasets are responsible for this behavior?
+                        The PDF space is a high-dimensional space (flavor basis or evolution basis). <br>Why does a given flavor look like this in a given \(x\) region? Which datasets are responsible for this behavior?
                     </p>
                     <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
                     <div class="fragment" style="text-align:center; font-size: larger">  
@@ -713,7 +713,8 @@
                     </div>
                     <br>
                     <div class="fragment" style="text-align:left">                  
-                        <span>Multidimensionality of the PDF space combined with the rotation, convolutions and the PDF–Observable correlations makes it difficult to perform systematic tests and obtain a clear understanding of each flavor on the fit.</span>  
+                        Multidimensionality of the PDF space,  Rotation and convolutions,  PDF-Observable correlations, DGLAP Evolution.  <br>
+                        Makes it difficult to perform systematic tests and obtain a clear understanding of each flavor on the fit.  
                     </div>
                 </section>
                 <!-- Slide 14.4 -->
@@ -736,17 +737,22 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">Shapley Values</h3>
                     <p style="text-align: left;">
-                        Shapley Values are inherited from game theory: represent the value of the <span style="color: rgba(215, 0, 0, 0.95);">contribution \(\phi\) of a player \(i\) within a coalition \(S\)</span>. 
+                        Inherited from game theory: represent <span style="color: rgba(215, 0, 0, 0.95);">the value of the contribution \(\phi\) of a player \(i\) within a coalition \(S\).</span> 
                     </p>
                     \[
                     \phi_i = \sum_{S \subseteq N \setminus \{i\}}  \frac{|S|! \, (|N| - |S| - 1)!}{|N|!} \left[ v(S \cup \{i\}) - v(S) \right]
                     \]
-                    <p style="text-align: left;">
-                        where \(N\) is the set of all players, \(S\) is a subset of players not including \(i\), and \(v(S)\) is the value of the coalition \(S\). The main problem being the computational cost as it scales exponentially with the number of players \(2^N\). 
+                    <p style="text-align: left; font-size: smaller;">
+                        where \(N\) is the set of all players, \(S\) is a subset of players not including \(i\), and \(v(S)\) is the value of the coalition \(S\). 
                     </p>
-                    <p style="text-align: left;">
-                        Largely popularized for its application to Machine Learning and Deep Learning, with methods like SHAP (SHapley Additive exPlanations) that makes them computable for high amount of players (features) given certain assumptions and approximations.
+                    <p style="text-align: left;"> 
+                        Computational cost as scales exponentially with the number of players \(2^N\). 
                     </p>
+                   
+                    <p style="text-align: left;">
+                         SHAP adapt SV for DL application. Makes them computable for high amount of players (features) given certain assumptions and approximations.
+                    </p>
+
                     <div style="text-align:center">
                                 <a href="https://arxiv.org/abs/1705.07874" style="text-align:center">
                                 <img src="https://img.shields.io/badge/cs.AI-arXiv%3A1705.07874-B31B1B?logo=arxiv" height="25">                                </a>
@@ -788,13 +794,13 @@
                     </div>
 
                     <div class="fragment" style="text-align:left">
-                        <span>Choices remain to be made: </span>
+                        <span>Choices to do : </span>
                         <br>
                         <ul>
-                            <li>How to choose the width and amplitude of the bump ?</li>
-                            <li>How to choose the location of the bump ?</li>
+                            <li>Width and amplitude of the bump ?</li>
+                            <li>Location of the bump ?</li>
                             <li>How to respect the physical constraints of the PDF ?</li> 
-                            <li>Do we want similar perturbations for all flavors, or proportional to their contribution ?</li>
+                            <li>Proportional perturbation across flavors ?</li>
                         </ul>
                     </div>
                 </section>
@@ -1175,7 +1181,7 @@ shapley_vals[i] = SV
                 
                 <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
                 <p class="meta" style="font-size: small; text-align:center">
-                    This work has received funding from the European Union's Horizon 2020 research and innovation programme under a Marie Skłodowska-Curie grant agreement.
+                         This work was supported by from the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
                 </p></div>
             </section>
         </div>

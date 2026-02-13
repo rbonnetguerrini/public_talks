@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AIPHY Midterm Personal Presentation 02 2026</title>
+
+    <meta name="description" content="AIPHY_midterm_personal_pres_02_2026">
+    <link rel="stylesheet" href="../assets/reveal/dist/reveal.css">
+    <link rel="stylesheet" href="../assets/reveal/dist/theme/darkenergy.css" id="theme">
+
+    <!-- Highlight.js library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
+    <!-- Include Bokeh CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.css" type="text/css">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js"></script>
+
+    <!-- Include math -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- code rendering-->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <script src="plugin/highlight/highlight.js"></script>
+
+    <!-- Box creations -->
+    <style>
+        /* Basic styling for the vertical boxes */
+        .double_box_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .double_box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 44%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-title {
+            background: rgba(255, 255, 255, 0.2);
+            /* Lighter background for title */
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* Container to center and stack boxes vertically */
+        .vertical-center-container {
+            display: flex;
+            flex-direction: column;
+            /* Stack children vertically */
+            align-items: center;
+            /* Center children horizontally */
+            gap: 20px;
+            /* Space between boxes */
+            height: 100vh;
+            /* Full viewport height (optional) */
+            padding: 20px;
+        }
+
+        /* Styling for the boxes */
+        .centered-box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            /* Width of the boxes */
+            max-width: 800px;
+            /* Max width to limit size */
+        }
+
+        .reveal .slide-title {
+            border-left: 5px solid white;
+            text-align: left;
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        .bokeh-iframe {
+            width: 80vw;
+            height: 80vh;
+            border: none;
+        }
+        .title-panel {
+        background: rgba(0, 0, 0, 0.45);
+        padding: 1.7rem 2.6rem;   
+        border-radius: 12px;
+        max-width: 68%;          
+        margin: auto;
+        backdrop-filter: blur(2px);
+        }
+
+        .title-panel h2 {
+        color: #ffffff;
+        font-size: 2.1em;        
+        margin-bottom: 0.45em;
+        }
+
+        .title-panel h3 {
+        color: #e0e0e0;
+        font-weight: 300;
+        font-size: 1em;       
+        line-height: 1.3;
+        margin-bottom: 1em;
+        }
+
+        .title-panel .meta {
+        color: #cccccc;
+        font-size: 0.75em;       
+        line-height: 1.4;
+        }
+
+        .title-panel .affiliation {
+        opacity: 0.75;
+        }
+        .title-left-logo {
+            position: absolute;
+            bottom: 12px;   
+            left: 12px;    
+            width: 150px;    
+            height: auto;
+        }
+        .title-right-logo {
+            position: absolute;
+            bottom: 15px;   
+            right: 20px;    
+            width: 150px;    
+            height: auto;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1 -->
+
+            <!-- Slide 1 -->
+            <section data-background-image="img_contents/gen_intro_img.png">
+                <div class="title-panel">
+                    <h2>Raphaël Bonnet-Guerrini</h2>
+                    <h3>
+                    Working on Interpretable Deep Learning for Fundamental Physics.<br>
+                    </h3>
+                    <p class="meta">
+                    <strong>Computer Science Department, University of Milan</strong><br>
+                    15/02/2026<br>
+                    </p>
+                    <span class="affiliation">
+                        Supervisor: <b>Vincenzo Piuri</b><br>
+                    </span>
+                    <img src="img_contents/3.svg" class="title-left-logo" alt="">
+                    <img src="img_contents/unimi.svg" class="title-right-logo" style="width: 120px; bottom: 30px;" alt="">
+                </div>
+            </section>
+            <section data-background-image="img_contents/gen_intro_img.png">
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight"">Education and training:</h3>
+              
+                    <p style="text-align: left;">
+                        Degrees:
+                        <ul>
+                            <li>2018 - 2023: Diplôme d'Ingénieur des Mines, Specialized in AI and Data Science, Institut Mines Telecom Nord Europe.</li>
+                            <li>2023: Master of Engineering,  University of Technology Sydney.</li>
+                            <li>2024 - 2027: PhD Candidate in the Computer Science department, University of Milan </li>
+                        </ul>
+                    </p>
+                    <p style="text-align: left;">
+                        Experiences:
+                        <ul>
+                            <li>2024: Working on Deep Learning for Astrophysics and Cosmology.</li>
+                            <li>2022: Working on Quantized Deep Learning for the ATLAS experiment.</li>
+                        </ul>
+                    </p>
+
+                </div>
+            </section>
+            <section data-background-image="img_contents/vera_rubin_obs.png">
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight"">Research Overview: interpretability in Deep Learning for Astrophysics</h3>
+              
+                    <p style="text-align: left;">
+                        <strong>Goal:</strong> Develop a Real/Bogus classifier with no human labelling for a Vera Rubin Observatory-scale dataset, with a focus on interpretability and uncertainty quantification.
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>Methods:</strong> Weakly Supervised Learning, Uncertainty Quantification, Latent Space Exploration. 
+                    </p>
+                    <p style="text-align: center;">
+                        <img src="img_contents/coteaching_comparison.svg" style="width: 220px; height: auto;">
+                        <img src="img_contents/UQ_calib.png" style="width: 275px; height: auto;">
+                        <img src="img_contents/UMAP_classes.png" style="width: 350px; height: auto;">
+
+                    </p>
+
+                </div>
+            </section>
+            <section data-background-image="img_contents/LHC.jpg">
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight"">Research Overview: interpretability in Deep Learning for Theoretical Physics</h3>
+              
+                    <p style="text-align: left;">
+                        <strong>Goal:</strong> Adapt and develop Shapley Values for probing the Parton Distribution Function theoretical framework.
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>Methods:</strong> Explainable Artificial Intelligence, Uncertainty Quantification, Inverse Problem. 
+                    </p>
+                    <p style="text-align: center;">
+                        <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
+
+
+                    </p>
+
+                </div>
+            </section>
+            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight"">Future research: interpretability in Deep Learning for Neutrino Physics</h3>
+              
+                    <p style="text-align: left;">
+                        <strong>Goal:</strong> Developed Mechanistic Interpretability methods for Foundation models for Neutrino Physics, probing the model understanding of neutrino interactions.
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>Methods:</strong> Mechanistic Interpretability, Foundation Models, Sparse Latent representations. 
+                    </p>
+                    <p style="text-align: center;">
+                        <img data-src="img_contents/neutrino_pulse.png" style="width: 200px; height: auto;" class="plain"></img>
+                        <img data-src="img_contents/SDL.png" style="width: 500px; height: auto;" class="plain"></img>
+
+
+                    </p>
+
+                </div>
+            </section>
+            <section data-background-image="img_contents/gen_intro_img.png">
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight"">Training:</h3>
+                    <p style="text-align: left;">
+                        Courses:
+                        <ul>
+                            <li>Introduction to Quantum Computing and Cryptography.</li>
+                            <li>Optimization for IOT.</li>
+                            <li>DL for image processing. </li>
+                            <li>Computational, simulation and machine learning methods in high energy physics and beyond.</li>
+                            <li>Soft skill classes from the Milan PhD school (including grant writing, public presentation techniques, open science).</li>
+                        </ul>
+                    </p>
+                    <p style="text-align: left;">
+                        Schools:
+                        <ul>
+                            <li>International Summer School 2025 on “Explainable AI”. University of Granada</li>
+                            <li>"Between Models and Reality": school on Machine Learning in physics. University of Copenhagen</li>
+                            <li>Integrative Think Tank (ITT) 2025. University of Heidelberg</li>
+                            <li>International Artificial Intelligence Summer School 2025.</li>
+                        </ul>
+                    </p>
+
+                </div>
+            </section>
+            <section data-background-image="img_contents/gen_intro_img.png">
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight"">Training:</h3>
+                    <p style="text-align: left;">
+                        Workshops:
+                        <ul>
+                            <li>AIPHY introduction workshop, University of Geneva.</li>
+                            <li>Vera Rubin France workshop, AstroParticules et Cosmologie (APC), Paris</li>
+                            <li>AIPHY student workshop, CERN.</li>
+                            <li>GraphNet workshop, University of Copenhagen.</li>
+                            <li>NNPDF workshop, University of Milan.</li>
+                            <li>AIPHY mid-term workshop, University of Geneva (Now!).</li>
+
+                        </ul>
+                    </p>
+                    <p style="text-align: left;">
+                        Conferences:
+                        <ul>
+                            <li>European AI for Fundamental Physics Conference, University of Cagliari</li>
+                            <li>HAMLET-Physics conference. University of Copenhagen</li>
+                        </ul>
+                    </p>
+
+                </div>
+            </section>
+            <section data-background-image="img_contents/gen_intro_img.png">
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight"">Secondments:</h3>
+                    <p style="text-align: left;">
+                        Academic secondments:
+                        <ul>
+                            <li>University of Copenhagen: Physics Department.</li>
+                            <li>University of Geneva: Computer Science Department.</li>
+
+                        </ul>
+                    </p>
+                    <p style="text-align: left;">
+                        Industrial secondments: To be planned.
+                    </p>
+
+                </div>
+            </section>
+
+            <section  data-background-image="img_contents/gen_intro_img.png">
+                <div class="title-panel">
+                    
+                    <h1>Thank you ! </h1>
+                
+                <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
+                <p class="meta" style="font-size: small; text-align:center">
+                         This work was supported by the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
+                </p></div>
+            </section>
+        </div>
+    </div>
+</body>
+<!-- Include Reveal.js -->
+<script src="../assets/reveal/dist/reveal.js"></script>
+
+<!-- Include Plugins (optional) -->
+<script src="../assets/reveal/plugin/zoom/zoom.js"></script>
+<script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+
+<!-- Include MathJax -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Include Highlight.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+<script>
+    // Initialize Reveal.js with hash and slide number options
+    Reveal.initialize({
+        hash: true,      // Enables URL hash navigation
+        slideNumber: true, // Display slide numbers
+        math: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        },
+        plugins: [RevealZoom, RevealHighlight], // Initialize plugins
+    });
+
+    // Initialize Highlight.js for code blocks
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+
+</body>
+
+</html>
