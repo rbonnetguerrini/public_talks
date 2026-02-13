@@ -159,6 +159,22 @@
         .title-panel .affiliation {
         opacity: 0.75;
         }
+        .title-left-logo {
+            position: absolute;
+            bottom: 15px;   
+            left: 20px;    
+            width: 150px;    
+            height: auto;
+        }
+        .title-right-logo {
+            position: absolute;
+            bottom: 15px;   
+            right: 20px;    
+            width: 150px;    
+            height: auto;
+        }
+
+
     </style>
 </head>
 
@@ -180,6 +196,8 @@
                         <sup>1</sup>Computer Science Department, University of Milan
                     </span>
                     </p>
+                    <img src="img_contents/3.svg" class="title-left-logo" alt="">
+                    <img src="img_contents/unimi.svg" class="title-right-logo" style="width: 120px; bottom: 30px;" alt="">
                 </div>
             </section>
 
@@ -193,6 +211,9 @@
                 <br>
                 <br>
                 <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;       <sup>2</sup>Centre de Physique des Particules de Marseille</span>
+                <p>
+                <img src="img_contents/desc.png" style="width: 150px;">
+                </p>
 
             </section>
 
@@ -200,10 +221,11 @@
              <section>
                 <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
                     <h3 class="slide-title">Cosmology: a data driven era</h3>
-                    <div style="text-align:left">Vera Rubin Observatory has started operations in 2025. 10 years survey. Expectations are up to 100k spectroscopically confirmed Type Ia supernovae, up to 1M in total. 15PB of data.
-                    </div>  
-                    <div class="fragment"style="text-align:left"> 
-                    1 image every every 60 seconds during 10 years. 
+                    <div style="text-align:left">
+                        Vera Rubin Observatory started operations in 2025. 10-year survey. Expectations are up to 100k spectroscopically confirmed Type Ia supernovae, up to 1M in total. 15 PB of data.
+                    </div>
+                    <div class="fragment" style="text-align:left">
+                        1 image every 60 seconds for 10 years.
                     </div>
                     <div class="fragment" style="text-align:left">                  
                     <ul>
@@ -254,8 +276,8 @@
                             <img src="img_contents/key_intuition3.png" style="width: 700px; height: auto;">
 
                         </div>
-                        <div class="col" style="align-items: start; text-align: right;"">
-                            <img class ="fragment" src="img_contents/key_intuition4.png" style="width: 700px; height: auto;">
+                        <div class="col" style="align-items: start; text-align: right;">
+                            <img class="fragment" src="img_contents/key_intuition4.png" style="width: 700px; height: auto;">
                         </div>
 
                     
@@ -319,7 +341,7 @@
                     <h3 class="slide-title">Network Architecture</h3>
                     <div style='text-align: left'>
                         A simple CNN architecture:
-                        <li>3 Conv blocks consists of convolution, batch normalization, ReLU, max pooling, and dropout.</li>
+                        <li>3 Conv blocks consist of convolution, batch normalization, ReLU, max pooling, and dropout.</li>
                         <li>2 fully connected layers (FCC) for high-level abstractions and classification output.</li>
                         <li>Dropout layers for generalization.</li>
                     </div>
@@ -385,13 +407,12 @@
                 <h3 class="slide-title">WSL analysis</h3>
                 <div class="container" style="align-items: start; text-align: left">
                     <div class="col">
-                        Four different training sets with varying noise levels, to compare the performances. 
-                        <br> 
+                        Four different training sets with varying noise levels, to compare the performances.
+                        <br>
                         <ul>
-                            <li>Co-Teaching methods becomes better for higher noise levels.</li>
+                            <li>Co-Teaching methods perform better for higher noise levels.</li>
                             <li>Asym-Co-Teaching shows improved performance.</li>
-                            <li>Demonstrate the effectiveness of the approach in real-world scenarios and in future better calibrated photometry context.</li>
-
+                            <li>Demonstrates the effectiveness of the approach in real-world scenarios and in future, better-calibrated photometry contexts.</li>
                         </ul>
                     </div>
                     <div class="col">
@@ -457,7 +478,7 @@
                 <section>
                     <h3 class="slide-title">UQ for Co-Teaching</h3>
                         <p style="text-align: left;">
-                            Co-Teaching methods trains two models simultaneously.
+                            Co-Teaching methods train two models simultaneously.
                         </p>
                         <p style="text-align: left;">
                             Despite not being completely independent, we can still use them to estimate uncertainty by treating their predictions as an ensemble. 
@@ -474,7 +495,7 @@
                             </div>
 
                 </section>
-                
+
                 <!-- Slide 9.3 Metrics for Uncertainty Quantification -->
                 <section>
                     <h3 class="slide-title">Metrics for Uncertainty Quantification</h3>
@@ -519,8 +540,8 @@
                     </div>
                 </div>
                 <div>
-                    <li>All methods shows <span style="color: rgba(215, 0, 0, 0.95);">correlation in the correct direction with physical values.</span></li> 
-                    <li>Our methods surprisingly beats all other methods while costing <span style="color: rgba(215, 0, 0, 0.95);">\(25\) times less training power than ensemble based.</span></li>
+                    <li>All methods show <span style="color: rgba(215, 0, 0, 0.95);">correlation in the correct direction with physical values.</span></li> 
+                    <li>Our methods surprisingly beat all other methods while requiring <span style="color: rgba(215, 0, 0, 0.95);">\(25\) times less training compute than ensemble-based methods.</span></li>
                 </div>
              </section>
             
@@ -545,7 +566,7 @@
                             <img src="img_contents/umap_explanation.png" style="width: 600px; height: auto;"></img>
                         </div>
                         <div class="fragment">
-                            <h4>UMAP in Our Case:</h4>
+                            <h4>UMAP in our case:</h4>
                             <ul>
                                 <li>Applied to the output layer of the network.</li>
                                 <li>Provides a visual tool for better understanding network classifications.</li>
@@ -577,20 +598,20 @@
             <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
                 <h3 class="slide-title">Outcomes of the project</h3>
                 <div class="fragment" style="text-align: left;">
-                Conclusions: 
-                <ul>
-                    <li>New Asym-Co-Teaching methods that allows a mitigation of the risk in a high stake class.</li>
-                    <li>Novel uncertainty quantification method for Co-Teaching, providing better calibrated uncertainties at lower costs.</li>
-                    <li>UMAP visualization of the latent space confirms our interpretation on global model behavior.</li>
-                </ul>
+                    Conclusions:
+                    <ul>
+                        <li>New Asym-Co-Teaching methods that allow mitigation of the risk in a high-stakes class.</li>
+                        <li>Novel uncertainty quantification method for Co-Teaching, providing better-calibrated uncertainties at lower cost.</li>
+                        <li>UMAP visualization of the latent space confirms our interpretation of global model behavior.</li>
+                    </ul>
                 </div>
                 <div class="fragment" style="text-align: left;">
-                Future work:
-                <ul>
-                    <li>Further exploration of the latent space to identify specific features or patterns associated with bogus class.</li>
-                    <li>Expanding work to upcoming datasets.</li>
-                    <li>Exploration of the MC-Ensemble mixture systematic performances.</li>
-                </ul>
+                    Future work:
+                    <ul>
+                        <li>Further exploration of the latent space to identify specific features or patterns associated with the bogus class.</li>
+                        <li>Expanding this work to upcoming datasets.</li>
+                        <li>Exploration of the systematic performance of MC–ensemble mixtures.</li>
+                    </ul>
                 </div>
 
             </section>
@@ -621,11 +642,15 @@
 
             <!-- Slide 13: intro NNPDF -->
             <section data-background-image="img_contents/LHC.jpg">
-                <h2 >Shapley Values meet NNPDF</h2>
+                <h2>Shapley Values meet NNPDF</h2>
                 <span  style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span>
                 <br>
                 <br>
                 <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;         <sup>2</sup>Physics Department, University of Milan</span>
+                <div><br>
+                    <img src="img_contents/nnpdf_logo.png" class style="width: 200px;">
+                </div>
+                
             </section>
 
             <!-- Slide 14: Context -->
@@ -635,17 +660,17 @@
                     <h3 class="slide-title highlight">Parton Distribution Functions (PDFs) and NNPDF</h3>
                     <div  style="text-align: left;">
                         <div class="container">
-                            <div class="col text-cente;">
-                                                        <img src="img_contents/pdf3.1.png" style="width: 300px; height: auto; display: block; margin: 0 auto;">
-                            <div style="text-align: center;">
-                                \[
-                                f(x, Q_0^2) = x^a(1-x)\text{NN}(\phi(x))
-                                \]
-                            </div>
+                            <div class="col text-center">
+                                <img src="img_contents/pdf3.1.png" style="width: 300px; height: auto; display: block; margin: 0 auto;">
+                                <div style="text-align: center;">
+                                    \[
+                                    f(x, Q_0^2) = x^a(1-x)\text{NN}(\phi(x))
+                                    \]
+                                </div>
                             </div>
                             <div class="col">
                                 <ul>
-                                    <li>Describe  <span style="color: rgba(215, 0, 0, 0.95);">the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\)</span>.</li>
+                                    <li>Describe <span style="color: rgba(215, 0, 0, 0.95);">the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\)</span>.</li>
                                     <li>Essential for predicting outcomes of high-energy particle collisions.</li>
                                     <li>NNPDF uses neural networks to model PDFs without assuming a specific functional form.</li>
                                     <li>Trained on experimental data from different detectors.</li>
@@ -661,24 +686,24 @@
                         
                     </div>
                 </section>
+
                 <!-- Slide 14.2 -->
                 <section>
                 <h3 class="slide-title highlight" style="text-align: left;">Shapley Values For NNPDF</h3>
-                    <p style="text-align: left;">    
-                        NNPDF solves an  <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
+                    <p style="text-align: left;">
+                        NNPDF solves an <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
                     </p>
                     <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
-                    <p style="text-align: left;">    
-                        Theory (QCD, QED, EW) allows to compute the Observables (\(\mathcal{O_n}\)) values from the PDF space, and the inverse done fitting precise experimental data from LHC . 
-                        
+                    <p style="text-align: left;">
+                        Theory (QCD, QED, EW) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space, and the inverse is done by fitting precise experimental data from the LHC.
                     </p>
                 </section>
 
                 <!-- Slide 14.3 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
-                    <p style="text-align: left;">    
-                        The PDF space is a high-dimensional space, (9 in the flavor basis and 14 in the evolution basis). Question is why a given flavor looks like this in a given x region? What are the dataset responsible for this behavior? 
+                    <p style="text-align: left;">
+                        The PDF space is a high-dimensional space (9 in the flavor basis and 14 in the evolution basis). The question is: why does a given flavor look like this in a given \(x\) region? Which datasets are responsible for this behavior?
                     </p>
                     <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
                     <div class="fragment" style="text-align:center; font-size: larger">  
@@ -688,14 +713,14 @@
                     </div>
                     <br>
                     <div class="fragment" style="text-align:left">                  
-                        <span>Multidimensionality of the PDF space combined with the rotation, convolutions and the PDF-Observable correlations makes it difficult to perform systematic test and obtain a clear understanding of each flavor on the fit.</span>  
+                        <span>Multidimensionality of the PDF space combined with the rotation, convolutions and the PDF–Observable correlations makes it difficult to perform systematic tests and obtain a clear understanding of each flavor on the fit.</span>  
                     </div>
                 </section>
                 <!-- Slide 14.4 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">NNPDF a black box model ?</h3>
-                    <p style="text-align: left;">    
-                         <span style="color: rgba(215, 0, 0, 0.95);">Black box system is a recurrent interpretability issue in modern DL.</span> We can inspire from the method developed there to solve the interpretability problem of NNPDF. 
+                    <p style="text-align: left;">
+                        <span style="color: rgba(215, 0, 0, 0.95);">Black-box systems are a recurrent interpretability issue in modern DL.</span> We can take inspiration from the methods developed there to solve the interpretability problem of NNPDF.
                     </p>
                     <img data-src="img_contents/blackbox_nnpdf.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: center;">    
@@ -730,16 +755,16 @@
 
                 <!-- Slide 15.2 -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric ?</h3>
-                    <p style="text-align: left;">    
-                        Applying Shapley Values to NNPDF, we treat each flavor as the feature of our black box model.  
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric?</h3>
+                    <p style="text-align: left;">
+                        Applying Shapley Values to NNPDF, we treat each flavor as a feature of our black-box model.
                     </p>
                     <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
                     <ul>
-                        <li>\(\phi_i\) is the Shapley Value for flavor \(i\)</li>
+                        <li>\(\phi_i\) is the Shapley Value for flavor \(i\).</li>
                         <li>\(N\) is the total number of flavors.</li>
                         <li>\(S\) is a subset of flavors not including \(i\).</li>
-                        <li>\(v(S)=\chi^2\) is the value of the coalition when all flavors in coalition \(S\) are perturbed, \(i\) and the rest of the flavors remain untouched.</li>
+                        <li>\(v(S)=\chi^2\) is the value of the coalition when all flavors in coalition \(S\) are perturbed, while \(i\) and the rest of the flavors remain untouched.</li>
                     </ul>
                 </section>
 
@@ -749,22 +774,21 @@
                     <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
                     <div class="container">
                         <div class="col" style="text-align: left;">
-                        <span>
-                        How do we perturb a PDF ? 
-                        A smooth gaussian bump :
-                        </span>
-                        \[
-                            f_j^{\text{pert}}(x)=f_j(x) + \delta_j(x)
-                        \]
-
+                            <span>
+                                How do we perturb a PDF ?
+                                A smooth Gaussian bump:
+                            </span>
+                            \[
+                                f_j^{\text{pert}}(x)=f_j(x) + \delta_j(x)
+                            \]
                         </div>
                         <div class="col">
                             <img data-src="img_contents/perturbed_pdf.png" style="width: 300px; height: auto;" class="plain"></img>
                         </div>
                     </div>
 
-                    <div class="fragment" style="text-align:left">                  
-                        <span>Choices remains to be done: </span>
+                    <div class="fragment" style="text-align:left">
+                        <span>Choices remain to be made: </span>
                         <br>
                         <ul>
                             <li>How to choose the width and amplitude of the bump ?</li>
@@ -779,9 +803,9 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">Coalitions and complexity</h3>
 
-                    <p><strong>What we compute:</strong> the  <span style="color: rgba(215, 0, 0, 0.95);"><em>exact</em> Shapley value</span> for each PDF flavor by averaging its marginal contribution across all coalitions (all subsets of flavors).</p>
-                    <p><strong>Computational cost:</strong> Exponential in the number of flavors, as we need to evaluate the fit for each coalition. In the flavor basis, \(N=9\) flavors, we have \(2^9 = 512\) coalitions.</p>
-                    <p  style="text-align:left">Using exact Shapley values, we make <strong>no assumption of independence of the features.</strong></p>
+                    <p><strong>What we compute:</strong> the <span style="color: rgba(215, 0, 0, 0.95);"><em>exact</em> Shapley value</span> for each PDF flavor by averaging its marginal contribution across all coalitions (all subsets of flavors).</p>
+                    <p><strong>Computational cost:</strong> exponential in the number of flavors, as we need to evaluate the fit for each coalition. In the flavor basis, \(N=9\) flavors, we have \(2^9 = 512\) coalitions.</p>
+                    <p style="text-align:left">Using exact Shapley values, we make <strong>no assumption of independence of the features.</strong></p>
                 </section>
 
                 <!-- Slide 15.5 -->
@@ -805,7 +829,7 @@
                         </div>
                         <div class="col" style="align-items: center;">
                             <img data-src="img_contents/SV.png" style="width: 500px; height: auto;" class="plain"></img>
-                            Exact Shapley Value have a completness property: 
+                            Exact Shapley Value have a completeness property: 
                             \[\sum_{j \in N} \phi_j = v(N)-v(\emptyset)\]
                             and \(v(s)=\chi^2\) so they share the same unit. 
                         </div>
@@ -818,10 +842,10 @@
                 <h3 class="slide-title highlight" style="text-align: left;">Next steps</h3>
                 <div style="text-align: left;">   
                     <ul>             
-                        <li>Implementation for proton proton collisions (for now only implemented for DIS). </li>
-                        <li>Implementation to NNPDF.</li><br>
-                        <li>Perturbation respectful of physical constraints.</li>
-                        <li>Systematic study of the SV behavior for different perturbations and datasets.</li>
+                        <li>Implementation for proton–proton collisions (for now only implemented for DIS).</li>
+                        <li>Implementation in NNPDF.</li><br>
+                        <li>Perturbations respectful of physical constraints.</li>
+                        <li>Systematic study of the SVs’ behavior for different perturbations and datasets.</li>
                     </ul>
                 </div>
             </section>
@@ -853,14 +877,15 @@
 
             <!-- Slide 17: Intro -->
             <section data-background-image="img_contents/IceCube_neutrino.jpg">
-            <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 68%; margin: auto; backdrop-filter: blur(2px);">
-                <h2 style="color: #ffffff; font-size: 2.1em; margin-bottom: 0.45em;">Mechanistic Interpretability for Neutrino foundations model</h2>
-                <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Johann Ioannou-Nikolaides<sup>2</sup>, Troels Petersen<sup>2</sup>, Vincenzo Piuri <sup>1</sup>, Jean-Loup Tastet<sup>2</sup> and Inar Timiryasov<sup>2</sup></span>
-                <br>
-                <br>
-                <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; &nbsp;&nbsp; <sup>2</sup>Physics Department, Københavns Universitet, Denmark</span>
-            </div>
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 68%; margin: auto; backdrop-filter: blur(2px);">
+                    <h2 style="color: #ffffff; font-size: 2.1em; margin-bottom: 0.45em;">Mechanistic Interpretability for a Neutrino Foundation Model</h2>
+                    <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Johann Ioannou-Nikolaides<sup>2</sup>, Troels Petersen<sup>2</sup>, Vincenzo Piuri <sup>1</sup>, Jean-Loup Tastet<sup>2</sup> and Inar Timiryasov<sup>2</sup></span>
+                    <br>
+                    <br>
+                    <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; &nbsp;&nbsp; <sup>2</sup>Physics Department, Københavns Universitet, Denmark</span>
+                </div>
             </section>
+
             <!-- Slide 18.1: Foundation model -->
             <section data-background-image="img_contents/IceCube_neutrino.jpg">
             <section>
@@ -900,7 +925,7 @@
                         <b>PolarBERT</b> is a foundation model trained on 131,000,000 high-quality Monte Carlo neutrino events.
                     </p>
                     <p style="text-align: left;">
-                        Downstream task includes classification or reconstruction of the energy and direction.
+                        Downstream tasks include classification or reconstruction of the energy and direction.
                     </p>
                     </div>
 
@@ -943,12 +968,13 @@
                     </div>
                     </div>
                 </section>
+
                 <!-- Slide 19.2: Sparse representations and Latent Spaces -->
                 <section>
                     <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px);">
                     <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Sparse representations and Latent Spaces</h3>
                     <p style="text-align: left;">
-                        <strong>Polysemanticity</strong> is caused by overlapping directions in the activation space. Dimensionality reduction technique may not be able to disentangle the features.
+                        <strong>Polysemanticity</strong> is caused by overlapping directions in the activation space. Dimensionality reduction techniques may not be able to disentangle the features.
                     </p>
                     <p style="text-align: left;">
                         To overcome this we can use <span style="color: rgba(215, 0, 0, 0.95);">Sparse Dictionary Learning (SDL)</span> to find a sparse representation of the latent space.
@@ -963,17 +989,18 @@
                     </div>
                 </section>
             </section>
+
             <!-- Slide 20: Potential behavior to investigate -->
             <section data-background-image="img_contents/IceCube_neutrino.jpg">
-            <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 80%; margin: auto; backdrop-filter: blur(2px);">
-                <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Potential behavior to investigate</h3>
-                <ul>
-                <li>Are there specific region for very long vs very short inputs?</li>
-                <li>Muon vs Neutrino tracks.</li>
-                <li>Does the model learn to identify the different light patterns of different neutrino flavors ?</li>
-                </ul>
-                <p>Any of your ideas!</p>
-            </div>
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 80%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Potential behavior to investigate</h3>
+                    <ul>
+                        <li>Are there specific regions for very long vs very short inputs?</li>
+                        <li>Muon vs neutrino tracks.</li>
+                        <li>Does the model learn to identify the different light patterns of different neutrino flavors?</li>
+                    </ul>
+                    <p>Any of your ideas!</p>
+                </div>
             </section>
 
 
@@ -1095,7 +1122,7 @@ shapley_vals[i] = SV
                     <span>
                         This result is derived in the following way: 
                         Given \( |N| = n \), for a fixed player \(i\), let \( S \subseteq N \setminus \{i\} \) with \( |S| = s \).
-                        The probability that player before \(i\) are exactly \(S\) can be decomposed in two conditions: 
+                        The probability that player before \(i\) are exactly \(S\) can be decomposed into two conditions: 
 
                         First, \(i\) can be in any position in \(N\), so: 
                     </span>
@@ -1146,7 +1173,7 @@ shapley_vals[i] = SV
                     
                     <h1>Thank you ! </h1>
                 
-                <p class="meta">Contact : Raphaël.bonnet-guerrini@unimi.it</p>
+                <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
                 <p class="meta" style="font-size: small; text-align:center">
                     This work has received funding from the European Union's Horizon 2020 research and innovation programme under a Marie Skłodowska-Curie grant agreement.
                 </p></div>
