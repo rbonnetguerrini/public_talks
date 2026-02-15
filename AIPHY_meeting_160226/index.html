@@ -369,15 +369,16 @@
                         <div class="col">
                             <p>In each batch, each model selects the datum with the smallest loss (most confident predictions).</p>
                             <p>Avoid training on the wrong labels.</p>
-                            <strong>Pros:</strong>
+                            <p><strong>Pros:</strong>
                             <ul>
                                 <li>Effective for noisy datasets.</li>
                             </ul>
-                            <strong>Cons:</strong>
+                            </p>
+                            <p><strong>Cons:</strong>
                             <ul>
                                 <li>Increases computational cost.</li>
                                 <li>Assumes symmetrical noise.</li>
-                            </ul>
+                            </ul></p>
                         </div>
                     </div>
                 </section>
@@ -689,7 +690,7 @@
 
                 <!-- Slide 14.2 -->
                 <section>
-                <h3 class="slide-title highlight" style="text-align: left;">Shapley Values For NNPDF</h3>
+                <h3 class="slide-title highlight" style="text-align: left;">NNPDF: an inverse problem</h3>
                     <p style="text-align: left;">
                         NNPDF solves an <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
                     </p>
