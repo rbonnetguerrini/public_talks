@@ -190,33 +190,111 @@
                     </h3>
 
                     <p class="meta">
-                    <strong>Raphaël Bonnet-Guerrini<sup>1</sup></strong><br>
-                    16/02/2026<br>
+                    <strong>Raphaël Bonnet-Guerrini</strong><br>
+                    18/02/2026<br>
                     <span class="affiliation">
-                        <sup>1</sup>Computer Science Department, University of Milan
+                        Computer Science Department, University of Milan
                     </span>
                     </p>
                     <img src="img_contents/3.svg" class="title-left-logo" alt="">
                     <img src="img_contents/unimi.svg" class="title-right-logo" style="width: 120px; bottom: 30px;" alt="">
                 </div>
             </section>
-            <section data-background-image="img_contents/gen_intro_img.png">
-                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
-                <h3 class="slide-title highlight"">Research Focus: interpretability in Deep Learning</h3>
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+
+                <section>
+                    <h3 class="slide-title highlight"">Research Focus: interpretability in Deep Learning</h3>
                     <p><strong>Deep Learning models are black boxes</strong></p>
+                    <p style="text-align: left;">Extremely dense set of methods. </p>
+                    <table style="width:100%; border-collapse:separate; border-spacing:0; margin-top:1.2rem; font-size:0.92rem; line-height:1.25; overflow:hidden; border-radius:12px;">
+                    <tr>
+                        <th style="text-align:left; padding:0.9rem 1rem; background:rgba(255,255,255,0.10); border-bottom:1px solid rgba(255,255,255,0.18);">
+                        Thread
+                        </th>
+                        <th style="text-align:left; padding:0.9rem 1rem; background:rgba(255,255,255,0.10); border-bottom:1px solid rgba(255,255,255,0.18);">
+                        Key question
+                        </th>
+                        <th style="text-align:left; padding:0.9rem 1rem; background:rgba(255,255,255,0.10); border-bottom:1px solid rgba(255,255,255,0.18);">
+                        Method examples
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.20); border-bottom:1px solid rgba(255,255,255,0.12);">
+                        <strong>Interpretable by design</strong><br/>
+                        <span style="opacity:0.85;">(intrinsic / transparent models)</span>
+                        </td>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.14); border-bottom:1px solid rgba(255,255,255,0.12);">
+                        <strong>How is the model transparent?</strong><br/>
+                        <span style="opacity:0.85;">Build the structure so reasoning is visible.</span>
+                        </td>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.20); border-bottom:1px solid rgba(255,255,255,0.12);">
+                        Decision Trees · Linear Regression<br/> ·
+                        Concept Bottleneck Models · Sparse models 
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.20); border-bottom:1px solid rgba(255,255,255,0.12);">
+                        <strong>Explainable AI</strong><br/>
+                        <span style="opacity:0.85;">(feature attribution)</span>
+                        </td>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.14); border-bottom:1px solid rgba(255,255,255,0.12);">
+                        <strong>Why did it make this decision?</strong><br/>
+                        <span style="opacity:0.85;">Assign credit/blame to inputs or features.</span>
+                        </td>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.20); border-bottom:1px solid rgba(255,255,255,0.12);">
+                        Saliency / Gradients · Integrated Gradients <br/>· Grad-CAM
+                        LIME · SHAP 
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.20);">
+                        <strong>Mechanistic interpretability</strong><br/>
+                        <span style="opacity:0.85;">(Concept based / Reverse engineering)</span>
+                        </td>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.14);">
+                        <strong>How does it solve a class of problems?</strong><br/>
+                        <span style="opacity:0.85;">Understand internal computations & representations.</span>
+                        </td>
+                        <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.20);">
+                        Feature Visualization · Network Dissection <br>· Circuit analysis
+                        · Sparse dictionary <br>learning · Concept based methods
+                        </td>
+                    </tr>
+                    </table>
+
+                    <p>     
+                        <a href="https://arxiv.org/abs/2501.16496" style="text-align:center">
+                            <img src="https://img.shields.io/badge/cs.LG-arXiv%3A2501.16496-B31B1B?logo=arxiv" height="25">                                
+                        </a>
+                            <a href="https://arxiv.org/abs/2105.07190" style="text-align:center">
+                            <img src="https://img.shields.io/badge/cs.LG-arXiv%3A2105.07190-B31B1B?logo=arxiv" height="25">                                
+                        </a>
+                    </p>
+                </section>
+                <section>
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight"">How to do interpretability in Fundamental Physics?</h3>
                     <p style="text-align: left;">
                         
-                        <strong>Large set of methods</strong> for interpretability and explainability, but mostly non-trivial to apply in physics.
+                        <strong>Large set of methods</strong> for interpretability and explainability, but mostly non-trivial to transfer.
                     </p>
                     <p style="text-align: left;">
-                        <strong>Type of data, type of problem, type of scientific downstream application.</strong>
+                        <strong>Reasons? </strong><br>Type of data, type of problem, type of scientific downstream application, (???)
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>Targets? </strong>
                     </p>
                     <ul>
                     <li>Reliable and calibrated uncertainties.</li>
                     <li>Global behavior analysis and explanations.</li>
                     <li>Identification of breaking points in models.</li>
+                    <li><strong>??? </strong></li>
                     </ul>
-                </div>
+
+                </section>
             </section>
 
 
@@ -378,9 +456,8 @@
                             <img data-src="img_contents/coteaching.svg" class="plain" style="width: 300px;">
                                 <div style="text-align: center;">
                                 <br>
-                                <a href="https://arxiv.org/abs/1804.06872">
-                                    <img src="https://img.shields.io/badge/cs-arXiv.1804.06872-B31B1B.svg"
-                                        class="plain" style="height:25px;" />
+                                <a href="https://arxiv.org/abs/1804.06872" style="text-align:center">
+                                    <img src="https://img.shields.io/badge/cs.LG-arXiv%3A1804.06872-B31B1B?logo=arxiv" height="25">                                
                                 </a>
                             </div>
                         </div>
@@ -426,13 +503,11 @@
                 <h3 class="slide-title">WSL analysis</h3>
                 <div class="container" style="align-items: start; text-align: left">
                     <div class="col">
-                        Four different training sets with varying noise levels, to compare the performances.
                         <br>
-                        <ul>
-                            <li>Co-Teaching methods perform better for higher noise levels.</li>
-                            <li>Asym-Co-Teaching shows improved performance.</li>
-                            <li>Demonstrates the effectiveness of the approach in real-world scenarios and in future, better-calibrated photometry contexts.</li>
-                        </ul>
+                        <p style="text-align: left;">DIA Calibration is expected to improve across time and survey conditions.</p>
+                        <p style="text-align: left;">Four different training sets with varying noise levels.</p>
+                        <p style="text-align: left;">Our method outperforms standard training, especially in the most noisy setting.</p>
+  
                     </div>
                     <div class="col">
                         <img src="img_contents/WSL_results.png" style="width: 700px; height: auto;">
@@ -497,11 +572,9 @@
                 <section>
                     <h3 class="slide-title">UQ for Co-Teaching</h3>
                         <p style="text-align: left;">
-                            Co-Teaching methods train two models simultaneously.
+                            Co-Teaching methods train two models simultaneously. <strong>Let's use them as an ensemble.</strong>
                         </p>
-                        <p style="text-align: left;">
-                            Despite not being completely independent, we can still use them to estimate uncertainty by treating their predictions as an ensemble. 
-                        </p>
+
                         <p style="text-align: left;">
                             \( N=2\) ensemble is small, we can extend it by <span style="color: rgba(215, 0, 0, 0.95);">performing M stochastic forward passes with MC Dropout for each model</span>, resulting in a total of \(N\times M\) predictions.
                         </p>    
@@ -535,10 +608,12 @@
                                 <li>Correlations with Signal-to-Noise Ratio (SNR).</li>
                                 <li>Correlations with maximum brightness of a SNIa.</li>
                             </ul>
-                            <span>Correlations are computed using Spearman's rank correlation coefficient, which measures the strength and direction of the monotonic relationship between two variables.</span><br>
+                            <span>Correlations are computed using Spearman's rank correlation coefficient.</span><br>
+                            <P>
                             \[
                                 \rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}  
                             \]
+                            </P>
                         </div>
                     </div>
                     
@@ -585,11 +660,7 @@
                             <img src="img_contents/umap_explanation.png" style="width: 600px; height: auto;"></img>
                         </div>
                         <div class="fragment">
-                            <h4>UMAP in our case:</h4>
-                            <ul>
-                                <li>Applied to the output layer of the network.</li>
-                                <li>Provides a visual tool for better understanding network classifications.</li>
-                            </ul>
+                            <h4>UMAP in our case:</h4>Applied to the projection of inputs in the latent space of the network.
                         </div>
                 </section>
                 <!-- Slide 11.2 -->
@@ -1199,9 +1270,12 @@ shapley_vals[i] = SV
                     <h1>Thank you ! </h1>
                 
                 <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
+
+                    <img src="img_contents/3.svg" style="width: 200px;">
                 <p class="meta" style="font-size: small; text-align:center">
                          This work was supported by from the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
-                </p></div>
+                </p>
+            </div>
             </section>
         </div>
     </div>
