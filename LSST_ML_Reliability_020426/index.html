@@ -217,19 +217,20 @@
                 <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Weakly supervised learning problem</h3>
                     <div style="text-align: left;">
-                        No ground truth. During training, we are interested in the <b>False Positives</b>
+                        Using <b>Injection</b> vs <b>Survey</b> as the training classes. 
                     </div>
                     <div class="container" style="align-items: start; text-align: center;">
                         <div class="col">
-                            <br><br><br><br><br><br><br><br>
-                            <img src="img_contents/key_intuition3.png" style="width: 700px; height: auto;">
+                            
+                            <img src="img_contents/key_intuition4.png" style="width: 450px; height: auto;">
 
                         </div>
                         <div class="col" style="align-items: start; text-align: right;">
-                            <img class="fragment" src="img_contents/key_intuition4.png" style="width: 700px; height: auto;">
+                            <img class="fragment" src="img_contents/key_intuition5.png" style="width: 800px; height: auto;">
                         </div>
-
-                    
+                    </div>
+                    <div class="fragment">
+                        &#8680; The survey class is contaminated, which are the events we want to identify. Asymmetrically weakly supervised learning problem.
                     </div>
                 </section>
             </section>
@@ -244,8 +245,8 @@
                         <div class="col" style="margin-top: 10px;">
                             <br><br>
                             <h4>Producing the Cutouts: </h4>
-                            <li>Cutout coordinates are extracted from the DIA source tables and produced from the Calexps.</li>
-                            <li>Final format: (30x30), normalized grayscale.</li>
+                            <li>Cutout coordinates are extracted from the DIA source tables and produced from the Calexps and Coadd.</li>
+                            <li>Final format: (30x30x2), normalized grayscale.</li>
                             <br><br>
                             <span>
                                 <h4>Classes and Labels: </h4>
@@ -266,19 +267,20 @@
                     </div>
                     <div class="container" style="align-items: start; text-align: left;">
                         <div class="col" style="margin-top: 10px;">
-                            <br>
-                            <br>
-                            <br>
                             <h4>Filtering steps: from 8M to 342 LCs </h4>
 
+                                <img src="img_contents/table_filters.png" style="width: 500px; height: auto;">
                             <h4>Human labeling: </h4>
                                 <img src="img_contents/table_labels.png" style="width: 500px; height: auto;">
                             
                         </div>
                         <div class="col" style="display: flex; flex-direction: column; align-items: center;">
-                            <br>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <br><br>
+                                <br><br>
                             <img src="img_contents/band_dia.png" style="width: 200px; height: auto;">
                             <img src="img_contents/lc_sn.png" style="width: 500px; height: auto;">
+                            </div>
                         </div>
                     </div>
                 </section>
