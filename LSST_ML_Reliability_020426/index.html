@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AIPHY Midterm 02 2026</title>
+    <title>LSST ML reliability 04 2026</title>
 
-    <meta name="description" content="AIPHY_midterm_02_2026">
+    <meta name="description" content="LSST_ml_reliability_04Re_2026">
     <link rel="stylesheet" href="../assets/reveal/dist/reveal.css">
     <link rel="stylesheet" href="../assets/reveal/dist/theme/darkenergy.css" id="theme">
 
@@ -45,6 +45,17 @@
             width: 44%;
             display: flex;
             flex-direction: column;
+        }
+
+        .content-box {
+            background: rgba(0, 0, 0, 0.25);
+            color: #fff;
+            padding: 0.8em 1.2em;
+            border-radius: 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.45);
+            display: flex;
+            flex-direction: column;
+            list-style-position: inside;
         }
 
         .box-title {
@@ -230,7 +241,7 @@
                         </div>
                     </div>
                     <div class="fragment">
-                        &#8680; The survey class is contaminated, which are the events we want to identify. Asymmetrically weakly supervised learning problem.
+                        &#8680; The bogus class (actual survey data) is contaminated, by the sources we want to identify. Asymmetrically weakly supervised learning problem.
                     </div>
                 </section>
             </section>
@@ -239,8 +250,8 @@
             <section>      
                 <!-- Slide 5.1 Training data -->
                 <section data-background-image="img_contents/vera_rubin_obs_2.png">
-                    <h3 class="slide-title">Training Data Presentation</h3>
-                    The HSC RC2 subset is composed of 6 detectors, with 8 visits per filter.
+                    <h3 class="slide-title">Training set</h3>
+                    The <b>HSC RC2 subset </b>is composed of 6 detectors, with 8 visits per filter.
                     <div class="container" style="align-items: start; text-align: left;">
                         <div class="col" style="margin-top: 10px;">
                             <br><br>
@@ -261,9 +272,9 @@
                 </section>
                 <!-- Slide 5.2 Evaluation data -->
                 <section data-background-image="img_contents/vera_rubin_obs_2.png">
-                    <h3 class="slide-title">Evaluation Data Presentation</h3>
+                    <h3 class="slide-title">Evaluation set</h3>
                     <div class="container" style="align-items: start; text-align: left;">
-                    We use the full UDEEP dataset to build light curves. It is composed of 862 visits across 103 detectors. Those light curves are first filtered and then manually inspected for transient identification.
+                        We use the full UDEEP dataset to build light curves. It contains 862 visits across 103 detectors. Those light curves are filtered and then manually inspected for transient identification.
                     </div>
                     <div class="container" style="align-items: start; text-align: left;">
                         <div class="col" style="margin-top: 10px;">
@@ -274,13 +285,10 @@
                                 <img src="img_contents/table_labels.png" style="width: 500px; height: auto;">
                             
                         </div>
-                        <div class="col" style="display: flex; flex-direction: column; align-items: center;">
-                            <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="col" style="align-items: center;">
                                 <br><br>
-                                <br><br>
-                            <img src="img_contents/band_dia.png" style="width: 200px; height: auto;">
-                            <img src="img_contents/lc_sn.png" style="width: 500px; height: auto;">
-                            </div>
+                            <img src="img_contents/id_lightcurve.png" style="width: 800px; height: auto;">
+
                         </div>
                     </div>
                 </section>
@@ -304,11 +312,11 @@
                 <!-- Slide 7.1 -->
                <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">Co-Teaching: A Self-Event-Selection Strategy for Weakly Supervised Learning</h3>
-                    <p>Two models are trained simultaneously with different views on the same dataset.</p>
+                    <p>Two models are initialized and trained simultaneously on the same dataset.</p>
                     <div class="container" style="align-items: start; text-align: left">
                         <div class="col" style="display: flex; flex-direction: column; align-items: center;">
                             <br><br>
-                            <img data-src="img_contents/coteaching.svg" class="plain" style="width: 300px;">
+                            <img data-src="img_contents/coteaching.svg" class="plain" style="width: 400px;">
                                 <div style="text-align: center;">
                                 <br>
                                 <a href="https://arxiv.org/abs/1804.06872" style="text-align:center">
@@ -317,29 +325,19 @@
                             </div>
                         </div>
                         <div class="col">
-                            <p>In each batch, each model selects the datum with the smallest loss (most confident predictions).</p>
-                            <p>Avoid training on the wrong labels.</p>
-                            <p><strong>Pros:</strong>
-                            <ul>
-                                <li>Effective for noisy datasets.</li>
-                            </ul>
-                            </p>
-                            <p><strong>Cons:</strong>
-                            <ul>
-                                <li>Increases computational cost.</li>
-                                <li>Assumes symmetrical noise.</li>
-                            </ul></p>
+                            <p>At each training iteration, each model selects a subset of training samples with the smallest loss.</p>
+                            <p>Each network uses the small-loss samples selected by the other network to update its parameters.</p>
                         </div>
                     </div>
                 </section>
             <!-- Slide 7.2 -->
                <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">Asymmetrical Co-Teaching</h3>
-                    <p>Two models are trained simultaneously with different views on the same dataset.</p>
+                    <p>Two models are initialized and trained simultaneously on the same dataset.</p>
                     <div class="container" style="align-items: start; text-align: left">
                         <div class="col" style="display: flex; flex-direction: column; align-items: center;">
                             <br><br>
-                            <img data-src="img_contents/coteaching_comparison.svg" class="plain" style="width: 300px;">
+                            <img data-src="img_contents/coteaching_comparison.svg" class="plain" style="width: 400px;">
                         </div>
                         <div class="col">
                             <br>
@@ -353,23 +351,7 @@
                 </section>
             </section>
 
-            <!-- Slide 8 : Result WSL -->
-            <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
-                <h3 class="slide-title">WSL analysis</h3>
-                <div class="container" style="align-items: start; text-align: left">
-                    <div class="col">
-                        <br>
-                        <p style="text-align: left;">DIA Calibration is expected to improve across time and survey conditions.</p>
-                        <p style="text-align: left;">Four different training sets with varying noise levels.</p>
-                        <p style="text-align: left;">Our method outperforms standard training, especially in the most noisy setting.</p>
-  
-                    </div>
-                    <div class="col">
-                        <img src="img_contents/WSL_results.png" style="width: 700px; height: auto;">
-                    </div>
-                </div>
-             </section>
-
+            
 
             <!-- Slide 9 : Uncertainty Quantification -->
             <section data-background-image="img_contents/vera_rubin_obs_2.png">
@@ -379,7 +361,7 @@
                     <div class="container" style="align-items: start; text-align: left">
                         <div class="col">
                             <h4>Ensembles:</h4>
-                            <ul>
+                            <ul class="content-box">
                                 <li><span style="color: rgba(215, 0, 0, 0.95);">Train multiple models with different initializations.</span></li>
                                 <li>Average predictions to reduce variance and improve robustness.</li>
                                 <li>Cost: <span style="color: rgba(215, 0, 0, 0.95);">T trainings and T inferences.</span></li>
@@ -392,7 +374,7 @@
                         </div>
                         <div class="col">
                             <h4>MC Dropout:</h4>
-                            <ul>
+                            <ul class="content-box">
                                 <li><span style="color: rgba(215, 0, 0, 0.95);">Apply dropout during inference to simulate an ensemble of models.</span></li>
                                 <li>Perform multiple forward passes to estimate uncertainty.</li>
                                 <li>Cost: <span style="color: rgba(215, 0, 0, 0.95);">T inferences.</span></li>
@@ -405,10 +387,6 @@
                         </div>
                     </div>
                     <div>
-                        <p>
-                            <strong>Predictive uncertainty (from variance of predictions):</strong>
-                        </p>
-
                         <p>
                             \[
                             \hat{\mu}(x)=\frac{1}{T}\sum_{t=1}^{T}p_t(x),
@@ -436,7 +414,7 @@
                             <div style="display: flex; flex-direction: column; align-items: center;">
                             \[    
                             \bar{p}(\mathbf{x}^*) = \frac{1}{NM} \sum_{n=1}^{N} \sum_{m=1}^{M} p_{n,m}(\mathbf{x}^*),
-                            \qquad
+                            \quad
                             \mathrm{Var}_{\text{Co-Ens-Dropout}}(\mathbf{x}^*) = \frac{1}{NM} \sum_{n=1}^{N}\sum_{m=1}^{M}\big(p_{n,m}(\mathbf{x}^*) - \bar{p}(\mathbf{x}^*)\big)^2.
                             \]
                             </div>
@@ -464,11 +442,11 @@
                                 <li>Correlations with maximum brightness of a SNIa.</li>
                             </ul>
                             <span>Correlations are computed using Spearman's rank correlation coefficient.</span><br>
-                            <P>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
                             \[
                                 \rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}  
                             \]
-                            </P>
+                            </div>
                         </div>
                     </div>
                     
@@ -490,9 +468,27 @@
                 </div>
                 <div>
                     <li>All methods show <span style="color: rgba(215, 0, 0, 0.95);">correlation in the correct direction with physical values.</span></li> 
-                    <li>Our methods surprisingly beat all other methods while requiring <span style="color: rgba(215, 0, 0, 0.95);">\(25\) times less training compute than ensemble-based methods.</span></li>
+                    <li>Our method surprisingly beats all other methods while requiring <span style="color: rgba(215, 0, 0, 0.95);">\(25\) times less training compute than ensemble-based methods.</span></li>
                 </div>
              </section>
+
+
+            
+
+            <!-- Slide 11 : From source to light curve identification--> 
+            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
+                <h3 class="slide-title">From source identification to light curve classification</h3>
+                    <img src="img_contents/lightcurve_id.png" style="width: 600px; height: auto;"></img>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>304/306 light-curves are correctly labeled (99.35% accuracy) from the source classification of their constituent sources.</li>
+                        <li>Most 'bogus light curve' have all of their sources identified as Bogus.</li>
+                    </ul>
+
+                </div>
+
+                
+            </section>
             
             <!-- Slide 11: Interpretability -->
             <section data-background-image="img_contents/vera_rubin_obs_2.png">
@@ -541,34 +537,21 @@
 
 
 
-            <!-- Slide 11 : From source to light curve identification--> 
-            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
-                <h3 class="slide-title">From sources identification to lightcurve classification</h3>
-                    <img src="img_contents/lightcurve_id.png" style="width: 600px; height: auto;"></img>
-                <div style="text-align: left;">
-                    <ul>
-                        <li>304/306 light-curves are correctly labeled (99.35% accuracy) from the source classification of their constituent sources.</li>
-                        <li>Most 'bogus light curve' have all of their sources identified as Bogus.</li>
-                    </ul>
-
-                </div>
-
-                
-            </section>
-
 
             <!-- Slide 12: Outcomes --> 
             <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
                 <h3 class="slide-title">Outcomes of the project</h3>
-                <div class="fragment" style="text-align: left;">
+                <div class="fragment, content-box" style="text-align: left;">
                     Conclusions:
-                    <ul>
+                    <ul >
                         <li>New Asym-Co-Teaching methods that allow mitigation of the risk in a high-stakes class.</li>
                         <li>Novel uncertainty quantification method for Co-Teaching, providing better-calibrated uncertainties at lower cost.</li>
                         <li>UMAP visualization of the latent space confirms our interpretation of global model behavior.</li>
                     </ul>
                 </div>
-                <div class="fragment" style="text-align: left;">
+
+                <br>
+                <div class="fragment, content-box" style="text-align: left;">
                     Future work:
                     <ul>
                         <li>Further exploration of the latent space to identify specific features or patterns associated with the bogus class.</li>
@@ -594,7 +577,7 @@
 
                     <img src="img_contents/3.svg" style="width: 200px;">
                 <p class="meta" style="font-size: small; text-align:center">
-                         This work was supported by from the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
+                         This work was supported by the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
                 </p>
             </div>
             </section>
@@ -615,6 +598,23 @@
                     
                     <img data-src="img_contents/asym_coteaching.png" style="width: 800px; height: auto;" class="plain"></img>
                 </section>
+                <!-- Slide 8 : Result WSL -->
+                <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+                    <h3 class="slide-title">WSL analysis</h3>
+                    <div class="container" style="align-items: start; text-align: left">
+                        <div class="col">
+                            <br>
+                            <p style="text-align: left;">DIA Calibration is expected to improve across time and survey conditions.</p>
+                            <p style="text-align: left;">Four different training sets with varying noise levels.</p>
+                            <p style="text-align: left;">Our method outperforms standard training, especially in the most noisy setting.</p>
+    
+                        </div>
+                        <div class="col">
+                            <img src="img_contents/WSL_results.png" style="width: 700px; height: auto;">
+                        </div>
+                    </div>
+                </section>
+
                 <section data-background-image="img_contents/vera_rubin_obs_2.png">
                     <h3>Calibration Metrics</h3>
                         <ul>
