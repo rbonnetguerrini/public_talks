@@ -193,25 +193,27 @@
     <div class="reveal">
         <div class="slides">
 
-        <!-- PART A: ML4TRANSIENTS-->
-            <!-- Slide 2 ML4transients title -->
+        <!-- PART A: ML4TRANSIENTS -->
+            <!-- Slide 1: ML4Transients title -->
             <section data-background-image="img_contents/vera_rubin_obs.png">
-                <h2>Interpretable Deep Learning for Real/Bogus classification with Uncertainty Quantification</h2>
-                <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Dominique Fouchez<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, Benjamin Racine<sup>2</sup>, and Bruno Sanchez<sup>2</sup></span>
+                <h2>Interpretable Human Labeling-Free Real-Bogus Deep Learning classification with Uncertainty Quantification</h2>
+                <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1, 2 </sup>, Bruno Sanchez<sup>2 </sup>, Dominique Fouchez<sup>2 </sup>, Benjamin Racine<sup>2 </sup> and Vincenzo Piuri<sup>1 </sup></span>
                 <br>
                 <br>
-                <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;       <sup>2</sup>Centre de Physique des Particules de Marseille</span>
+                <span style="font-size: small; text-align:center"><sup>1 </sup>Computer Science Department, University of Milan;       <sup>2 </sup>Centre de Physique des Particules de Marseille</span>
                 <p>
                 <img src="img_contents/desc.png" style="width: 150px;">
+                <img src="img_contents/3.svg" style="width: 150px;">
+                <img src="img_contents/cppm.png" style="width: 100px;">
                 </p>
 
             </section>
 
-            <!-- Slide 4 DIA -->
+            <!-- Slide 2: Difference Image Analysis (DIA) -->
             <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
-                <!-- Slide 4.1 -->
+                <!-- Slide 2.1 -->
                 <section >
-                    <h3 class="slide-title">Difference Image analysis</h3>
+                    <h3 class="slide-title">Difference Image Analysis</h3>
                     <div class=" container" style="align-items: start; text-align: center;">
                         <div class="col">
                             <br>
@@ -224,11 +226,11 @@
                     </div>
                 </section>
 
-                <!-- Slide 4.2 -->      
+                <!-- Slide 2.2 -->      
                 <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
-                    <h3 class="slide-title">Weakly supervised learning problem</h3>
+                    <h3 class="slide-title">Weakly Supervised Learning Problem</h3>
                     <div style="text-align: left;">
-                        Using <b>Injection</b> vs <b>Survey</b> as the training classes. 
+                        Using <b>Injection</b> vs <b>Survey</b> as training classes.
                     </div>
                     <div class="container" style="align-items: start; text-align: center;">
                         <div class="col">
@@ -241,17 +243,17 @@
                         </div>
                     </div>
                     <div class="fragment">
-                        &#8680; The bogus class (actual survey data) is contaminated, by the sources we want to identify. Asymmetrically weakly supervised learning problem.
+                        &#8680; The bogus class (actual survey data) is contaminated by the sources we want to identify. Asymmetrically weakly supervised learning problem.
                     </div>
                 </section>
             </section>
 
-            <!-- Slide 5 : Data Presentation -->
+            <!-- Slide 3: Data Presentation -->
             <section>      
-                <!-- Slide 5.1 Training data -->
+                <!-- Slide 3.1: Training data -->
                 <section data-background-image="img_contents/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Training set</h3>
-                    The <b>HSC RC2 subset </b>is composed of 6 detectors, with 8 visits per filter.
+                    The <b>HSC RC2 subset</b> is composed of 6 detectors, with 8 visits per filter.
                     <div class="container" style="align-items: start; text-align: left;">
                         <div class="col" style="margin-top: 10px;">
                             <br><br>
@@ -270,31 +272,34 @@
                         </div>
                     </div>
                 </section>
-                <!-- Slide 5.2 Evaluation data -->
+                <!-- Slide 3.2: Evaluation data -->
                 <section data-background-image="img_contents/vera_rubin_obs_2.png">
-                    <h3 class="slide-title">Evaluation set</h3>
-                    <div class="container" style="align-items: start; text-align: left;">
-                        We use the full UDEEP dataset to build light curves. It contains 862 visits across 103 detectors. Those light curves are filtered and then manually inspected for transient identification.
-                    </div>
+                    <h3 class="slide-title">Construction of the evaluation set</h3>
                     <div class="container" style="align-items: start; text-align: left;">
                         <div class="col" style="margin-top: 10px;">
-                            <h4>Filtering steps: from 8M to 342 LCs </h4>
+                            <p>Full UDEEP dataset: 862 visits, 103 detectors. Light curves are filtered and manually inspected.
+                            <br>
+                            Filtering steps: from 8M to 342 LCs </p>
 
                                 <img src="img_contents/table_filters.png" style="width: 500px; height: auto;">
-                            <h4>Human labeling: </h4>
+                            Human labeling: 
                                 <img src="img_contents/table_labels.png" style="width: 500px; height: auto;">
                             
                         </div>
                         <div class="col" style="align-items: center;">
-                                <br><br>
-                            <img src="img_contents/id_lightcurve.png" style="width: 800px; height: auto;">
+                            <p>
+                                <ul>Labels:<br>
+                                    <li><b>SN Ia</b>: Transient: SNe Ia / transient candidates.</li>
+                                    <li><b>Bogus</b>: Bogus: bogus sources.</li>
+                            </p>
+                            <img src="img_contents/id_lc.png" style="width: 900px; height: auto;">
 
                         </div>
                     </div>
                 </section>
             </section>
 
-            <!-- Slide 6 : Network presentation -->
+            <!-- Slide 4: Network presentation -->
             <section>
                 <section data-background-image="img_contents/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Network Architecture</h3>
@@ -307,16 +312,16 @@
                     <img src="img_contents/NN_visu.png" style="width: 700px; height: auto;">
                 </section>
             </section>
-            <!-- Slide 7 : WSL -->
+            <!-- Slide 5: Weakly Supervised Learning (WSL) -->
             <section>
-                <!-- Slide 7.1 -->
+                <!-- Slide 5.1 -->
                <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">Co-Teaching: A Self-Event-Selection Strategy for Weakly Supervised Learning</h3>
                     <p>Two models are initialized and trained simultaneously on the same dataset.</p>
                     <div class="container" style="align-items: start; text-align: left">
                         <div class="col" style="display: flex; flex-direction: column; align-items: center;">
                             <br><br>
-                            <img data-src="img_contents/coteaching.svg" class="plain" style="width: 400px;">
+                            <img data-src="img_contents/coteaching.svg" class="plain" style="width: 600px;">
                                 <div style="text-align: center;">
                                 <br>
                                 <a href="https://arxiv.org/abs/1804.06872" style="text-align:center">
@@ -330,14 +335,14 @@
                         </div>
                     </div>
                 </section>
-            <!-- Slide 7.2 -->
+                <!-- Slide 5.2 -->
                <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">Asymmetrical Co-Teaching</h3>
                     <p>Two models are initialized and trained simultaneously on the same dataset.</p>
                     <div class="container" style="align-items: start; text-align: left">
                         <div class="col" style="display: flex; flex-direction: column; align-items: center;">
                             <br><br>
-                            <img data-src="img_contents/coteaching_comparison.svg" class="plain" style="width: 400px;">
+                            <img data-src="img_contents/coteaching_comparison.svg" class="plain" style="width: 600px;">
                         </div>
                         <div class="col">
                             <br>
@@ -353,17 +358,16 @@
 
             
 
-            <!-- Slide 9 : Uncertainty Quantification -->
+            <!-- Slide 6: Uncertainty Quantification -->
             <section data-background-image="img_contents/vera_rubin_obs_2.png">
-                <!-- Slide 9.1 Ensembles and MC Dropout -->
+                <!-- Slide 6.1: Ensembles and MC Dropout -->
                 <section>
-                    <h3 class="slide-title">Ensembles and MC Dropout</h3>
+                    <h3 class="slide-title">Ensembles and MC Dropout for Uncertainty Quantification</h3>
                     <div class="container" style="align-items: start; text-align: left">
                         <div class="col">
                             <h4>Ensembles:</h4>
-                            <ul class="content-box">
-                                <li><span style="color: rgba(215, 0, 0, 0.95);">Train multiple models with different initializations.</span></li>
-                                <li>Average predictions to reduce variance and improve robustness.</li>
+                            <ul>
+                                <li>Train multiple models with different initializations.</li>
                                 <li>Cost: <span style="color: rgba(215, 0, 0, 0.95);">T trainings and T inferences.</span></li>
                             </ul>
                             <div style="text-align:center">
@@ -374,9 +378,8 @@
                         </div>
                         <div class="col">
                             <h4>MC Dropout:</h4>
-                            <ul class="content-box">
-                                <li><span style="color: rgba(215, 0, 0, 0.95);">Apply dropout during inference to simulate an ensemble of models.</span></li>
-                                <li>Perform multiple forward passes to estimate uncertainty.</li>
+                            <ul>
+                                <li>Apply dropout during inference to simulate an ensemble of models.</li>
                                 <li>Cost: <span style="color: rgba(215, 0, 0, 0.95);">T inferences.</span></li>
                             </ul>
                             <div style="text-align:center">
@@ -387,6 +390,10 @@
                         </div>
                     </div>
                     <div>
+                        <p>
+                            <strong>Predictive uncertainty (from variance of predictions):</strong>
+                        </p>
+
                         <p>
                             \[
                             \hat{\mu}(x)=\frac{1}{T}\sum_{t=1}^{T}p_t(x),
@@ -401,7 +408,7 @@
                     </div>
                 </section>
 
-                <!-- Slide 9.2 UQ for Co-Teaching -->
+                <!-- Slide 6.2: UQ for Co-Teaching -->
                 <section>
                     <h3 class="slide-title">UQ for Co-Teaching</h3>
                         <p style="text-align: left;">
@@ -421,7 +428,7 @@
 
                 </section>
 
-                <!-- Slide 9.3 Metrics for Uncertainty Quantification -->
+                <!-- Slide 6.3: Metrics for Uncertainty Quantification -->
                 <section>
                     <h3 class="slide-title">Metrics for Uncertainty Quantification</h3>
                     <div class="container" style="align-items: start; text-align: left">
@@ -454,7 +461,7 @@
     
             </section>
             
-            <!-- Slide 10: Results of the UQ -->
+            <!-- Slide 7: UQ analysis -->
             <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
                 <h3 class="slide-title">UQ analysis</h3>
                 <div class="container" style="align-items: start; text-align: left">
@@ -467,22 +474,22 @@
                     </div>
                 </div>
                 <div>
-                    <li>All methods show <span style="color: rgba(215, 0, 0, 0.95);">correlation in the correct direction with physical values.</span></li> 
-                    <li>Our method surprisingly beats all other methods while requiring <span style="color: rgba(215, 0, 0, 0.95);">\(25\) times less training compute than ensemble-based methods.</span></li>
+                    <li>All methods show <span style="color: rgba(215, 0, 0, 0.95);">correlations in the expected direction with physical values.</span></li>
+                    <li>Our method surprisingly beats all other methods while requiring <span style="color: rgba(215, 0, 0, 0.95);">\(25\times\) less training compute than ensemble-based methods.</span></li>
                 </div>
              </section>
 
 
             
 
-            <!-- Slide 11 : From source to light curve identification--> 
+            <!-- Slide 8: From source identification to light curve classification -->
             <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
                 <h3 class="slide-title">From source identification to light curve classification</h3>
                     <img src="img_contents/lightcurve_id.png" style="width: 600px; height: auto;"></img>
                 <div style="text-align: left;">
                     <ul>
-                        <li>304/306 light-curves are correctly labeled (99.35% accuracy) from the source classification of their constituent sources.</li>
-                        <li>Most 'bogus light curve' have all of their sources identified as Bogus.</li>
+                        <li><strong>From the validation set: </strong>304/306 light curves are correctly labeled (99.35% accuracy) from the classification of their constituent sources.</li>
+                        <li>Most “bogus light curves” have all of their sources identified as bogus.</li>
                     </ul>
 
                 </div>
@@ -490,11 +497,11 @@
                 
             </section>
             
-            <!-- Slide 11: Interpretability -->
+            <!-- Slide 9: Interpretability -->
             <section data-background-image="img_contents/vera_rubin_obs_2.png">
-                <!-- Slide 11.1 -->
+                <!-- Slide 9.1 -->
                 <section>
-                        <h3 class="slide-title">Using UMAP for NN Latent Space visualization</h3>
+                        <h3 class="slide-title">Using UMAP for NN latent space visualization</h3>
                         <div>
                             <div style="text-align:center">
                                 <a href="https://arxiv.org/abs/1802.03426" style="text-align:center">
@@ -514,21 +521,24 @@
                             <h4>UMAP in our case:</h4>Applied to the projection of inputs in the latent space of the network.
                         </div>
                 </section>
-                <!-- Slide 11.2 -->
+                <!-- Slide 9.2 -->
                 <section>
-                    <h3 class="slide-title">UMAP Results</h3>
+                    <h3 class="slide-title">UMAP projection of the validation set:</h3>
                     <div style="text-align:center">
                         <iframe src="plot_contents/umap_classes.html" class="bokeh-iframe"></iframe>
                     </div>
+                    4829 sources for 306.
                 </section>
+                <!-- Slide 9.3 -->
                 <section>
-                    <h3 class="slide-title">UMAP Results: SNR overlay</h3>
+                    <h3 class="slide-title">UMAP projection of the validation set with SNR overlay</h3>
                     <div style="text-align:center">
                         <iframe src="plot_contents/umap_SNR.html" class="bokeh-iframe"></iframe>
                     </div>
                 </section>
+                <!-- Slide 9.4 -->
                 <section>
-                    <h3 class="slide-title">UMAP Results: UQ overlay</h3>
+                    <h3 class="slide-title">UMAP projection of the validation set with UQ overlay</h3>
                     <div style="text-align:center">
                         <iframe src="plot_contents/umap_UQ.html" class="bokeh-iframe"></iframe>
                     </div>
@@ -538,12 +548,12 @@
 
 
 
-            <!-- Slide 12: Outcomes --> 
+            <!-- Slide 10: Outcomes -->
             <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
                 <h3 class="slide-title">Outcomes of the project</h3>
-                <div class="fragment, content-box" style="text-align: left;">
+                <div class="fragment content-box" style="text-align: left;">
                     Conclusions:
-                    <ul >
+                    <ul>
                         <li>New Asym-Co-Teaching methods that allow mitigation of the risk in a high-stakes class.</li>
                         <li>Novel uncertainty quantification method for Co-Teaching, providing better-calibrated uncertainties at lower cost.</li>
                         <li>UMAP visualization of the latent space confirms our interpretation of global model behavior.</li>
@@ -551,7 +561,7 @@
                 </div>
 
                 <br>
-                <div class="fragment, content-box" style="text-align: left;">
+                <div class="fragment content-box" style="text-align: left;">
                     Future work:
                     <ul>
                         <li>Further exploration of the latent space to identify specific features or patterns associated with the bogus class.</li>
@@ -568,12 +578,13 @@
 
 
 
+            <!-- Slide 11: Thank you -->
             <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
                 <div class="title-panel">
                     
-                    <h1>Thank you ! </h1>
+                    <h1>Thank you!</h1>
                 
-                <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
+                <p class="meta">Contact: raphael.bonnet-guerrini@unimi.it</p>
 
                     <img src="img_contents/3.svg" style="width: 200px;">
                 <p class="meta" style="font-size: small; text-align:center">
@@ -586,27 +597,30 @@
 
 
             
+            <!-- Slide 12: Backup slides -->
             <section>
+                <!-- Slide 12.1 -->
                 <section data-background-image="img_contents/vera_rubin_obs_2.png" >
                     <div class="title-panel">
 
                         <h3>Backup Slides</h3>
                     </div>
                 </section>
+                <!-- Slide 12.2 -->
                 <section data-background-gradient="linear-gradient(to bottom, black, darkgrey)">
                     <h3 class="slide-title">Asymmetrical Co-Teaching</h3>
                     
                     <img data-src="img_contents/asym_coteaching.png" style="width: 800px; height: auto;" class="plain"></img>
                 </section>
-                <!-- Slide 8 : Result WSL -->
+                <!-- Slide 12.3: WSL analysis -->
                 <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">WSL analysis</h3>
                     <div class="container" style="align-items: start; text-align: left">
                         <div class="col">
                             <br>
-                            <p style="text-align: left;">DIA Calibration is expected to improve across time and survey conditions.</p>
+                            <p style="text-align: left;">DIA calibration is expected to improve over time and with better survey conditions.</p>
                             <p style="text-align: left;">Four different training sets with varying noise levels.</p>
-                            <p style="text-align: left;">Our method outperforms standard training, especially in the most noisy setting.</p>
+                            <p style="text-align: left;">Our method outperforms standard training, especially in the noisiest setting.</p>
     
                         </div>
                         <div class="col">
@@ -615,6 +629,7 @@
                     </div>
                 </section>
 
+                <!-- Slide 12.4 -->
                 <section data-background-image="img_contents/vera_rubin_obs_2.png">
                     <h3>Calibration Metrics</h3>
                         <ul>
@@ -642,7 +657,6 @@
             </section>
         </div>
     </div>
-</body>
 <!-- Include Reveal.js -->
 <script src="../assets/reveal/dist/reveal.js"></script>
 
