@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>IRN Terascale 04 2026</title>
+
+    <meta name="description" content="IRN_TERASCALE_21042026">
+    <link rel="stylesheet" href="../assets/reveal/dist/reveal.css">
+    <link rel="stylesheet" href="../assets/reveal/dist/theme/darkenergy.css" id="theme">
+
+    <!-- Highlight.js library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
+    <!-- Include Bokeh CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.css" type="text/css">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js"></script>
+
+    <!-- Include math -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- code rendering-->
+    <link rel="stylesheet" href="../assets/reveal/plugin/highlight/monokai.css" />
+    <script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+
+    <!-- Box creations -->
+    <style>
+        /* Basic styling for the vertical boxes */
+        .double_box_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .double_box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 44%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-title {
+            background: rgba(255, 255, 255, 0.2);
+            /* Lighter background for title */
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* Container to center and stack boxes vertically */
+        .vertical-center-container {
+            display: flex;
+            flex-direction: column;
+            /* Stack children vertically */
+            align-items: center;
+            /* Center children horizontally */
+            gap: 20px;
+            /* Space between boxes */
+            height: 100vh;
+            /* Full viewport height (optional) */
+            padding: 20px;
+        }
+
+        /* Styling for the boxes */
+        .centered-box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            /* Width of the boxes */
+            max-width: 800px;
+            /* Max width to limit size */
+        }
+
+        .reveal .slide-title {
+            border-left: 5px solid white;
+            text-align: left;
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        .bokeh-iframe {
+            width: 80vw;
+            height: 80vh;
+            border: none;
+        }
+
+        .reveal mjx-container[display="true"] {
+            display: inline-block !important;
+            width: auto !important;
+            max-width: none !important;
+            background: rgba(0,0,0,0.25);
+            color: #fff;
+            padding: 0.4em 0.65em;
+            border-radius: 12px;
+            border: 1.5px solid rgba(255,255,255,0.45);
+        }
+        .title-panel {
+        background: rgba(0, 0, 0, 0.45);
+        padding: 1.7rem 2.6rem;   
+        border-radius: 12px;
+        max-width: 68%;          
+        margin: auto;
+        backdrop-filter: blur(2px);
+        }
+
+        .title-panel h2 {
+        color: #ffffff;
+        font-size: 2.1em;        
+        margin-bottom: 0.45em;
+        }
+
+        .title-panel h3 {
+        color: #e0e0e0;
+        font-weight: 300;
+        font-size: 1em;       
+        line-height: 1.3;
+        margin-bottom: 1em;
+        }
+
+        .title-panel .meta {
+        color: #cccccc;
+        font-size: 0.75em;       
+        line-height: 1.4;
+        }
+
+        .title-panel .affiliation {
+        opacity: 0.75;
+        }
+        .title-left-logo {
+            position: absolute;
+            bottom: 15px;   
+            left: 20px;    
+            width: 150px;    
+            height: auto;
+        }
+        .title-right-logo {
+            position: absolute;
+            bottom: 15px;   
+            right: 20px;    
+            width: 150px;    
+            height: auto;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- SHAPLEY VALUES-->
+
+            <!-- Slide 1: intro NNPDF -->
+            <section data-background-image="img_contents/LHC.jpg">
+                <div class="title-panel">
+
+                <h2>Shapley values meet NNPDF</h2>
+                <span  style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span>
+                <br>
+                <br>
+                <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;         <sup>2</sup>Physics Department, University of Milan</span>
+                <div><br>
+                    <img src="img_contents/nnpdf_logo.png" class style="width: 200px;">
+                </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: Context -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <!-- Slide 2.1 -->
+                <section>
+                    <h3 class="slide-title highlight">Parton Distribution Functions (PDFs) and NNPDF</h3>
+                    <div  style="text-align: left;">
+                        <div class="container">
+                            <div class="col text-center">
+                                <img src="img_contents/pdf3.1.png" style="width: 300px; height: auto; display: block; margin: 0 auto;">
+                                <div style="text-align: center;">
+                                    \[
+                                    f(x, Q_0^2) = x^a(1-x)\text{NN}(\phi(x))
+                                    \]
+                                </div>
+                            </div>
+                            <div class="col">
+                                <ul>
+                                    <li>Describe <span style="color: rgba(215, 0, 0, 0.95);">the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\)</span>.</li>
+                                    <li>Essential for predicting outcomes of high-energy particle collisions.</li>
+                                    <li>NNPDF uses neural networks to model PDFs without assuming a specific functional form.</li>
+                                    <li>Trained on experimental data from different detectors.</li>
+
+                                </ul>
+                                <div style="text-align:center">
+                                    <a href="https://arxiv.org/abs/2109.02653" style="text-align:center">
+                                        <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2109.02653-B31B1B?logo=arxiv" height="25">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+
+                <!-- Slide 2.2 -->
+                <section>
+                <h3 class="slide-title highlight" style="text-align: left;">NNPDF: an inverse problem</h3>
+                    <p style="text-align: left;">
+                        NNPDF solves an <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
+                    </p>
+                    <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <p style="text-align: left;">
+                        Theory (QCD, QED, EW) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space, and the inverse is done by fitting precise experimental data from the LHC.
+                    </p>
+                </section>
+
+                <!-- Slide 2.3 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
+                    <p style="text-align: left;">
+                        The PDF space is a high-dimensional space (flavor basis or evolution basis). <br>Why does a given flavor look like this in a given \(x\) region? Which datasets are responsible for this behavior?
+                    </p>
+                    <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <div class="fragment" style="text-align:center; font-size: larger">  
+                        <span>                
+                        What if we perturb the PDF directly in the <b> <span style="color: rgba(215, 0, 0, 0.95);">PDF space</span> </b>? 
+                        </span>
+                    </div>
+                    <br>
+                    <div class="fragment" style="text-align:left">                  
+                        Multidimensionality of the PDF space,  Rotation and convolutions,  PDF-Observable correlations, DGLAP Evolution.  <br>
+                        Makes it difficult to perform systematic tests and obtain a clear understanding of each flavor on the fit.  
+                    </div>
+                </section>
+                <!-- Slide 2.4 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">NNPDF a black box model ?</h3>
+                    <p style="text-align: left;">
+                        <span style="color: rgba(215, 0, 0, 0.95);">Black-box systems are a recurrent interpretability issue in modern DL.</span> We can take inspiration from the methods developed there to solve the interpretability problem of NNPDF.
+                    </p>
+                    <img data-src="img_contents/blackbox_nnpdf.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <p style="text-align: center;">    
+                       XAI answer : What's the impact of one feature on the output of the model ?
+                    </p>
+                </section>
+            </section>
+            
+            <!-- Slide 3: Shapley Values for NNPDF -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+
+                <!-- Slide 3.1 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values</h3>
+                    <p style="text-align: left;">
+                        Inherited from game theory: represent <span style="color: rgba(215, 0, 0, 0.95);">the value of the contribution \(\phi\) of a player \(i\) within a coalition \(S\).</span> 
+                    </p>
+                    \[
+                    \phi_i = \sum_{S \subseteq N \setminus \{i\}}  \frac{|S|! \, (|N| - |S| - 1)!}{|N|!} \left[ v(S \cup \{i\}) - v(S) \right]
+                    \]
+                    <p style="text-align: left; font-size: smaller;">
+                        where \(N\) is the set of all players, \(S\) is a subset of players not including \(i\), and \(v(S)\) is the value of the coalition \(S\). 
+                    </p>
+                    <p style="text-align: left;"> 
+                        Computational cost as scales exponentially with the number of players \(2^N\). 
+                    </p>
+                   
+                    <p style="text-align: left;">
+                         SHAP adapt SV for DL application. Makes them computable for high amount of players (features) given certain assumptions and approximations.
+                    </p>
+
+                    <div style="text-align:center">
+                                <a href="https://arxiv.org/abs/1705.07874" style="text-align:center">
+                                <img src="https://img.shields.io/badge/cs.AI-arXiv%3A1705.07874-B31B1B?logo=arxiv" height="25">                                </a>
+                    </div>
+                </section>
+
+                <!-- Slide 3.2 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric?</h3>
+                    <p style="text-align: left;">
+                        Applying Shapley Values to NNPDF, we treat each flavor as a feature of our black-box model.
+                    </p>
+                    <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <ul>
+                        <li>\(\phi_i\) is the Shapley Value for flavor \(i\).</li>
+                        <li>\(N\) is the total number of flavors.</li>
+                        <li>\(S\) is a subset of flavors not including \(i\).</li>
+                        <li>\(v(S)=\chi^2\) is the value of the coalition when all flavors in coalition \(S\) are perturbed, while \(i\) and the rest of the flavors remain untouched.</li>
+                    </ul>
+                </section>
+            </section>
+            <!-- Slide 4: Shapley analysis in NNPDF -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <!-- Slide 4.1 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">The Shapley analysis in NNPDF</h3>
+                    <p style="text-align: left;">
+                        Loading <b>trained PDFs</b> from n3fit.
+                    </p>
+                    <img data-src="img_contents/pipeline.png" style="width: 900px; height: auto;" class="plain"></img>
+                    <p style="text-align: left;">For selected datasets, we can run the following Shapley analysis:</p>
+                    <ol>
+                        <li>All possible coalitions of pertubed PDFs are being created.</li>
+                        <li>We compute the \(\chi^2\) for each coalition. </li>
+                        <li>For each single flavor, we compare the \(\chi^2\) of the coalition, with the flavor perturbed and not perturbed.</li>
+                    </ol>
+                </section>
+
+                <!-- Slide 4.2 -->
+                
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
+                    <div class="container">
+                        <div>   
+                            <span>
+                                How do we perturb a PDF ?
+                                A smooth calibrated Gaussian bump:
+                            </span>
+                            <img data-src="img_contents/cal_perturbation.png" style="width: 800px; height: auto;" class="plain"></img>
+                        </div>
+                    </div>
+                </section>
+                <!-- Slide 4.3 -->
+                
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
+                    <div> 
+                            <span>
+                                How do we perturb a PDF ?
+                                A smooth calibrated Gaussian bump:
+                            </span>
+                        <div class="fragment">
+                            \[
+                                xf_j^{\text{pert}}(x)=xf_j(x)+\delta_j(x), \qquad \text{with} \quad \delta_j(x)=\alpha\, \sigma_{\text{rep},j}(x_{\mu}) \exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+                            \]
+                        </div>
+                        <div class="fragment">
+                            <div>   
+                                <span>
+                                    How to avoid directional bias ?
+                                    average the Shapley value of both direction 
+                                </span>
+                                \[
+                                    v(S)=\frac{v_+(S)+v_-(S)}{2}.
+                                \]
+                            </div>
+                        </div>                    
+                    </div>
+
+                </section>
+
+                <!-- Slide 4.4 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Coalitions and complexity</h3>
+
+                    <p><strong>What we compute:</strong> the <span style="color: rgba(215, 0, 0, 0.95);"><em>exact</em> Shapley value</span> for each PDF flavor by averaging its marginal contribution across all coalitions (all subsets of flavors).</p>
+                    <p><strong>Computational cost:</strong> exponential in the number of flavors, as we need to evaluate the fit for each coalition. In the flavor basis, \(N=9\) flavors, we have \(2^9 = 512\) coalitions.</p>
+                    <p style="text-align:left">Using exact Shapley values, we make <span style="color: rgba(215, 0, 0, 0.95);">no assumption of independence of the features.</strong></p>
+                </section>
+
+                <!-- Slide 4.5 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Correlated perturbation</h3>
+                    <div class="fragment">    
+                    <p>We can set coalitions with <span style="color: rgba(215, 0, 0, 0.95);">correlated perturbation</span>. How to infer the correlations between the flavors:</p>
+                    <div class="fragment">    
+                        <p style="text-align:left"><strong>Sum rules:</strong></p>
+                        \[
+                            \text{Momentum sum rule:} \quad\int_0^1dxx(g(x,Q)+\Sigma(x,Q))=1, 
+
+                        \]
+                        \[
+                            \text{Valence sum rule:}    \int_0^1dxV(x,Q)=\int_0^1dxV_8(x,Q)=3, \qquad     \int_0^1dxV_3(x,Q)=1, 
+
+                        \]
+                        <p style="text-align:left">Sum rules enforce physical PDF and correlate our perturbations within a coalition.</strong></p>
+                    </div>
+                    </section>
+
+                <!-- Slide 4.6 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to interpret the SV?</h3>
+                    <div class="container">
+                        <div class="col" style="text-align: left;">
+                        <li>\(\phi_j< 0 \) flavor \(j\) is poorly constrained for this dataset.</li>  
+                        <li>\(\phi_j> 0 \) flavor \(j\) is well constrained.</li>
+                        <br>
+                        <strong>\(x\) region dependency:</strong>
+                        <span>
+                        Perturbation is local and we can expect different contributions for different \(x\) regions.
+                        </span>
+                        <br>    
+                        <br>
+                        <strong>Dataset dependency:</strong>
+                        <span>
+                            \(\chi^2\) which is computed based on experimental dataset. We expect different contributions for different datasets.
+                        </span>
+                        </div>
+                        <div class="col" style="align-items: center;">
+                            <img data-src="img_contents/interpretation_sv.png" style="width: 500px; height: auto;" class="plain"></img>
+                            Exact Shapley Value have a completeness property: 
+                            \[\sum_{j \in N} \phi_j = v(N)-v(\emptyset)\]
+                            and \(v(s)=\chi^2\) so they share the same unit. 
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <!-- Slide 5: Preliminary results -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <!-- Slide 5.1 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Preliminary results: x-range scan</h3>
+                            <img data-src="img_contents/x-scan.png" style="width: 500px; height: auto;" class="plain"></img>
+                            <img data-src="img_contents/x-scan-dense.png" style="width: 500px; height: auto;" class="plain"></img>
+                        
+                </section>
+                <!-- Slide 5.2 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Preliminary results: dataset analysis</h3>
+                            <img data-src="img_contents/DIS.png" style="width: 500px; height: auto;" class="plain"></img>
+                            <img data-src="img_contents/gluon.png" style="width: 500px; height: auto;" class="plain"></img>
+                        
+                </section>
+            </section>
+
+            <!-- Slide 6: Next steps -->
+            <section data-background-image="img_contents/LHC.jpg">
+                <div class="title-panel">
+
+                <h3 class="slide-title highlight" style="text-align: left;">Outlook</h3>
+                <div style="text-align: left;">   
+                    <ul>             
+                        <li>Quantitative contribution of individual flavor.</li>
+                        <li>Demonstrate expected behavior on tested datasets.</li><br>
+                    </ul>
+                </div>
+                <h3 class="slide-title highlight" style="text-align: left;">Future steps</h3>
+                <div style="text-align: left;">   
+                    <ul>              
+                        <li>In the context of calibrated perturbation, what does it tell us about the calibration of the uncertainties of NNPDF.</li>
+                        <li>Potential for quantitave K-folding repartition.</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+         
+
+
+
+
+
+            <!-- Slide 7: Thank you -->
+            <section  data-background-image="img_contents/LHC.jpg">
+                <div class="title-panel">
+                    
+                    <h1>Thank you ! </h1>
+                
+                <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
+
+                    <img src="img_contents/3.svg" style="width: 200px;">
+                <p class="meta" style="font-size: small; text-align:center">
+                         This work was supported by from the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
+                </p>
+            </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Slide 8: Backup slides -->
+            <section>
+                <!-- Slide 8.1 -->
+                <section data-background-image="img_contents/LHC.png" >
+                    <div class="title-panel">
+
+                        <h3>Backup Slides</h3>
+                    </div>
+                </section>
+            
+
+                <!-- Slide 8.2 -->
+                <section data-background-image="img_contents/LHC.jpg">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values Pseudo code</h3>
+
+                    <div style="margin-top:0.6rem; padding:0.6rem; background:#0f1724; color:#e6eef6; border-radius:6px; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace; font-size:0.85rem; line-height:1.25;">
+                    <pre style="margin:0;">
+# INPUT: observables, mu,sigma,amplitude, n_samples, n_flavors = n
+# OUTPUT: shapley_vals[], baseline_chi2, cache
+
+baseline_chi2 = evaluate_chi2(observables, flavor_subset=[])   # v({})
+
+cache = {}   # map subset -> v(S)
+all_subsets = power_set(0..n-1)     # exclude full-set if desired
+
+for i in 0..n-1:
+SV = 0
+for S in all_subsets:
+    if i in S: continue
+
+    # v(S)
+    if S not in cache:
+    cache[S] = evaluate_chi2(observables, flavor_subset=list(S), mu,sigma,amplitude, n_samples)
+    vS = cache[S]
+
+    # v(S ∪ {i})
+    S_with = S ∪ {i}
+    if S_with not in cache:
+    cache[S_with] = evaluate_chi2(observables, flavor_subset=list(S_with), mu,sigma,amplitude, n_samples)
+    vSw = cache[S_with]
+
+    Δ = vSw - vS                                   # marginal contribution
+    s = |S|
+    w = factorial(s) * factorial(n - s - 1) / factorial(n)
+    SV += w * Δ
+
+shapley_vals[i] = SV
+
+# RETURN: shapley_vals, baseline_chi2, evaluated_coalitions=|cache|
+# COMPLEXITY: time ~ O(n · 2^n · cost_eval), space ~ O(2^n) (memoized)
+                    </pre>
+                    </div>
+                </section>
+                <!-- Slide 8.3 -->
+                <section data-background-image="img_contents/LHC.jpg">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values weight</h3>
+                    <span>
+                        In game theory, Shapley Values represent the contribution \(\phi_i\) of a player \(i\) within a coalition \(S\) by comparing the outcomes of scenarios where the player is present  \(v(S \cup \{i\})\) versus absent \(v(S)\).
+                    </span>
+                    
+                        \[
+                        \phi_i = \sum_{S \subseteq N \setminus \{i\}} \text{w}(S) \left[ v(S \cup \{i\}) - v(S) \right]
+                        \label{eq:comb_SV}
+                        \]
+                    <span>
+                        With:
+                    </span>
+                        \[
+                        w(S) = \frac{|S|! \, (|N| - |S| - 1)!}{|N|!}    
+                        \] 
+                    <span>
+                        \(w(S)\)  weights for the importance of the coalition \(S\) being tested. It is the probability that the set of players who come after \(i\) is exactly \(S\).
+                    </span>
+                        <ul>
+                        <li>\(|S|!\) is the number of ways to order the predecessors of \(i\)</li>
+                        <li>\((|N| - |S| - 1)!\) is the number of way to order the players after \(i\)</li>
+                        <li>\(|N|!\) is the number of way to order all players</li>
+                        </ul>
+                </section>
+                <section data-background-image="img_contents/LHC.jpg">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values weight</h3>
+                    <span>
+                        This result is derived in the following way: 
+                        Given \( |N| = n \), for a fixed player \(i\), let \( S \subseteq N \setminus \{i\} \) with \( |S| = s \).
+                        The probability that player before \(i\) are exactly \(S\) can be decomposed into two conditions: 
+
+                        First, \(i\) can be in any position in \(N\), so: 
+                    </span>
+                        \[
+                        p(\text{pos}_i = s+1) = \frac{1}{n}
+                        \]
+                    <span>
+                        Second, given that \( i \) is in position \( s+1 \), the \( s \) players before \( i \) form a uniformly random subset of the remaining \( n-1 \) players of size \(\binom{n-1}{s}\):
+                    </span>
+                        \[
+                        p(\text{predecessors} = S \mid \text{pos}_i = s+1) = \frac{1}{\binom{n-1}{s}}
+                        \]
+
+                        <span>To fulfill these conditions, we multiply those probabilities:</span>
+                        \[
+                        \frac{1}{n}\cdot \frac{1}{\binom{n-1}{s}} = \frac{1}{n}\cdot \frac{s!(n-1-s)!}{(n-1)!} = w(S)
+                        \] 
+                </section>
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</body>
+<!-- Include Reveal.js -->
+<script src="../assets/reveal/dist/reveal.js"></script>
+
+<!-- Include Plugins (optional) -->
+<script src="../assets/reveal/plugin/zoom/zoom.js"></script>
+<script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+
+<!-- Include MathJax -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Include Highlight.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+<script>
+    // Initialize Reveal.js with hash and slide number options
+    Reveal.initialize({
+        hash: true,      // Enables URL hash navigation
+        slideNumber: true, // Display slide numbers
+        math: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        },
+        plugins: [RevealZoom, RevealHighlight], // Initialize plugins
+    });
+
+    // Initialize Highlight.js for code blocks
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+
+</body>
+
+</html>
