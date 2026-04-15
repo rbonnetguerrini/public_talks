@@ -168,7 +168,7 @@
                 <div class="title-panel">
 
                 <h2>Shapley values meet NNPDF</h2>
-                <span  style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span>
+                <span></span><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, <br> <span  style="font-size:small;">Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span></span>
                 <br>
                 <br>
                 <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;         <sup>2</sup>Physics Department, University of Milan</span>
@@ -189,16 +189,16 @@
                                 <img src="img_contents/pdf3.1.png" style="width: 300px; height: auto; display: block; margin: 0 auto;">
                                 <div style="text-align: center;">
                                     \[
-                                    f(x, Q_0^2) = x^a(1-x)\text{NN}(\phi(x))
+                                    f_i(x, Q_0^2) = x^{(1-a)}(\text{NN}_i(x)-\text{NN}_i(1))
                                     \]
                                 </div>
                             </div>
                             <div class="col">
                                 <ul>
                                     <li>Describe <span style="color: rgba(215, 0, 0, 0.95);">the probability of finding a parton carrying a fraction \(x\) of the proton's momentum at a given energy scale \(Q^2\)</span>.</li>
-                                    <li>Essential for predicting outcomes of high-energy particle collisions.</li>
-                                    <li>NNPDF uses neural networks to model PDFs without assuming a specific functional form.</li>
-                                    <li>Trained on experimental data from different detectors.</li>
+                                    <li>Predicts outcomes of particle collisions.</li>
+                                    <li>NNPDF uses NN to model PDFs without assuming a specific functional form.</li>
+                                    <li>Trained on data from different experiment.</li>
 
                                 </ul>
                                 <div style="text-align:center">
@@ -214,13 +214,13 @@
 
                 <!-- Slide 2.2 -->
                 <section>
-                <h3 class="slide-title highlight" style="text-align: left;">NNPDF: an inverse problem</h3>
+                <h3 class="slide-title highlight" style="text-align: left;">PDF fitting: an inverse problem</h3>
                     <p style="text-align: left;">
                         NNPDF solves an <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
                     </p>
                     <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: left;">
-                        Theory (QCD, QED, EW) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space, and the inverse is done by fitting precise experimental data from the LHC.
+                        Theory (QCD, QED) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space, and the inverse is done by fitting precise experimental data.
                     </p>
                 </section>
 
@@ -271,11 +271,11 @@
                         where \(N\) is the set of all players, \(S\) is a subset of players not including \(i\), and \(v(S)\) is the value of the coalition \(S\). 
                     </p>
                     <p style="text-align: left;"> 
-                        Computational cost as scales exponentially with the number of players \(2^N\). 
+                        Computational cost scales exponentially with the number of players \(2^N\). 
                     </p>
                    
                     <p style="text-align: left;">
-                         SHAP adapt SV for DL application. Makes them computable for high amount of players (features) given certain assumptions and approximations.
+                         SHAP adapts SV for DL application. Makes them computable for large numbers of players (features) given certain assumptions and approximations.
                     </p>
 
                     <div style="text-align:center">
@@ -288,7 +288,7 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric?</h3>
                     <p style="text-align: left;">
-                        Applying Shapley Values to NNPDF, we treat each flavor as a feature of our black-box model.
+                        Applying Shapley Values to NNPDF, we treat the PDF of each flavor as an input of our black-box model.
                     </p>
                     <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
                     <ul>
@@ -341,7 +341,7 @@
                             </span>
                         <div class="fragment">
                             \[
-                                xf_j^{\text{pert}}(x)=xf_j(x)+\delta_j(x), \qquad \text{with} \quad \delta_j(x)=\alpha\, \sigma_{\text{rep},j}(x_{\mu}) \exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+                                xf_j^{\text{pert}}(x)=xf_j(x)\pm \delta_j(x), \qquad \text{with} \quad \delta_j(x)= \sigma_{\text{rep},j}(x_{\mu}) \exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
                             \]
                         </div>
                         <div class="fragment">
