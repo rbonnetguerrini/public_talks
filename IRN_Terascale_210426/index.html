@@ -168,7 +168,7 @@
                 <div class="title-panel">
 
                 <h2>Shapley values meet NNPDF</h2>
-                <span  style="font-size:smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, <br> <span style="font-size: small;">In collaboration with: </span>Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span></span>
+                <span  style="font-size:smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, <br> <span style="font-size: small;">In collaboration with: </span>Stefano Carrazza<sup>2</sup>, Dakshansh Chawda<sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span></span>
                 <br>
                 <br>
                 <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;<br>         <sup>2</sup>TIF lab, Physics Department, University of Milan</span>
@@ -311,7 +311,7 @@
                     <img data-src="img_contents/pipeline.png" style="width: 900px; height: auto;" class="plain"></img>
                     <p style="text-align: left;">For selected datasets, we can run the following Shapley analysis:</p>
                     <ol>
-                        <li>All possible coalitions of pertubed PDFs are being created.</li>
+                        <li>All possible coalitions of perturbed PDFs are being created.</li>
                         <li>We compute the \(\chi^2\) for each coalition. </li>
                         <li>For each single flavor, we compare the \(\chi^2\) of the coalition, with the flavor perturbed and not perturbed.</li>
                     </ol>
@@ -349,7 +349,7 @@
                             <div>   
                                 <span>
                                     How to avoid directional bias ?
-                                    average the Shapley value of both direction 
+                                    average the Shapley value of both directions 
                                 </span>
                                 \[
                                     v(S)=\frac{v_+(S)+v_-(S)}{2}.
@@ -458,7 +458,7 @@
                 <div style="text-align: left;">   
                     <ul>              
                         <li>In the context of calibrated perturbation, what does it tell us about the calibration of the uncertainties of NNPDF.</li>
-                        <li>Potential for quantitave K-folding repartition.</li>
+                        <li>Potential for quantitative K-folding repartition.</li>
                     </ul>
                 </div>
                 </div>
@@ -479,7 +479,7 @@
 
                     <img src="img_contents/3.svg" style="width: 200px;">
                 <p class="meta" style="font-size: small; text-align:center">
-                         This work was supported by from the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
+                         This work was supported by the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
                 </p>
             </div>
             </section>
@@ -514,7 +514,7 @@
 
                 <!-- Slide 8.2 -->
                 <section data-background-image="img_contents/LHC.jpg">
-                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values Pseudo code</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values Pseudocode</h3>
 
                     <div style="margin-top:0.6rem; padding:0.6rem; background:#0f1724; color:#e6eef6; border-radius:6px; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace; font-size:0.85rem; line-height:1.25;">
                     <pre style="margin:0;">
@@ -576,8 +576,8 @@ shapley_vals[i] = SV
                     </span>
                         <ul>
                         <li>\(|S|!\) is the number of ways to order the predecessors of \(i\)</li>
-                        <li>\((|N| - |S| - 1)!\) is the number of way to order the players after \(i\)</li>
-                        <li>\(|N|!\) is the number of way to order all players</li>
+                        <li>\((|N| - |S| - 1)!\) is the number of ways to order the players after \(i\)</li>
+                        <li>\(|N|!\) is the number of ways to order all players</li>
                         </ul>
                 </section>
                 <section data-background-image="img_contents/LHC.jpg">
@@ -585,7 +585,7 @@ shapley_vals[i] = SV
                     <span>
                         This result is derived in the following way: 
                         Given \( |N| = n \), for a fixed player \(i\), let \( S \subseteq N \setminus \{i\} \) with \( |S| = s \).
-                        The probability that player before \(i\) are exactly \(S\) can be decomposed into two conditions: 
+                        The probability that players before \(i\) are exactly \(S\) can be decomposed into two conditions: 
 
                         First, \(i\) can be in any position in \(N\), so: 
                     </span>
