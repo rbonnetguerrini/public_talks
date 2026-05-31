@@ -191,7 +191,7 @@
                 <div style="text-align: left; line-height: 1.35;">
 
                 <p>
-                    We collide <span style="color: rgba(215, 0, 0, 0.95);">protons</span>, but the hard interaction occurs between their fundamental constituents, the <span style="color: rgba(215, 0, 0, 0.95);">partons</span>.
+                    LHC collides <span style="color: rgba(215, 0, 0, 0.95);">protons</span>, but the hard interaction occurs between their fundamental constituents, the <span style="color: rgba(215, 0, 0, 0.95);">partons</span>.
                 </p>
 
                 <p>
@@ -245,7 +245,7 @@
                     <div  style="text-align: left;">
                         <div class="container">
                             <div class="col text-center">
-                                <img src="img_contents/pdf3.1.png" style="width: 300px; height: auto; display: block; margin: 0 auto;">
+                                <img src="img_contents/pdf3.1.png" style="width: 300px; height: auto; display: block; margin: 0 auto; border-radius: 10px;">
                                 <div style="text-align: center;">
                                     \[
                                     f_i(x, Q_0^2) = x^{(1-a)}(\text{NN}_i(x)-\text{NN}_i(1))
@@ -278,12 +278,67 @@
                     <p style="text-align: left;">
                         NNPDF solves an <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
                     </p>
-                    <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;border-radius: 10px;" class="plain "></img>
                     <p style="text-align: left;">
                         Theory (QCD, QED) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space, and the inverse is done by fitting precise experimental data.
                     </p>
                 </section>
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">
+                        What data enter the global fit?
+                    </h3>
 
+                    <div style="
+                        display: grid;
+                        grid-template-columns: 1.25fr 0.75fr;
+                        gap: 1em;
+                        align-items: center;
+                        margin-top: 0.6em;
+                    ">
+
+                        <div>
+                        <img
+                            data-src="img_contents/data_PDF.png"
+                            style="width: 100%; height: auto; border-radius: 10px;"
+                            class="plain">
+                        </img>
+                        <p style="font-size:0.75em; opacity:0.75; margin-top:0.3em;">
+                            Kinematic coverage of the NNPDF dataset in the \((x,Q^2)\) plane.
+                        </p>
+                        </div>
+
+                        <div style="text-align:left; line-height:1.35;">
+
+                            <p>
+                                <strong>Diverse processes:</strong><br>
+                                DIS, Drell-Yan, jets, top, photons...
+                            </p>
+
+                            <p>
+                                <strong>Uneven coverage:</strong><br>
+                                dense data islands, sparse regions.
+                            </p>
+
+                            <p>
+                                <strong>Critical regions:</strong><br>
+                                important predictions can rely on indirect constraints.
+                            </p>
+
+                            <div style="
+                                margin-top:0.8em;
+                                padding:0.55em 0.7em;
+                                border-left:4px solid currentColor;
+                                background:rgba(255,255,255,0.07);
+                            ">
+                                Which data constrain which PDF directions?
+                            </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </section>
                 <!-- Slide 2.3 -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
@@ -298,7 +353,7 @@
                     Why does a given flavor look like this in a given \(x\) region? Which datasets are responsible for this behavior?
                     </p>
                     </p>
-                    <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;border-radius: 10px;" class="plain"></img>
                     <div class="fragment" style="text-align:center; font-size: larger">  
                         <span>                
                         What if we perturb the PDF directly in the <b> <span style="color: rgba(215, 0, 0, 0.95);">PDF space</span> </b>? 
@@ -316,7 +371,7 @@
                     <p style="text-align: left;">
                         <span style="color: rgba(215, 0, 0, 0.95);">Black-box systems are a recurrent interpretability issue in modern DL.</span> We can take inspiration from the methods developed there to solve the interpretability problem of NNPDF.
                     </p>
-                    <img data-src="img_contents/blackbox_nnpdf.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <img data-src="img_contents/blackbox_nnpdf.png" style="border-radius: 10px;width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: center;">    
                        XAI answer : What's the impact of one feature on the output of the model ?
                     </p>
@@ -359,7 +414,7 @@
                     <p style="text-align: left;">
                         Applying Shapley Values to NNPDF, we treat the PDF of each flavor as an input of our black-box model.
                     </p>
-                    <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <img data-src="img_contents/NNPDF-shapley.png" style="border-radius: 10px;width: 700px; height: auto;" class="plain"></img>
                     <ul>
                         <li>\(\phi_i\) is the Shapley Value for flavor \(i\).</li>
                         <li>\(N\) is the total number of flavors.</li>
@@ -368,25 +423,9 @@
                     </ul>
                 </section>
             </section>
-            <!-- Slide 4: Shapley analysis in NNPDF -->
-            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
-                <!-- Slide 4.1 -->
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">The Shapley analysis in NNPDF</h3>
-                    <p style="text-align: left;">
-                        Loading <b>trained PDFs</b> from n3fit.
-                    </p>
-                    <img data-src="img_contents/pipeline.png" style="width: 900px; height: auto;" class="plain"></img>
-                    <p style="text-align: left;">For selected datasets, we can run the following Shapley analysis:</p>
-                    <ol>
-                        <li>All possible coalitions of perturbed PDFs are being created.</li>
-                        <li>We compute the \(\chi^2\) for each coalition. </li>
-                        <li>For each single flavor, we compare the \(\chi^2\) of the coalition, with the flavor perturbed and not perturbed.</li>
-                    </ol>
-                </section>
-
                 <!-- Slide 4.2 -->
-                
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
                     <div class="container">
@@ -395,7 +434,7 @@
                                 How do we perturb a PDF ?
                                 A smooth calibrated Gaussian bump:
                             </span>
-                            <img data-src="img_contents/cal_perturbation.png" style="width: 800px; height: auto;" class="plain"></img>
+                            <img data-src="img_contents/cal_perturbation.png" style="border-radius: 10px;width: 800px; height: auto;" class="plain"></img>
                         </div>
                     </div>
                 </section>
@@ -427,87 +466,210 @@
                     </div>
 
                 </section>
-
-                <!-- Slide 4.4 -->
+                <!-- Slide A1: SHAP problem + exact fix -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Coalitions and complexity</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">Why SHAP fails here &mdash; and our fix</h3>
 
-                    <p><strong>What we compute:</strong> the <span style="color: rgba(215, 0, 0, 0.95);"><em>exact</em> Shapley value</span> for each PDF flavor by averaging its marginal contribution across all coalitions (all subsets of flavors).</p>
-                    <p><strong>Computational cost:</strong> exponential in the number of flavors, as we need to evaluate the fit for each coalition. In the flavor basis, \(N=9\) flavors, we have \(2^9 = 512\) coalitions.</p>
-                    <p style="text-align:left">Using exact Shapley values, we make <span style="color: rgba(215, 0, 0, 0.95);">no assumption of independence of the features.</strong></p>
-                </section>
+                    <div style="text-align:left; line-height:1.35;">
+                        <p>
+                        Standard <strong>SHAP</strong> makes Shapley values tractable for ~50+ features by
+                        <span style="color: rgba(215, 0, 0, 0.95);">assuming features are independent</span> (additivity).
+                        </p>
 
-                <!-- Slide 4.5 -->
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Correlated perturbation</h3>
-                    <div class="fragment">    
-                    <p>We can set coalitions with <span style="color: rgba(215, 0, 0, 0.95);">correlated perturbation</span>. How to infer the correlations between the flavors:</p>
-                    <div class="fragment">    
-                        <p style="text-align:left"><strong>Sum rules:</strong></p>
-                        \[
-                            \text{Momentum sum rule:} \quad\int_0^1dxx(g(x,Q)+\Sigma(x,Q))=1, 
+                        <p style="
+                        margin-top:0.8em;
+                        padding:0.55em 0.75em;
+                        border-left:4px solid currentColor;
+                        background:rgba(255,255,255,0.07);
+                        ">
+                        But PDF flavors are <strong>strongly correlated</strong> &rarr; the independence assumption breaks.
+                        </p>
 
-                        \]
-                        \[
-                            \text{Valence sum rule:}    \int_0^1dxV(x,Q)=\int_0^1dxV_8(x,Q)=3, \qquad     \int_0^1dxV_3(x,Q)=1, 
-
-                        \]
-                        <p style="text-align:left">Sum rules enforce physical PDF and correlate our perturbations within a coalition.</strong></p>
+                        <p class="fragment" style="
+                        margin-top:0.8em;
+                        padding:0.55em 0.75em;
+                        border-left:4px solid currentColor;
+                        background:rgba(255,255,255,0.07);
+                        ">
+                        Only <strong>8 players</strong> (PDF flavors) &rarr; we enumerate
+                        <strong>all \(2^8=256\) coalitions</strong> and compute the
+                        <span style="color: rgba(215, 0, 0, 0.95);">exact</span> Shapley value:
+                        no independence assumption, all correlations kept.
+                        </p>
                     </div>
-                    </section>
 
-                <!-- Slide 4.6 -->
+                    <div style="text-align:center; margin-top:1em;">
+                        <a href="https://arxiv.org/abs/1705.07874">
+                        <img src="https://img.shields.io/badge/cs.AI-arXiv%3A1705.07874-B31B1B?logo=arxiv" height="25">
+                        </a>
+                    </div>
+                </section>
+                    <!-- Slide A2: coalitions + where correlations come from -->
+                    <section>
+                        <h3 class="slide-title highlight" style="text-align: left;">Coalitions, and where correlations come from</h3>
+
+                        <div class="container">
+                            <div class="col" style="text-align:left; line-height:1.35;">
+                                <ul>
+                                    <li>Players = the <strong>8 PDF flavors</strong>.</li>
+                                    <li>Coalition \(S\): perturb the flavors in \(S\), leave the rest untouched.</li>
+                                    <li>\(v(S)=\chi^2\) of that coalition, averaged over \(+\) and \(-\) bumps.</li>
+                                </ul>
+
+                                <p style="
+                                margin-top:0.8em;
+                                padding:0.55em 0.75em;
+                                border-left:4px solid currentColor;
+                                background:rgba(255,255,255,0.07);
+                                ">
+                                Correlations are <strong>physical</strong>: <span style="color: rgba(215, 0, 0, 0.95);">sum rules</span>
+                                tie flavors together &mdash; perturbing one forces compensating shifts in the others,
+                                so total proton momentum and quark counting stay fixed.
+                                </p>
+                            </div>
+                            <div class="col text-center">
+                                <img data-src="img_contents/NNPDF-shapley.png" style="border-radius:10px; width:380px; height:auto;" class="plain">
+                                <div style="margin-top:0.6em;">
+                                \[\int_0^1 \! dx\, x\,(g+\Sigma)=1\]
+                                \[\int_0^1 \! dx\, V = 3, \quad \int_0^1 \! dx\, V_3 = 1\]
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                <!-- Slide A3 -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">How to interpret the Shapley values?</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to read a Shapley value</h3>
                     <div class="container">
                         <div class="col" style="text-align: left;">
-                        <li>\(\phi_j< 0 \) flavor \(j\) is poorly constrained for this dataset.</li>  
-                        <li>\(\phi_j> 0 \) flavor \(j\) is well constrained.</li>
-                        <br>
-                        <strong>\(x\) region dependency:</strong>
-                        <span>
-                        Perturbation is local and we can expect different contributions for different \(x\) regions.
-                        </span>
-                        <br>    
-                        <br>
-                        <strong>Dataset dependency:</strong>
-                        <span>
-                            \(\chi^2\) which is computed based on experimental dataset. We expect different contributions for different datasets.
-                        </span>
+                            <p>\(\phi_j\) = marginal change in \(\chi^2\) when flavor \(j\) is perturbed &mdash; <strong>same units as \(\chi^2\)</strong>.</p>
+                            <div style="text-align: center;">\[\sum_{j} \phi_j = v(N)-v(\emptyset)\]</div>
+                            <p style="
+                                margin-top: 0.8em;
+                                padding: 0.55em 0.75em;
+                                border-left: 4px solid currentColor;
+                                background: rgba(255,255,255,0.07);
+                            ">
+                                Always <strong>per dataset</strong> \(\mathcal{D}\): different data &rarr; different contributions.
+                            </p>
                         </div>
                         <div class="col" style="align-items: center;">
-                            <img data-src="img_contents/interpretation_sv.png" style="width: 500px; height: auto;" class="plain"></img>
-                            Exact Shapley Value have a completeness property: 
-                            \[\sum_{j \in N} \phi_j = v(N)-v(\emptyset)\]
-                            and \(v(s)=\chi^2\) so they share the same unit. 
-                        </div>
+                            <img data-src="img_contents/interpretation_sv.png" style="border-radius: 10px;width: 460px; height: auto;" class="plain">
+                        <div style="text-align: left;"><strong>Locally around \(x_\mu\), for dataset \(\mathcal{D}\):</strong>
+                        <ul>
+                            <li>\(\phi_j > 0 \): \(\mathcal{D}\) constrains flavor \(j\)</li>
+                            <li>\(\phi_j \approx 0 \): \(\mathcal{D}\) insensitive to \(j\)</li>
+                            <li>\(\phi_j < 0 \): baseline locally suboptimal (a pull in the fit)</li>
+                        </ul>
+                        </div></div>
                     </div>
                 </section>
             </section>
+            <!-- Slide 4: Shapley analysis in NNPDF -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <!-- Slide 4.1 -->
+                    <h3 class="slide-title highlight" style="text-align: left;">The Shapley analysis in NNPDF</h3>
+                    <p style="text-align: left;">
+                        Loading <b>trained PDFs</b> from n3fit.
+                    </p>
+                    <img data-src="img_contents/pipeline.png" style="border-radius: 10px;width: 900px; height: auto;" class="plain"></img>
+                    <p style="text-align: left;">For selected datasets, we can run the following Shapley analysis:</p>
+                    <ol>
+                        <li>All possible coalitions of perturbed PDFs are being created.</li>
+                        <li>We compute the \(\chi^2\) for each coalition. </li>
+                        <li>For each single flavor, we compare the \(\chi^2\) of the coalition, with the flavor perturbed and not perturbed.</li>
+                    </ol>
+            </section>
+
             <!-- Slide 5: Preliminary results -->
             <section data-background-gradient="linear-gradient(to bottom, black, grey)">
-                <!-- Slide 5.1 -->
+                <!-- Slide 5.1: sanity check, flavor hierarchy -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Preliminary results: Kinematic dependence</h3>
-                            <img data-src="img_contents/x-scan.png" style="width: 1000px; height: auto;" class="plain"></img>
-                        
-                </section>                
-                <!-- Slide 5.2 -->
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Preliminary results: Kinematic dependence</h3>
-                            <img data-src="img_contents/x-scan-dense.png" style="width: 1000px; height: auto;" class="plain"></img>
+                    <h3 class="slide-title highlight" style="text-align: left;">Sanity check: flavor hierarchy</h3>
+                    <p style="text-align: left;">Over the full dataset, the ranking matches known physics:</p>
+                    <div style="text-align:center; margin:1em 0;">
+                        \[\phi_u > \phi_d > \phi_g > \phi_{\bar u} > \phi_{\bar d} > \phi_s > \phi_{\bar s} > \phi_{c^+}\]
+                    </div>
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.8em;
+                        padding: 0.55em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        Up/down quarks dominate; the gluon is lower (it enters most processes only at higher order);
+                        heavy quarks are suppressed. The method recovers the expected ordering.
+                    </p>
                 </section>
-                <!-- Slide 5.3 -->
+                <!-- Slide 5.2: kinematic scan, heatmap overview -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Preliminary results: DIS datasets analysis</h3>
-                            <img data-src="img_contents/DIS.png" style="width: 1000px; height: auto;" class="plain"></img>
-                        
+                    <h3 class="slide-title highlight" style="text-align: left;">Kinematic scan: where sensitivity lives</h3>
+                            <img data-src="img_contents/x-scan-dense.png" style="border-radius: 10px;width: 1000px; height: auto;" class="plain">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        Sensitivity lives where the data live (\(x\sim10^{-3}\)&ndash;\(0.5\)); it vanishes at very small \(x\), where there is no data.
+                    </p>
                 </section>
-                <!-- Slide 5.4 -->
+                <!-- Slide 5.3: kinematic scan, per-flavor detail -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Preliminary results: Gluon datasets analysis</h3>
-                            <img data-src="img_contents/gluon.png" style="width: 1000px; height: auto;" class="plain"></img>
-                        
+                    <h3 class="slide-title highlight" style="text-align: left;">Kinematic scan: per-flavor detail</h3>
+                            <img data-src="img_contents/x-range.png" style="border-radius: 10px;width: 820px; height: auto;" class="plain">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        Same scan, with replica uncertainties &mdash; large-\(x\) contributions are non-Gaussian.
+                    </p>
+                </section>
+                <!-- Slide 5.4: gluon dip, the surprise -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">A surprise: the gluon dip</h3>
+                            <img data-src="img_contents/hera_dip.png" style="border-radius: 10px;width: 700px; height: auto;" class="plain">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        Gluon sensitivity unexpectedly dips near \(x\approx0.1\) &mdash; because the gluon's self-evolution
+                        vanishes there, so data cannot constrain it. <span style="color: rgba(215, 0, 0, 0.95);">(derivation in backup)</span>
+                    </p>
+                </section>
+                <!-- Slide 5.5: DIS datasets -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Per process: DIS datasets</h3>
+                            <img data-src="img_contents/DIS.png" style="border-radius: 10px;width: 1000px; height: auto;" class="plain">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        HERA (collider, small \(x\)) and fixed-target (large \(x\)) constrain different \(x\) regions; the gluon stays small in DIS.
+                    </p>
+                </section>
+                <!-- Slide 5.6: gluon-direct datasets -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Per process: gluon-dominated datasets</h3>
+                            <img data-src="img_contents/gluon.png" style="border-radius: 10px;width: 1000px; height: auto;" class="plain">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        Jets and \(t\bar t\) are gluon-dominated &mdash; \(\phi_g\) spikes at \(x\approx0.5\), dwarfing every quark.
+                    </p>
                 </section>
             </section>
 
@@ -578,7 +740,21 @@
                         <h3>Backup Slides</h3>
                     </div>
                 </section>
-            
+
+                <!-- Backup: gluon dip explanation -->
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <h3 class="slide-title highlight" style="text-align: left;">Backup: why the gluon dips at \(x\approx0.1\)</h3>
+                    <div class="container">
+                        <div class="col" style="text-align:left; line-height:1.35;">
+                            <p>At small \(x\), the gluon is generated by QCD evolution, dominated by the gluon&ndash;gluon kernel \(\gamma_{gg}(N)\).</p>
+                            <p>\(\gamma_{gg}(N)\) crosses <strong>zero near \(N=2\)</strong> (Mellin space) &rarr; evolution stalls, so data cannot constrain the gluon there.</p>
+                            <p>A saddle-point map \(x(N)\) puts \(N=2\) at \(x\approx10^{-1}\)&ndash;\(2\times10^{-1}\) &mdash; exactly where the dip appears.</p>
+                        </div>
+                        <div class="col text-center">
+                            <img data-src="img_contents/saddle-point-analysis.png" style="border-radius:10px; width:420px; height:auto;" class="plain">
+                        </div>
+                    </div>
+                </section>
 
                 <!-- Slide 8.2 -->
                 <section data-background-image="img_contents/LHC.jpg">
