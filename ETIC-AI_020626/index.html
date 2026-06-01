@@ -248,7 +248,7 @@
                                 <img src="img_contents/pdf3.1.png" style="width: 300px; height: auto; display: block; margin: 0 auto; border-radius: 10px;">
                                 <div style="text-align: center;">
                                     \[
-                                    f_i(x, Q_0^2) = x^{(1-a)}(\text{NN}_i(x)-\text{NN}_i(1))
+                                    xf_i(x, Q_0^2) = A_i\,x^{1-a_i}(\text{NN}_i(x)-\text{NN}_i(1))
                                     \]
                                 </div>
                             </div>
@@ -410,7 +410,7 @@
 
                 <!-- Slide 3.2 -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Value, the perfect closure test metric?</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">Applying Shapley values to NNPDF</h3>
                     <p style="text-align: left;">
                         Applying Shapley Values to NNPDF, we treat the PDF of each flavor as an input of our black-box model.
                     </p>
@@ -422,60 +422,20 @@
                         <li>\(v(S)=\chi^2\) is the value of the coalition when all flavors in coalition \(S\) are perturbed, while \(i\) and the rest of the flavors remain untouched.</li>
                     </ul>
                 </section>
-            </section>
-                <!-- Slide 4.2 -->
-            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
-
+                <!-- 5.1: Why SHAP fails + exact fix -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
-                    <div class="container">
-                        <div>   
-                            <span>
-                                How do we perturb a PDF ?
-                                A smooth calibrated Gaussian bump:
-                            </span>
-                            <img data-src="img_contents/cal_perturbation.png" style="border-radius: 10px;width: 800px; height: auto;" class="plain"></img>
-                        </div>
-                    </div>
-                </section>
-                <!-- Slide 4.3 -->
-                
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
-                    <div> 
-                            <span>
-                                How do we perturb a PDF ?
-                                A smooth calibrated Gaussian bump:
-                            </span>
-                        <div class="fragment">
-                            \[
-                                xf_j^{\text{pert}\pm}(x)=xf_j(x)\pm \delta_j(x), \qquad \text{with} \quad \delta_j(x)= \sigma_{\text{rep},j}(x_{\mu}) \exp\!\left(-\frac{(\log_{10}(x)-\log_{10}(x_\mu))^2}{2\sigma^2}\right).
-                            \]
-                        </div>
-                        <div class="fragment">
-                            <div>   
-                                <span>
-                                    How to avoid directional bias ?
-                                    average the Shapley value of both directions 
-                                </span>
-                                \[
-                                    v(S)=\frac{v_+(S)+v_-(S)}{2}.
-                                \]
-                            </div>
-                        </div>                    
-                    </div>
-
-                </section>
-                <!-- Slide A1: SHAP problem + exact fix -->
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Why SHAP fails here &mdash; and our fix</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">SHAP in particle physics</h3>
 
                     <div style="text-align:left; line-height:1.35;">
                         <p>
                         Standard <strong>SHAP</strong> makes Shapley values tractable for ~50+ features by
                         <span style="color: rgba(215, 0, 0, 0.95);">assuming features are independent</span> (additivity).
                         </p>
-
+                        <div style="text-align:center; margin-top:1em;">
+                            <a href="https://arxiv.org/abs/2507.21214" style="margin:0 0.4em;">
+                            <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2507.21214-B31B1B?logo=arxiv" height="25">
+                            </a>
+                        </div>
                         <p style="
                         margin-top:0.8em;
                         padding:0.55em 0.75em;
@@ -491,65 +451,78 @@
                         border-left:4px solid currentColor;
                         background:rgba(255,255,255,0.07);
                         ">
-                        Only <strong>8 players</strong> (PDF flavors) &rarr; we enumerate
-                        <strong>all \(2^8=256\) coalitions</strong> and compute the
+                        Only <strong>8 players</strong> (PDF flavors) &rarr; the Shapley sum for each flavor runs over
+                        just <strong>\(2^7=128\) coalitions</strong> &rarr; we compute the
                         <span style="color: rgba(215, 0, 0, 0.95);">exact</span> Shapley value:
                         no independence assumption, all correlations kept.
                         </p>
                     </div>
 
-                    <div style="text-align:center; margin-top:1em;">
-                        <a href="https://arxiv.org/abs/1705.07874">
-                        <img src="https://img.shields.io/badge/cs.AI-arXiv%3A1705.07874-B31B1B?logo=arxiv" height="25">
-                        </a>
-                    </div>
                 </section>
-                    <!-- Slide A2: coalitions + where correlations come from -->
-                    <section>
-                        <h3 class="slide-title highlight" style="text-align: left;">Coalitions, and where correlations come from</h3>
+            </section>
+                <!-- Slide 4.2 -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
 
-                        <div class="container">
-                            <div class="col" style="text-align:left; line-height:1.35;">
-                                <ul>
-                                    <li>Players = the <strong>8 PDF flavors</strong>.</li>
-                                    <li>Coalition \(S\): perturb the flavors in \(S\), leave the rest untouched.</li>
-                                    <li>\(v(S)=\chi^2\) of that coalition, averaged over \(+\) and \(-\) bumps.</li>
-                                </ul>
+                <!-- 5.2: perturbation, calibrated bump -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Perturbing a PDF: a calibrated bump</h3>
+                    <img data-src="img_contents/cal_perturbation.png" style="border-radius: 10px;width: 800px; height: auto;" class="plain">
+                </section>
 
-                                <p style="
-                                margin-top:0.8em;
-                                padding:0.55em 0.75em;
-                                border-left:4px solid currentColor;
-                                background:rgba(255,255,255,0.07);
-                                ">
-                                Correlations are <strong>physical</strong>: <span style="color: rgba(215, 0, 0, 0.95);">sum rules</span>
-                                tie flavors together &mdash; perturbing one forces compensating shifts in the others,
-                                so total proton momentum and quark counting stay fixed.
-                                </p>
-                            </div>
-                            <div class="col text-center">
-                                <img data-src="img_contents/NNPDF-shapley.png" style="border-radius:10px; width:380px; height:auto;" class="plain">
-                                <div style="margin-top:0.6em;">
-                                \[\int_0^1 \! dx\, x\,(g+\Sigma)=1\]
-                                \[\int_0^1 \! dx\, V = 3, \quad \int_0^1 \! dx\, V_3 = 1\]
-                                </div>
+                <!-- 5.3: perturbation formula + averaging -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Gaussian bump averaged over both directions</h3>
+                        <p style="text-align:left;">
+                        We probe one flavor in a chosen \(x\) region with a smooth Gaussian bump, its height
+                        <strong>calibrated to the PDF uncertainty</strong> so it is comparable across flavors.
+                    </p>
+                    <div style="text-align:center;">
+                        \[
+                            xf_j^{\text{pert}\pm}(x)=xf_j(x)\pm \delta_j(x), \qquad
+                            \delta_j(x)= \sigma_{\text{rep},j}(x_{\mu})\,
+                            \exp\!\left(-\frac{(\log_{10}(x)-\log_{10}(x_\mu))^2}{2\sigma^2}\right).
+                        \]
+                        <div class="fragment">
+                            <p style="text-align:left;">To avoid directional bias, we average the value over the \(+\) and \(-\) bumps:</p>
+                            <div style="text-align:center;">
+                            \[ v(S)=\tfrac{1}{2}\left(v_+(S)+v_-(S)\right). \]
                             </div>
                         </div>
-                    </section>
-                <!-- Slide A3 -->
+                    </div>
+                </section>
+
+                <!-- 5.4: coalitions + correlations via sum rules -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Coalitions, and where correlations come from</h3>
+                    <div style="text-align:left; line-height:1.35;">
+                        <p>A coalition \(S\): perturb the flavors in \(S\), leave the rest untouched; \(v(S)=\chi^2\).</p>
+
+                        <p style="
+                        margin-top:0.6em;
+                        padding:0.55em 0.75em;
+                        border-left:4px solid currentColor;
+                        background:rgba(255,255,255,0.07);
+                        ">
+                        Correlations are <strong>physical</strong>: <span style="color: rgba(215, 0, 0, 0.95);">sum rules</span>
+                        tie flavors together, perturbing one forces compensating shifts in the others,
+                        so total proton momentum and quark counting stay fixed.
+                        </p>
+
+                        <div style="text-align:center; margin-top:0.4em;">
+                        \[\int_0^1 \! dx\, x\,(g+\Sigma)=1, \qquad \int_0^1 \! dx\, V = 3, \qquad \int_0^1 \! dx\, V_3 = 1\]
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.5: how to read -->
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">How to read a Shapley value</h3>
                     <div class="container">
                         <div class="col" style="text-align: left;">
-                            <p>\(\phi_j\) = marginal change in \(\chi^2\) when flavor \(j\) is perturbed &mdash; <strong>same units as \(\chi^2\)</strong>.</p>
+                            <p>\(\phi_j\) = marginal change in \(\chi^2\) when flavor \(j\) is perturbed, <strong>same units as \(\chi^2\)</strong>.</p>
                             <div style="text-align: center;">\[\sum_{j} \phi_j = v(N)-v(\emptyset)\]</div>
-                            <p style="
-                                margin-top: 0.8em;
-                                padding: 0.55em 0.75em;
-                                border-left: 4px solid currentColor;
-                                background: rgba(255,255,255,0.07);
-                            ">
-                                Always <strong>per dataset</strong> \(\mathcal{D}\): different data &rarr; different contributions.
+                            <p>
+                                Always <strong>per dataset</strong> \(\mathcal{D}\): <br> different data &rarr; different contributions.
                             </p>
                         </div>
                         <div class="col" style="align-items: center;">
@@ -580,29 +553,11 @@
                     </ol>
             </section>
 
-            <!-- Slide 5: Preliminary results -->
+            <!-- Slide 5: What the tool can do (examples) -->
             <section data-background-gradient="linear-gradient(to bottom, black, grey)">
-                <!-- Slide 5.1: sanity check, flavor hierarchy -->
+                <!-- 5.1: example, probe kinematic regions -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Sanity check: flavor hierarchy</h3>
-                    <p style="text-align: left;">Over the full dataset, the ranking matches known physics:</p>
-                    <div style="text-align:center; margin:1em 0;">
-                        \[\phi_u > \phi_d > \phi_g > \phi_{\bar u} > \phi_{\bar d} > \phi_s > \phi_{\bar s} > \phi_{c^+}\]
-                    </div>
-                    <p style="
-                        text-align:left;
-                        margin-top: 0.8em;
-                        padding: 0.55em 0.75em;
-                        border-left: 4px solid currentColor;
-                        background: rgba(255,255,255,0.07);
-                    ">
-                        Up/down quarks dominate; the gluon is lower (it enters most processes only at higher order);
-                        heavy quarks are suppressed. The method recovers the expected ordering.
-                    </p>
-                </section>
-                <!-- Slide 5.2: kinematic scan, heatmap overview -->
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Kinematic scan: where sensitivity lives</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">Probing any kinematic region</h3>
                             <img data-src="img_contents/x-scan-dense.png" style="border-radius: 10px;width: 1000px; height: auto;" class="plain">
                     <p style="
                         text-align:left;
@@ -611,12 +566,13 @@
                         border-left: 4px solid currentColor;
                         background: rgba(255,255,255,0.07);
                     ">
-                        Sensitivity lives where the data live (\(x\sim10^{-3}\)&ndash;\(0.5\)); it vanishes at very small \(x\), where there is no data.
+                        Slide the bump across \(x\): the tool isolates <strong>which flavor each \(x\)-region constrains</strong>, independently.
+                        Sensitivity tracks the data and fades where there is none.
                     </p>
                 </section>
-                <!-- Slide 5.3: kinematic scan, per-flavor detail -->
+                <!-- 5.1b: same example, with uncertainties -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Kinematic scan: per-flavor detail</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley uncertainty using PDF replicas</h3>
                             <img data-src="img_contents/x-range.png" style="border-radius: 10px;width: 820px; height: auto;" class="plain">
                     <p style="
                         text-align:left;
@@ -625,41 +581,12 @@
                         border-left: 4px solid currentColor;
                         background: rgba(255,255,255,0.07);
                     ">
-                        Same scan, with replica uncertainties &mdash; large-\(x\) contributions are non-Gaussian.
+                        Running over PDF replicas gives an <strong>uncertainty on every contribution</strong>, not just a point estimate.
                     </p>
                 </section>
-                <!-- Slide 5.4: gluon dip, the surprise -->
+                <!-- 5.2: example, rank datasets (jet + tt) -->
                 <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">A surprise: the gluon dip</h3>
-                            <img data-src="img_contents/hera_dip.png" style="border-radius: 10px;width: 700px; height: auto;" class="plain">
-                    <p style="
-                        text-align:left;
-                        margin-top: 0.6em;
-                        padding: 0.5em 0.75em;
-                        border-left: 4px solid currentColor;
-                        background: rgba(255,255,255,0.07);
-                    ">
-                        Gluon sensitivity unexpectedly dips near \(x\approx0.1\) &mdash; because the gluon's self-evolution
-                        vanishes there, so data cannot constrain it. <span style="color: rgba(215, 0, 0, 0.95);">(derivation in backup)</span>
-                    </p>
-                </section>
-                <!-- Slide 5.5: DIS datasets -->
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Per process: DIS datasets</h3>
-                            <img data-src="img_contents/DIS.png" style="border-radius: 10px;width: 1000px; height: auto;" class="plain">
-                    <p style="
-                        text-align:left;
-                        margin-top: 0.6em;
-                        padding: 0.5em 0.75em;
-                        border-left: 4px solid currentColor;
-                        background: rgba(255,255,255,0.07);
-                    ">
-                        HERA (collider, small \(x\)) and fixed-target (large \(x\)) constrain different \(x\) regions; the gluon stays small in DIS.
-                    </p>
-                </section>
-                <!-- Slide 5.6: gluon-direct datasets -->
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">Per process: gluon-dominated datasets</h3>
+                    <h3 class="slide-title highlight" style="text-align: left;">Per dataset constrains</h3>
                             <img data-src="img_contents/gluon.png" style="border-radius: 10px;width: 1000px; height: auto;" class="plain">
                     <p style="
                         text-align:left;
@@ -668,30 +595,89 @@
                         border-left: 4px solid currentColor;
                         background: rgba(255,255,255,0.07);
                     ">
-                        Jets and \(t\bar t\) are gluon-dominated &mdash; \(\phi_g\) spikes at \(x\approx0.5\), dwarfing every quark.
+                        Point the tool at any dataset group. Jets and \(t\bar t\) come out <strong>gluon-driven</strong>:
+                        \(\phi_g\) spikes at \(x\approx0.5\) and dwarfs every quark.
+                    </p>
+                </section>
+                <!-- 5.3: example, explain a surprise (the dip) -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">The surprising gluon dip</h3>
+                    <div class="container">
+                        <div class="col text-center">
+                            <img data-src="img_contents/hera_dip.png" style="border-radius: 10px;width: 460px; height: auto;" class="plain">
+                        </div>
+                        <div class="col" style="text-align:left; line-height:1.35;">
+                            <ul>
+                                <li>The gluon contribution <strong>dips sharply near \(x\approx0.1\)</strong> (both bases agree).</li>
+                                <li>At small \(x\) the gluon is generated by QCD <em>evolution</em>, and that evolution stalls right there (its kernel passes through zero).</li>
+                                <li>Where evolution carries no information, the data <strong>cannot constrain</strong> the gluon &rarr; \(\phi_g\approx0\).</li>
+                            </ul>
+                            <p style="
+                                margin-top:0.5em;
+                                padding:0.5em 0.75em;
+                                border-left:4px solid currentColor;
+                                background:rgba(255,255,255,0.07);
+                            ">
+                                The tool flags a counter-intuitive gap; the cause is a known QCD feature.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <!-- 5.4: example, fold design -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Quantitative fold design</h3>
+                    <p style="text-align:left;">
+                        NNPDF tunes its hyperparameters with \(K\)-fold cross-validation: the data are split into folds.
+                        For that to be unbiased, each fold should constrain the PDFs <strong>similarly</strong>.
+                    </p>
+                            <img data-src="img_contents/gluon_flavor_kfold.png" style="border-radius: 10px;width: 900px; height: auto;" class="plain">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        Shapley values give a <strong>quantitative handle on fold homogeneity</strong> here, whether each fold pins down the gluon the same way.
                     </p>
                 </section>
             </section>
 
-            <!-- Slide 6: Next steps -->
+            <!-- Slide 6: Conclusion -->
             <section data-background-image="img_contents/LHC.jpg">
+                <!-- 6.1: what we showed -->
+                <section data-background-image="img_contents/LHC.jpg">
                 <div class="title-panel">
+                <h3 class="slide-title highlight" style="text-align: left;">What we showed</h3>
+                <div style="text-align: left;">
+                    <ul>
+                        <li><strong>Exact</strong>, correlation-aware Shapley values open up the NNPDF black box (deep-learning fit, DGLAP evolution, cross-dataset correlations) &mdash; with <span style="color: rgba(215, 0, 0, 0.95);">no feature-independence approximation</span>.</li>
+                        <li>The method recovers the known flavor hierarchy and the data&rarr;PDF map.</li>
+                        <li>It even explains surprises (e.g. the gluon dip) from first principles.</li>
+                    </ul>
+                </div>
+                </div>
+                </section>
 
-                <h3 class="slide-title highlight" style="text-align: left;">Outlook</h3>
-                <div style="text-align: left;">   
-                    <ul>             
-                        <li>Quantitative contribution of individual flavor.</li>
-                        <li>Demonstrate expected behavior on tested datasets.</li><br>
+                <!-- 6.2: why it matters -->
+                <section data-background-image="img_contents/LHC.jpg">
+                <div class="title-panel">
+                <h3 class="slide-title highlight" style="text-align: left;">Why it matters</h3>
+                <div style="text-align: left;">
+                    <p style="margin-bottom:0.2em;"><strong>For PDF determination:</strong></p>
+                    <ul>
+                        <li>Quantify each dataset's true impact &rarr; optimize dataset selection, flag redundant or high-impact data <em>before</em> a global fit.</li>
+                        <li>Diagnose and design the \(K\)-fold hyperoptimization folds.</li>
+                        <li>Uncertainty diagnostics from the replica spread of \(\phi\): under-constrained \(x\)-regions, over-confident errors, dataset tensions.</li>
+                    </ul>
+                    <p style="margin:0.4em 0 0.2em;"><strong>For physics in general:</strong></p>
+                    <ul>
+                        <li>Large-\(x\) sensitivity is directly relevant to BSM / heavy-resonance searches &mdash; is a signal hidden in the PDF?</li>
+                        <li>Model-agnostic &rarr; transferable to <em>any</em> black-box inference pipeline.</li>
                     </ul>
                 </div>
-                <h3 class="slide-title highlight" style="text-align: left;">Future steps</h3>
-                <div style="text-align: left;">   
-                    <ul>              
-                        <li>In the context of calibrated perturbation, what does it tell us about the calibration of the uncertainties of NNPDF.</li>
-                        <li>Potential for quantitative K-folding repartition.</li>
-                    </ul>
                 </div>
-                </div>
+                </section>
             </section>
          
 
@@ -754,6 +740,21 @@
                             <img data-src="img_contents/saddle-point-analysis.png" style="border-radius:10px; width:420px; height:auto;" class="plain">
                         </div>
                     </div>
+                </section>
+
+                <!-- Backup: DIS datasets -->
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <h3 class="slide-title highlight" style="text-align: left;">Backup: DIS datasets</h3>
+                            <img data-src="img_contents/DIS.png" style="border-radius: 10px;width: 1000px; height: auto;" class="plain">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        HERA (collider, small \(x\)) and fixed-target (large \(x\)) constrain different \(x\) regions; the gluon stays small in DIS.
+                    </p>
                 </section>
 
                 <!-- Slide 8.2 -->
