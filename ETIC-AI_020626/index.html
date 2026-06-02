@@ -649,6 +649,289 @@
                 </div>
             </section>
          
+<!--MultiCWoLa-->
+
+            <!-- Cover -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <div class="title-panel">
+                <h2>Multiclass Classification without Labels</h2>
+                <h3 style="margin-top:-0.3em;">via Posterior Simplex Geometry</h3>
+                <span  style="font-size:smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, <br> <span style="font-size: small;">In collaboration with: </span>Johann Ioannou-Nikolaides<sup>2</sup>, Troels Petersen<sup>2</sup>, and Vincenzo Piuri<sup>1</sup></span>
+                <br>
+                <br>
+                <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;<br>         <sup>2</sup>Niels Bohr Institute, University of Copenhagen</span>
+                </div>
+            </section>
+
+
+
+            <!-- Binary CWoLa -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <section>
+                    <h3 class="slide-title highlight">CWoLa: Classification Without Labels</h3>
+                        <div style="text-align:center">
+                            <a href="https://arxiv.org/abs/1708.02949" style="text-align:center">
+                                <img src="https://img.shields.io/badge/hep--ph-arXiv%3A1708.02949-B31B1B?logo=arxiv" height="25">
+                            </a>
+                        </div>
+                        <p style="
+                            margin-top: 0.8em;
+                            padding: 0.55em 0.75em;
+                            border-left: 4px solid currentColor;
+                            background: rgba(255,255,255,0.07);
+                            text-align: left;
+                            ">
+                            <b>Binary theorem:</b> given two mixtures \(M_1\), \(M_2\) of pure samples \(S\) and \(B\) with signal fractions \(f_1 > f_2\), the optimal classifier separating \(M_1\) from \(M_2\) is <span style="color: rgba(215, 0, 0, 0.95);">also optimal</span> for separating \(S\) from \(B\).
+                        </p>
+                        <p style="text-align: center;">
+                            \[
+                                L_{M_1/M_2}=\frac{f_1p_S+(1-f_1)p_B}{f_2p_S+(1-f_2)p_B}=\frac{f_1L_{S/B}+(1-f_1)}{f_2L_{S/B}+(1-f_2)}
+                            \]
+                        </p>
+                        <p style="text-align: center; font-size: smaller;">If \(f_1 > f_2\), \(L_{S/B}\) and \(L_{M_1/M_2}\) define the <strong>same classifier</strong> &mdash; no labels, no proportions.</p>
+                </section>
+                <section>
+                    <h3 class="slide-title highlight">A well-established method in particle physics</h3>
+                    <div style="display:grid; grid-template-columns: 0.8fr 1.2fr; gap:1.2em; align-items:center; margin-top:0.4em;">
+                        <div>
+                            <img src="img_contents/binary_mixture.png" style="width:100%; max-width:280px; height:auto; border-radius:10px;">
+                        </div>
+                        <div style="text-align:left; line-height:1.3;">
+
+                            <p style="margin:0 0 0.55em 0;"><strong>Anomaly detection</strong><br>
+                                <span style="font-size:smaller;">model-agnostic resonance / new-physics searches</span>
+                                <div style="text-align:center;line-height:0.5;">
+                                <a href="https://arxiv.org/abs/1805.02664"><img src="https://img.shields.io/badge/hep--ph-arXiv%3A1805.02664-B31B1B?logo=arxiv" height="19"></a>
+                                <a href="https://arxiv.org/abs/1902.02634"><img src="https://img.shields.io/badge/hep--ph-arXiv%3A1902.02634-B31B1B?logo=arxiv" height="19"></a>
+                                <a href="https://arxiv.org/abs/2101.08320"><img src="https://img.shields.io/badge/hep--ph-arXiv%3A2101.08320-B31B1B?logo=arxiv" height="19"></a>
+                                </div>
+                            </p>
+                            <p style="margin:0;"><strong>Classification from impure samples</strong><br>
+                                <span style="font-size:smaller;">quark/gluon and jet tagging</span>
+                                <div style="text-align:center;line-height:0.5;">
+                                <a href="https://arxiv.org/abs/1801.10158"><img src="https://img.shields.io/badge/hep--ph-arXiv%3A1801.10158-B31B1B?logo=arxiv" height="19"></a>
+                                <a href="https://arxiv.org/abs/1702.00414"><img src="https://img.shields.io/badge/hep--ph-arXiv%3A1702.00414-B31B1B?logo=arxiv" height="19"></a>
+
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.7em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">  
+                        360+ citations, including 270 in HEP
+                        Always the <strong>binary</strong> case: signal vs background. <span style="color: rgba(215, 0, 0, 0.95);">The guarantee does not extend to \(K>2\).</span>
+                    </p>
+                </section>
+            </section>
+
+            <!-- Multiclass: setup + why binary fails + simplex intuition + approaches -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Why binary CWoLa breaks for \(K>2\)</h3>
+                    <div style="text-align:left; line-height:1.4;">
+                        <ul>
+                            <li>Binary CWoLa gives only a <strong>one-dimensional ordering</strong> &mdash; not a \(K\)-class representation.</li>
+                            <li>One-vs-rest works, but needs <span style="color: rgba(215, 0, 0, 0.95);">\(M-1\) separate classifiers</span> &mdash; expensive and unstable.</li>
+                        </ul>
+                        <p style="
+                            margin-top: 0.8em;
+                            padding: 0.6em 0.8em;
+                            border-left: 4px solid currentColor;
+                            background: rgba(255,255,255,0.07);
+                        ">
+                            Our move: train <strong>one</strong> \(M\)-way classifier to predict mixture identity, and read the latent classes off its <span style="color: rgba(215, 0, 0, 0.95);">posterior geometry</span>.
+                        </p>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">The setup: \(K\) classes, \(M\) mixtures</h3>
+                    <p style="text-align: left;">
+                        Each mixture \(m\) has density built from <span style="color: rgba(215, 0, 0, 0.95);">shared class-conditionals</span> \(p_k\) and unknown weights \(\pi_{mk}\):
+                    </p>
+                    <div style="text-align:center;">
+                        \[ q_m(x)=\sum_{k=1}^{K}\pi_{mk}\,p_k(x), \qquad \Pi=(\pi_{mk})\in\mathbb{R}^{M\times K}. \]
+                    </div>
+                    <p style="
+                        margin-top: 0.8em;
+                        padding: 0.6em 0.8em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                        text-align: left;
+                    ">
+                        We observe only the data \(x\) and the mixture id \(m\) &mdash; <strong>never</strong> the latent label \(y\), <strong>never</strong> the mixing matrix \(\Pi\).
+                    </p>
+                </section>
+
+
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">The simplex intuition</h3>
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.5em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        Trained only on mixture id, the posterior cloud organizes on a <strong>\((K-1)\)-simplex</strong> inside \(\Delta^{M-1}\) &mdash; its <span style="color: rgba(215, 0, 0, 0.95);">vertices are the latent classes</span>.
+                    </p>
+                    <img data-src="plots/multiclass_cwola_global_scheme.png" class="plain" style="border-radius:10px; width:1000px; height:auto;">
+                    
+                </section>
+
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Two prior-free recoveries</h3>
+                    <div class="container">
+                        <div class="col" style="text-align:left;">
+                            <p><strong>(R1) Post-hoc simplex fitting</strong></p>
+                            <ul>
+                                <li>Train the \(M\)-way classifier.</li>
+                                <li>Vertex-hunt the posterior cloud \(\to \hat V\).</li>
+                                <li>Decode each point by barycentric coordinates.</li>
+                            </ul>
+                        </div>
+                        <div class="col" style="text-align:left;">
+                            <p><strong>(R2) Architectural bottleneck</strong></p>
+                            <ul>
+                                <li>Factor \(g_\theta(x)=\hat\Pi\,\alpha_\theta(x)\).</li>
+                                <li>Simplex enforced <em>during</em> training.</li>
+                                <li>Strong inductive bias for weak trunks.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                        font-size: smaller;
+                    ">
+                        Assumptions: shared class-conditionals, full-rank \(\Pi\) (\(M\ge K\)), separability (anchors), uniform mixture sampling. Both also recover the hidden mixing matrix \(\Pi\).
+                    </p>
+                </section>
+            </section>
+
+            <!-- Results: toy data -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">The geometry is really there</h3>
+                    <img data-src="plots/proof_claim.png" class="plain" style="border-radius:10px; width:880px; height:auto;">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.5em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        CIFAR-10, \(K=3\), \(M=6\): trained only on mixture id, yet points cluster at vertices that match the oracle classes &mdash; via post-hoc fit <strong>(a)</strong> or bottleneck <strong>(b)</strong>.
+                    </p>
+                </section>
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">More mixtures &rarr; better recovery</h3>
+                    <img data-src="plots/double_panel_comparison.png" class="plain" style="border-radius:10px; width:1000px; height:auto;">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.5em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        CIFAR-10. At fixed \(K=10\), extra mixtures add redundant constraints: simplex rises \(0.55\,(M{=}10)\to{\sim}0.65\,(M{=}30,50)\), <span style="color: rgba(215, 0, 0, 0.95);">nearly matching the known-prior oracle</span>.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Results: real case -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Real data: Galaxy10 DECaLS</h3>
+                    <img data-src="plots/purity.png" class="plain" style="border-radius:10px; width:760px; height:auto;">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.5em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        Real telescope images, \(K=M=10\). As mixture <strong>purity</strong> drops the problem becomes unidentifiable &mdash; but our methods <span style="color: rgba(215, 0, 0, 0.95);">degrade gracefully</span> and track the oracle-prior baselines at moderate/high purity.
+                    </p>
+                </section>
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Strongest prior-free method</h3>
+                    <div style="display:flex; justify-content:center; margin-top:0.4em;">
+                    <table style="border-collapse:collapse; font-size:0.8em; color:#e6eef6; min-width:620px;">
+                        <thead>
+                            <tr style="border-bottom:2px solid rgba(255,255,255,0.5);">
+                                <th style="text-align:left; padding:0.4em 0.9em;">Technique</th>
+                                <th style="text-align:left; padding:0.4em 0.9em;">Method</th>
+                                <th style="text-align:center; padding:0.4em 0.9em;">Accuracy &uarr;</th>
+                                <th style="text-align:center; padding:0.4em 0.9em;">ECE &darr;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px dotted rgba(255,255,255,0.25);">
+                                <td style="padding:0.35em 0.9em;">Supervised</td><td style="padding:0.35em 0.9em;">Oracle</td>
+                                <td style="text-align:center;">0.802</td><td style="text-align:center;">0.032</td>
+                            </tr>
+                            <tr><td style="padding:0.35em 0.9em;">Prior-aware</td><td style="padding:0.35em 0.9em;">Wei CCM</td>
+                                <td style="text-align:center;">0.686</td><td style="text-align:center;">0.069</td></tr>
+                            <tr style="border-bottom:1px dotted rgba(255,255,255,0.25);">
+                                <td></td><td style="padding:0.35em 0.9em;">Oracle Simplex</td>
+                                <td style="text-align:center;">0.661</td><td style="text-align:center;">0.116</td></tr>
+                            <tr><td style="padding:0.35em 0.9em;">Prior-free</td><td style="padding:0.35em 0.9em;">OvR</td>
+                                <td style="text-align:center;">0.476</td><td style="text-align:center;">0.272</td></tr>
+                            <tr><td></td><td style="padding:0.35em 0.9em;">Bottleneck</td>
+                                <td style="text-align:center;">0.503</td><td style="text-align:center;">0.197</td></tr>
+                            <tr style="color: rgba(255,120,120,1);"><td></td><td style="padding:0.35em 0.9em;"><strong>Simplex</strong></td>
+                                <td style="text-align:center;"><strong>0.584</strong></td><td style="text-align:center;"><strong>0.123</strong></td></tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.6em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                        font-size: smaller;
+                    ">
+                        Galaxy10, \(K=10,M=20\). Simplex beats OvR by <span style="color: rgba(215, 0, 0, 0.95);">+10.8 accuracy points</span> and halves calibration error &mdash; closing most of the gap to oracle-prior methods.
+                    </p>
+                </section>
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">You don't even need to know \(K\)</h3>
+                    <img data-src="plots/k_selection.png" class="plain" style="border-radius:10px; width:900px; height:auto;">
+                    <p style="
+                        text-align:left;
+                        margin-top: 0.5em;
+                        padding: 0.5em 0.75em;
+                        border-left: 4px solid currentColor;
+                        background: rgba(255,255,255,0.07);
+                    ">
+                        \(K\) enters only the post-hoc fitter, so it is <strong>discoverable</strong>: a held-out reconstruction error plus a gap statistic recover \(K_{\text{true}}=10\) on Galaxy10.
+                    </p>
+                </section>
+            </section>
+
+            <!-- Conclusion -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <div class="title-panel">
+                <h3 class="slide-title highlight" style="text-align: left;">Conclusion</h3>
+                <div style="text-align: left;">
+                    <p>Mixture identity alone recovers multiclass structure &mdash; <span style="color: rgba(215, 0, 0, 0.95);">no labels, no priors</span>.</p>
+                    <ul>
+                        <li>The mixture posterior is a <strong>\((K-1)\)-simplex</strong>; its vertices give both the classes and the hidden mixing matrix.</li>
+                        <li>Purity and anchors still matter &mdash; recovery degrades gracefully, not silently.</li>
+                        <li>Model-agnostic &rarr; scalable to label-scarce science.</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
 
 
 
