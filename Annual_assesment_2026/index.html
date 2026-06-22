@@ -216,12 +216,12 @@
                         <span style="opacity:0.85;">(intrinsic / transparent models)</span>
                         </td>
                         <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.14); border-bottom:1px solid rgba(255,255,255,0.12);">
-                        <strong>How is the model transparent?</strong><br/>
-                        <span style="opacity:0.85;">Build the structure so reasoning is visible.</span>
+                        <strong>How to make a model transparent?</strong><br/>
+                        <span style="opacity:0.85;">Build the structure so reasoning or decision making is visible.</span>
                         </td>
                         <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.20); border-bottom:1px solid rgba(255,255,255,0.12);">
                         Decision Trees · Linear Regression<br/> ·
-                        Concept Bottleneck Models · Sparse models 
+                        Concept Bottleneck Models · Sparse models · Calibrated predictions and uncertainties
                         </td>
                     </tr>
 
@@ -232,7 +232,7 @@
                         </td>
                         <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.14); border-bottom:1px solid rgba(255,255,255,0.12);">
                         <strong>Why did it make this decision?</strong><br/>
-                        <span style="opacity:0.85;">Assign credit/blame to inputs or features.</span>
+                        <span style="opacity:0.85;">Map input impact on output decision.</span>
                         </td>
                         <td style="padding:0.9rem 1rem; background:rgba(0,0,0,0.20); border-bottom:1px solid rgba(255,255,255,0.12);">
                         Saliency / Gradients · Integrated Gradients <br/>· Grad-CAM
@@ -314,9 +314,11 @@
                                 <li>Each difference &rarr; <strong>Real/Bogus</strong> classification: true transient or detector artifact?</li>
                                 <li><span style="color: rgba(215, 0, 0, 0.95);">No ground truth</span>, only weak, noisy labels &rarr; a weakly-supervised problem.</li>
                             </ul>
+                            <p>&rarr; Shifting from a Anomaly detection to a Weakly Supervised Learning problem</p>
                         </div>
                         <div class="col" style="flex:1 1 45%; text-align:center;">
-                            <img data-src="img_contents/cutouts_examples.png" class="plain" style="width:100%; max-width:430px; border-radius:8px;"></img>
+                            <img data-src="img_contents/dia.png" class="plain" style="width:100%; max-width:430px; border-radius:8px;"></img>
+                            <img data-src="img_contents/cutouts_examples.png" class="plain" style="width:100%; max-width:430px; border-radius:8px; margin-top:0.6em;"></img>
                         </div>
                     </div>
                     </div>
@@ -505,7 +507,6 @@
                             <ul>
                                 <li>Map latent features to <strong>physical concepts</strong> (energy, direction, flavor, event quality).</li>
                                 <li>Show the model encodes real physics &mdash; possibly <strong>uncover new features</strong>.</li>
-                                <li>First finding: <span style="color: rgba(215, 0, 0, 0.95);">representation &ne; causation</span>.</li>
                             </ul>
                         </div>
                     </div>
