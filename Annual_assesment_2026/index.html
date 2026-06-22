@@ -303,9 +303,8 @@
                             <ul>
                                 <li><strong>Vera Rubin / LSST</strong>: one image every 60 s for 10 years, ~10&nbsp;k differences per image.</li>
                                 <li>Each difference &rarr; <strong>Real/Bogus</strong> classification: true transient or detector artifact?</li>
-                                <li><span style="color: rgba(215, 0, 0, 0.95);">No ground truth</span> &mdash; only weak, noisy labels &rarr; a weakly-supervised problem.</li>
+                                <li><span style="color: rgba(215, 0, 0, 0.95);">No ground truth</span>, only weak, noisy labels &rarr; a weakly-supervised problem.</li>
                             </ul>
-                            <p style="font-size:0.8em; opacity:0.85;">Under review &mdash; Astronomy &amp; Astrophysics.</p>
                         </div>
                         <div class="col" style="flex:1 1 45%; text-align:center;">
                             <img data-src="img_contents/cutouts_examples.png" class="plain" style="width:100%; max-width:430px; border-radius:8px;"></img>
@@ -335,12 +334,14 @@
                             <img data-src="img_contents/UQ_calib.png" class="plain" style="width:100%; max-width:430px; border-radius:8px;"></img>
                         </div>
                     </div>
+                    <p style="font-size:0.8em; opacity:0.85;">Passed first round of review for Astronomy &amp; Astrophysics.</p>
+
                     </div>
                 </section>
 
-                <!-- 1c (backup): interactive UMAP of the latent space -->
+                <!-- 1c : interactive UMAP of the latent space -->
                 <section data-background-color="#111">
-                    <h3 class="slide-title highlight" style="text-align:left;">Latent space &mdash; interactive UMAP <span style="opacity:0.6; font-size:0.7em;">(backup)</span></h3>
+                    <h3 class="slide-title highlight" style="text-align:left;">Latent space, interactive UMAP </h3>
                     <div style="text-align:center;">
                         <iframe src="plots/umap_classes.html" class="bokeh-iframe"></iframe>
                     </div>
@@ -350,23 +351,31 @@
 
             <!-- Project 2: MultiCWoLa -->
             <section data-background-gradient="linear-gradient(to bottom, black, grey)">
-                <div style="background: rgba(0,0,0,0.45); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto;">
-                <h3 class="slide-title highlight" style="text-align:left;">Multiclass classification without labels</h3>
-                <div class="container" style="display:flex; gap:1.4rem; align-items:center; text-align:left;">
-                    <div class="col" style="flex:1 1 50%;">
+
+                <!-- 2a: main -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.45); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto;">
+                    <h3 class="slide-title highlight" style="text-align:left;">Multiclass classification without labels</h3>
+                    <div style="text-align:left;">
                         <ul>
-                            <li>Extends binary <strong>CWoLa</strong> to \(K>2\) classes.</li>
-                            <li>One classifier on mixture identity &rarr; the posterior forms a <strong>\((K-1)\)-simplex</strong>; its <span style="color: rgba(215, 0, 0, 0.95);">vertices are the classes</span>.</li>
-                            <li><strong>No labels, no priors</strong>; also recovers the mixing matrix and the number of classes \(K\).</li>
-                            <li>Validated on CIFAR-10 and Galaxy10.</li>
+                            <li>Extends binary <strong>CWoLa</strong> to \(K>2\) classes: train one classifier on mixture identity &rarr; the posterior forms a <strong>\((K-1)\)-simplex</strong> whose <span style="color: rgba(215, 0, 0, 0.95);">vertices are the classes</span>.</li>
+                            <li><strong>No labels, no priors</strong>; also recovers the mixing matrix and the number of classes \(K\). Validated on CIFAR-10 and Galaxy10.</li>
                         </ul>
-                        <p style="font-size:0.8em; opacity:0.85;">Submitted &mdash; NeurIPS 2026 (main track).</p>
                     </div>
-                    <div class="col" style="flex:1 1 50%; text-align:center;">
-                        <img data-src="plots/multiclass_cwola_global_scheme.png" class="plain" style="width:100%; max-width:520px; border-radius:8px;"></img>
+                    <img data-src="plots/multiclass_cwola_global_scheme.png" class="plain" style="width:100%; max-width:1050px; border-radius:8px; margin-top:0.4em;"></img>
+                    <p style="font-size:0.8em; opacity:0.85; margin-top:0.3em;">Submitted to A* CS conference.</p>
                     </div>
-                </div>
-                </div>
+                </section>
+
+                <!-- 2b (backup): the geometry is really there -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align:left;">The geometry is really there </h3>
+                    <img data-src="plots/proof_claim.png" class="plain" style="width:100%; max-width:900px; border-radius:8px;"></img>
+                    <p style="text-align:left; font-size:0.82em; opacity:0.9; margin-top:0.4em;">
+                        CIFAR-10, \(K=3\): trained only on mixture id, points cluster at vertices matching the oracle classes, via post-hoc fit <strong>(a)</strong> or bottleneck <strong>(b)</strong>.
+                    </p>
+                </section>
+
             </section>
 
             <!-- Project 3: Shapley meets NNPDF -->
@@ -380,7 +389,7 @@
                             <li>Only 8 flavors &rarr; \(2^7=128\) coalitions &rarr; the <strong>exact</strong> Shapley value (no independence assumption, correlations kept).</li>
                             <li>Attributes the \(\chi^2\) contribution <strong>per flavor and per dataset</strong>, in any kinematic region.</li>
                         </ul>
-                        <p style="font-size:0.8em; opacity:0.85;">Submitted &mdash; EPJ-C.</p>
+                        <p style="font-size:0.8em; opacity:0.85;">To be submit to top-tier Physics Journal.</p>
                     </div>
                     <div class="col" style="flex:1 1 45%; text-align:center;">
                         <img data-src="img_contents/interpretation_sv.png" class="plain" style="width:100%; max-width:430px; border-radius:8px;"></img>
@@ -393,19 +402,14 @@
             <section data-background-image="img_contents/IceCube_neutrino.jpg">
                 <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
                 <h3 class="slide-title highlight" style="text-align:left;">Mechanistic interpretability for a neutrino foundation model</h3>
-                <div class="container" style="display:flex; gap:1.4rem; align-items:center; text-align:left;">
-                    <div class="col" style="flex:1 1 55%;">
-                        <ul>
-                            <li><strong>PolarBERT</strong>: foundation model trained on 131M IceCube events.</li>
-                            <li>A <strong>Sparse Autoencoder</strong> on its representation exposes interpretable latent features (clean / auxiliary / charge axes).</li>
-                            <li>Key finding: <span style="color: rgba(215, 0, 0, 0.95);">representation &ne; causation</span> &mdash; readable features are not necessarily the ones the model uses.</li>
-                        </ul>
-                        <p style="font-size:0.8em; opacity:0.85;">Work in progress.</p>
-                    </div>
-                    <div class="col" style="flex:1 1 45%; text-align:center;">
-                        <img data-src="plots/topk_target_alignment_selectivity.png" class="plain" style="width:100%; max-width:480px; border-radius:8px;"></img>
-                    </div>
+                <div style="text-align:left;">
+                    <ul>
+                        <li><strong>PolarBERT</strong>: foundation model trained on 131M IceCube events.</li>
+                        <li>A <strong>Sparse Autoencoder</strong> on its representation exposes interpretable latent features (clean / auxiliary / charge axes).</li>
+                        <li>Key finding: <span style="color: rgba(215, 0, 0, 0.95);">representation &ne; causation</span> &mdash; readable features are not necessarily the ones the model uses.</li>
+                    </ul>
                 </div>
+                <p style="font-size:0.8em; opacity:0.85; margin-top:0.3em;">Work in progress.</p>
                 </div>
             </section>
 
@@ -522,10 +526,6 @@
                          This work was supported by from the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
                 </p>
             </div>
-            </section>
-
-
-            
             </section>
 
         </div>
