@@ -273,7 +273,7 @@
                         <strong>Large set of methods</strong> for interpretability and explainability, but mostly non-trivial to transfer.
                     </p>
                     <p style="text-align: left;">
-                        <strong>Reasons? </strong><br>Type of data, type of problem, type of scientific downstream application, (???)
+                        <strong>Reasons? </strong><br>Type of data and simulation, type of problem, type of scientific downstream application,...
                     </p>
                     <p style="text-align: left;">
                         <strong>Targets? </strong>
@@ -282,17 +282,26 @@
                     <li>Reliable and calibrated uncertainties.</li>
                     <li>Global behavior analysis and explanations.</li>
                     <li>Identification of breaking points in models.</li>
-                    <li><strong>??? </strong></li>
+                    <li><strong>... </strong></li>
                     </ul>
 
                 </section>
             </section>
 
 
-            <!-- ===================== SHORT VERSION: ONE SLIDE PER PROJECT ===================== -->
 
             <!-- Project 1: ML4Transients -->
             <section data-background-image="img_contents/vera_rubin_obs_2.png">
+
+                <!-- 1.0: title / affiliations -->
+                <section data-background-image="img_contents/vera_rubin_obs.png">
+                    <h2>Interpretable Deep Learning for Real/Bogus classification with Uncertainty Quantification</h2>
+                    <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Dominique Fouchez<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, Benjamin Racine<sup>2</sup>, and Bruno Sanchez<sup>2</sup></span>
+                    <br><br>
+                    <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; &nbsp; <sup>2</sup>Centre de Physique des Particules de Marseille</span>
+                    <p style="font-size: 0.75em; opacity:0.75;">Passed first round of review for Astronomy &amp; Astrophysics.</p>
+                    <p><img src="img_contents/desc.png" style="width: 150px;"></p>
+                </section>
 
                 <!-- 1a: context -->
                 <section>
@@ -334,7 +343,6 @@
                             <img data-src="img_contents/UQ_calib.png" class="plain" style="width:100%; max-width:430px; border-radius:8px;"></img>
                         </div>
                     </div>
-                    <p style="font-size:0.8em; opacity:0.85;">Passed first round of review for Astronomy &amp; Astrophysics.</p>
 
                     </div>
                 </section>
@@ -352,6 +360,19 @@
             <!-- Project 2: MultiCWoLa -->
             <section data-background-gradient="linear-gradient(to bottom, black, grey)">
 
+                <!-- 2.0: title / affiliations -->
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <div class="title-panel">
+                    <h2>Multiclass Classification without Labels via Posterior Simplex Geometry</h2>
+                    <span style="font-size:smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Johann Ioannou-Nikolaides<sup>2</sup>, Troels Petersen<sup>2</sup>, and Vincenzo Piuri<sup>1</sup></span>
+                    <br><br>
+                    <p style="font-size: 0.75em; opacity:0.75;">Submitted to A* conference</p>
+                    <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;<br><sup>2</sup>Niels Bohr Institute, University of Copenhagen</span>
+                    <br>
+                    <img src="img_contents/MultiCWoLa_logo.png" style="width: 200px;">
+                    </div>
+                </section>
+
                 <!-- 2a: main -->
                 <section>
                     <div style="background: rgba(0,0,0,0.45); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto;">
@@ -363,7 +384,6 @@
                         </ul>
                     </div>
                     <img data-src="plots/multiclass_cwola_global_scheme.png" class="plain" style="width:100%; max-width:1050px; border-radius:8px; margin-top:0.4em;"></img>
-                    <p style="font-size:0.8em; opacity:0.85; margin-top:0.3em;">Submitted to A* CS conference.</p>
                     </div>
                 </section>
 
@@ -380,37 +400,119 @@
 
             <!-- Project 3: Shapley meets NNPDF -->
             <section data-background-image="img_contents/LHC.jpg">
-                <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
-                <h3 class="slide-title highlight" style="text-align:left;">Feature attribution for proton structure: Shapley meets NNPDF</h3>
-                <div class="container" style="display:flex; gap:1.4rem; align-items:center; text-align:left;">
-                    <div class="col" style="flex:1 1 55%;">
+
+                <!-- 3.0: title / affiliations -->
+                <section data-background-image="img_contents/LHC.jpg">
+                    <div class="title-panel">
+                    <h2>Shapley values meet NNPDF</h2>
+                    <span style="font-size:smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda<sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span>
+                    <br><br>
+                    <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan;<br><sup>2</sup>TIF lab, Physics Department, University of Milan</span>
+                    <p style="font-size: 0.75em; opacity:0.75;">To be submitted to a top-tier Physics journal.</p>
+                    <div><img src="img_contents/nnpdf_logo.png" style="width: 200px;"></div>
+                    </div>
+                </section>
+
+                <!-- 3a: context -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Why Parton Distribution Functions (PDFs)?</h3>
+                    <div class="container" style="display:flex; gap:1.4rem; align-items:center; text-align:left;">
+                        <div class="col" style="flex:1 1 50%;">
+                            <ul>
+                                <li>The LHC collides <span style="color: rgba(215, 0, 0, 0.95);">protons</span>, but physics happens between their constituents, the <span style="color: rgba(215, 0, 0, 0.95);">partons</span>.</li>
+                                <li>Partons are <strong>not directly observed</strong> &rarr; PDFs are the <strong>latent model</strong> we infer.</li>
+                                <li>PDF uncertainty directly limits <strong>LHC precision</strong>.</li>
+                            </ul>
+                        </div>
+                        <div class="col" style="flex:1 1 50%; text-align:center;">
+                            <video class="restart-video" src="vid_contents/proton-structure.mp4" data-autoplay autoplay muted loop playsinline preload="auto" style="width:100%; max-width:430px; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.25);"></video>
+                            <p style="font-size:0.75em; opacity:0.75; margin-top:0.4em;">A proton: quarks and gluons, whose momentum distribution is the PDF.</p>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- 3b: method & results -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Method &amp; results: exact Shapley values on NNPDF</h3>
+                    <div style="text-align:left;">
                         <ul>
-                            <li>PDFs = the <strong>latent model</strong> inferred from LHC data.</li>
-                            <li>Only 8 flavors &rarr; \(2^7=128\) coalitions &rarr; the <strong>exact</strong> Shapley value (no independence assumption, correlations kept).</li>
-                            <li>Attributes the \(\chi^2\) contribution <strong>per flavor and per dataset</strong>, in any kinematic region.</li>
+                            <li>Treat each <strong>PDF flavor</strong> as a player; its Shapley value = contribution to the fit quality \(\chi^2\).</li>
+                            <li>Only 8 flavors &rarr; \(2^7=128\) coalitions &rarr; the <strong>exact</strong> value, with <span style="color: rgba(215, 0, 0, 0.95);">no independence assumption</span> (correlations kept) , attribution <strong>per flavor and per dataset</strong>.</li>
                         </ul>
-                        <p style="font-size:0.8em; opacity:0.85;">To be submit to top-tier Physics Journal.</p>
                     </div>
-                    <div class="col" style="flex:1 1 45%; text-align:center;">
-                        <img data-src="img_contents/interpretation_sv.png" class="plain" style="width:100%; max-width:430px; border-radius:8px;"></img>
+                    <img data-src="img_contents/pipeline.png" class="plain" style="width:100%; max-width:1050px; border-radius:8px; margin-top:0.3em;"></img>
+                    <p style="font-size:0.8em; opacity:0.85; margin-top:0.3em;">End-to-end pipeline on trained NNPDF flavors. </p>
                     </div>
-                </div>
-                </div>
+                </section>
+
+                <!-- 3d (backup): x-scan heatmap -->
+                <section data-background-color="#111">
+                    <h3 class="slide-title highlight" style="text-align:left;">Shapley contribution across \(x\) </h3>
+                    <img data-src="img_contents/x-scan-dense.png" class="plain" style="width:100%; max-width:1150px; border-radius:8px; background:#fff;"></img>
+                    <p style="text-align:left; font-size:0.82em; opacity:0.9; margin-top:0.4em;">
+                        Per-flavor \(\chi^2\) attribution scanned over the perturbation center \(x_\mu\) , reveals <strong>which flavor a dataset constrains, and where</strong>.
+                    </p>
+                </section>
+
             </section>
 
             <!-- Project 4: Mechanistic Interpretability for PolarBERT -->
             <section data-background-image="img_contents/IceCube_neutrino.jpg">
-                <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
-                <h3 class="slide-title highlight" style="text-align:left;">Mechanistic interpretability for a neutrino foundation model</h3>
-                <div style="text-align:left;">
-                    <ul>
-                        <li><strong>PolarBERT</strong>: foundation model trained on 131M IceCube events.</li>
-                        <li>A <strong>Sparse Autoencoder</strong> on its representation exposes interpretable latent features (clean / auxiliary / charge axes).</li>
-                        <li>Key finding: <span style="color: rgba(215, 0, 0, 0.95);">representation &ne; causation</span> &mdash; readable features are not necessarily the ones the model uses.</li>
-                    </ul>
-                </div>
-                <p style="font-size:0.8em; opacity:0.85; margin-top:0.3em;">Work in progress.</p>
-                </div>
+
+                <!-- 4.0: title / affiliations -->
+                <section data-background-image="img_contents/IceCube_neutrino.jpg">
+                    <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 68%; margin: auto; backdrop-filter: blur(2px);">
+                        <h2 style="color: #ffffff; font-size: 2.1em; margin-bottom: 0.45em;">Mechanistic Interpretability for a Neutrino Foundation Model</h2>
+                        <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Johann Ioannou-Nikolaides<sup>2</sup>, Troels Petersen<sup>2</sup>, Vincenzo Piuri <sup>1</sup>, Jean-Loup Tastet<sup>2</sup> and Inar Timiryasov<sup>2</sup></span>
+                        <br><br>
+                        <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; &nbsp;&nbsp; <sup>2</sup>Physics Department, Københavns Universitet, Denmark</span>
+                    </div>
+                </section>
+
+                <!-- 4a: context -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Opening the black box of a foundation model</h3>
+                    <div style="text-align:left;">
+                        <ul>
+                            <li><strong>PolarBERT</strong>: foundation model trained on 131M IceCube events &mdash; powerful, but opaque.</li>
+                            <li>Features live in <strong>superposition</strong> &rarr; neurons are polysemantic, not directly readable.</li>
+                            <li><span style="color: rgba(215, 0, 0, 0.95);">Sparse Dictionary Learning</span> untangles them into interpretable directions.</li>
+                        </ul>
+                    </div>
+                    <img data-src="img_contents/SDL.png" class="plain" style="width:100%; max-width:1000px; border-radius:8px; margin-top:0.3em; background:#fff;"></img>
+                    </div>
+                </section>
+
+                <!-- 4b: methods & expected results -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Methods &amp; expected results</h3>
+                    <div class="container" style="display:flex; gap:1.6rem; text-align:left;">
+                        <div class="col" style="flex:1 1 50%;">
+                            <p style="margin-bottom:0.2em;"><strong>Methods</strong></p>
+                            <ul>
+                                <li>Diagnose the latent space (linear probes, PCA) &rarr; where to hook.</li>
+                                <li>Train a <strong>Sparse Autoencoder</strong> (BatchTopK) on the <code>CLS</code> representation.</li>
+                                <li>Validate latents: association (AUROC), selectivity, causal ablation.</li>
+                            </ul>
+                        </div>
+                        <div class="col" style="flex:1 1 50%;">
+                            <p style="margin-bottom:0.2em;"><strong>Expected results</strong></p>
+                            <ul>
+                                <li>Map latent features to <strong>physical concepts</strong> (energy, direction, flavor, event quality).</li>
+                                <li>Show the model encodes real physics &mdash; possibly <strong>uncover new features</strong>.</li>
+                                <li>First finding: <span style="color: rgba(215, 0, 0, 0.95);">representation &ne; causation</span>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p style="font-size:0.8em; opacity:0.85; margin-top:0.3em;">Work in progress.</p>
+                    </div>
+                </section>
+
             </section>
 
 
@@ -419,7 +521,7 @@
 
                 <!-- Slide 31.1: Courses -->
                 <section>
-                    <h3 class="slide-title highlight">Courses &mdash; 12 CFU + 56 h</h3>
+                    <h3 class="slide-title highlight">Courses , 12 CFU + 56 h</h3>
                     <div class="container" style="align-items: start; text-align: left;">
                         <div class="col">
                             <h4 style="margin-bottom:0.2em;">PhD courses <span style="font-size:0.7em; opacity:0.8;">(CFU)</span></h4>
@@ -437,7 +539,7 @@
                                 <tr><td style="padding:0.08em 0.4em;">Open science: FAIR data</td><td style="text-align:right;">4</td></tr>
                                 <tr><td style="padding:0.08em 0.4em;">Research Integrity in Practice</td><td style="text-align:right;">4</td></tr>
                                 <tr><td style="padding:0.08em 0.4em;">Fundamentals of Academic Writing</td><td style="text-align:right;">4</td></tr>
-                                <tr><td style="padding:0.08em 0.4em;">Introduction to Open Science &mdash; Part 1</td><td style="text-align:right;">4</td></tr>
+                                <tr><td style="padding:0.08em 0.4em;">Introduction to Open Science , Part 1</td><td style="text-align:right;">4</td></tr>
                                 <tr><td style="padding:0.08em 0.4em;">Academic Writing: Research paper</td><td style="text-align:right;">4</td></tr>
                                 <tr><td style="padding:0.08em 0.4em;">Language coaching &ndash; Interpersonal Skill</td><td style="text-align:right;">4</td></tr>
                                 <tr><td style="padding:0.08em 0.4em;">Research evaluation</td><td style="text-align:right;">2</td></tr>
@@ -488,26 +590,26 @@
                         <div class="col">
                             <h4>Presented</h4>
                             <ul style="font-size:0.8em;">
-                                <li>02/26 &mdash; AIPHY midterm, U. Geneva</li>
-                                <li>04/26 &mdash; LSST ML Reliability (online)</li>
-                                <li>04/26 &mdash; IRN Terascale, IJCLab Paris</li>
-                                <li>06/26 &mdash; ETIC-AI 4EU+, SCAI Paris</li>
+                                <li>02/26 , AIPHY midterm, U. Geneva</li>
+                                <li>04/26 , LSST ML Reliability (online)</li>
+                                <li>04/26 , IRN Terascale, IJCLab Paris</li>
+                                <li>06/26 , ETIC-AI 4EU+, SCAI Paris</li>
                             </ul>
                         </div>
                         <div class="col">
                             <h4>Upcoming</h4>
                             <ul style="font-size:0.8em;">
-                                <li>08/26 &mdash; EuCAIFConf, Heidelberg</li>
-                                <li>09/26 &mdash; ML4JET, Vienna</li>
-                                <li>12/26 &mdash; NeurIPS, Sydney</li>
+                                <li>08/26 , EuCAIFConf, Heidelberg</li>
+                                <li>09/26 , ML4JET, Vienna</li>
+                                <li>12/26 , NeurIPS, Sydney</li>
                             </ul>
                         </div>
                     </div>
                     <div style="text-align:left; margin-top:0.4em;">
                         <h4 style="margin-bottom:0.2em;">Secondments (MSCA)</h4>
                         <ul style="font-size:0.8em;">
-                            <li><strong>Copenhagen</strong>, Niels Bohr Inst. &mdash; 04&ndash;07/2026 <span style="color: rgba(215,0,0,0.95);">(ongoing)</span></li>
-                            <li><strong>Geneva</strong>, Univ. of Geneva &mdash; planned</li>
+                            <li><strong>Copenhagen</strong>, Niels Bohr Inst. , 04&ndash;07/2026 <span style="color: rgba(215,0,0,0.95);">(ongoing)</span></li>
+                            <li><strong>Geneva</strong>, Univ. of Geneva , planned</li>
                         </ul>
                         <p style="font-size:0.72em; opacity:0.85; margin-top:0.2em;">+ 14 visits / schools since 2024 (DN MSCA Horizon TMA AIPHY).</p>
                     </div>
