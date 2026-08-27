@@ -103,9 +103,8 @@
         .title-panel { position:relative; }
         .logo-row { display:flex; align-items:center; justify-content:center; gap:3rem; margin:1.1rem 0 .2rem; }
         .logo-row img { height:124px; width:auto; }
-        .author-row { display:flex; align-items:center; justify-content:center; gap:1.1rem; }
-        .author-row .meta { margin:0; }
-        .collab-photo { width:92px; height:92px; border-radius:50%; object-fit:cover; object-position:50% 20%; border:2px solid var(--accent); box-shadow:0 6px 18px rgba(0,0,0,.45); }
+        .speaker { text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1.5px; }
+        .collab-photo { position:absolute; right:42px; bottom:30px; height:104px; width:104px; border-radius:50%; object-fit:cover; object-position:50% 20%; border:2px solid var(--accent); box-shadow:0 6px 18px rgba(0,0,0,.45); }
     </style>
 </head>
 <body>
@@ -117,15 +116,13 @@
             <p class="eyebrow">EuCAIFCon 2026</p>
             <h2>Finding and using interpretable latents in a neutrino foundation model with sparse autoencoders </h2>
             
-            <div class="author-row">
-                <p class="meta"><strong>Raphaël Bonnet-Guerrini</strong><sup>1,2</sup>, <span class="accent">Johann Ioannou-Nikolaides</span><sup>3</sup>, Inar Timiryasov<sup>3</sup>, Vincenzo Piuri<sup>1</sup></p>
-                <img src="img_contents/janni.jpg" class="collab-photo" alt="Johann Ioannou-Nikolaides">
-            </div>
+            <p class="meta"><strong class="speaker">Raphaël Bonnet-Guerrini</strong><sup>1,2</sup>, Johann Ioannou-Nikolaides<sup>3</sup>, Inar Timiryasov<sup>3</sup>, Vincenzo Piuri<sup>1</sup></p>
             <p class="meta" style="margin-top:.9em;"><sup>1</sup>Università degli Studi di Milano &nbsp;·&nbsp; <sup>2</sup>INFN Milano &nbsp;·&nbsp; <sup>3</sup>Niels Bohr Institute</p>
             <div class="logo-row">
                 <img src="img_contents/3.svg" alt="AIPHY logo">
                 <img src="img_contents/unimi.svg" alt="University of Milan logo">
             </div>
+            <img src="img_contents/janni.jpg" class="collab-photo fragment fade-in" alt="Johann Ioannou-Nikolaides">
         </div>
     </section>
 
