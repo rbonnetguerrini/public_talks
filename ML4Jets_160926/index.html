@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ML4Jets Vienna 2026
+    </title>
+
+    <meta name="description" content="ML4Jets_160926">
+    <link rel="stylesheet" href="../assets/reveal/dist/reveal.css">
+    <link rel="stylesheet" href="../assets/reveal/dist/theme/darkenergy.css" id="theme">
+
+    <!-- Highlight.js library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
+    <!-- Include Bokeh CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.css" type="text/css">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js"></script>
+
+    <!-- Include math -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- code rendering-->
+    <link rel="stylesheet" href="../assets/reveal/plugin/highlight/monokai.css" />
+    <script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+
+    <!-- Box creations -->
+    <style>
+        /* Basic styling for the vertical boxes */
+        .double_box_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .double_box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 44%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-title {
+            background: rgba(255, 255, 255, 0.2);
+            /* Lighter background for title */
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* Container to center and stack boxes vertically */
+        .vertical-center-container {
+            display: flex;
+            flex-direction: column;
+            /* Stack children vertically */
+            align-items: center;
+            /* Center children horizontally */
+            gap: 20px;
+            /* Space between boxes */
+            height: 100vh;
+            /* Full viewport height (optional) */
+            padding: 20px;
+        }
+
+        /* Styling for the boxes */
+        .centered-box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            /* Width of the boxes */
+            max-width: 800px;
+            /* Max width to limit size */
+        }
+
+        .reveal .slide-title {
+            border-left: 5px solid white;
+            text-align: left;
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        .bokeh-iframe {
+            width: 80vw;
+            height: 80vh;
+            border: none;
+        }
+
+        .reveal mjx-container[display="true"] {
+            display: inline-block !important;
+            width: auto !important;
+            max-width: none !important;
+            background: rgba(0,0,0,0.25);
+            color: #fff;
+            padding: 0.4em 0.65em;
+            border-radius: 12px;
+            border: 1.5px solid rgba(255,255,255,0.45);
+        }
+        /* Rounded corners on all figures (badges excluded) */
+        .reveal .slides img:not([src*="shields.io"]) {
+            border-radius: 8px;
+        }
+
+        /* White card + hairline frame, for transparent-background schematics */
+        .reveal .slides img.framed {
+            background: #fff;
+            padding: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            box-sizing: border-box;
+        }
+
+        /* Arrival / permutation view of the Shapley coalition */
+        /* fixed columns so every row lines up, while the block stays centred */
+        .arow        { display: grid;
+                       grid-template-columns: 92px repeat(8, 48px) 270px;
+                       column-gap: 4px;
+                       align-items: center;
+                       justify-content: center;
+                       margin: 0.30em 0; line-height: 1; }
+        .arow .lbl   { font-size: 0.5em; color: rgba(255,255,255,0.55);
+                       text-align: right; padding-right: 0.5em; white-space: nowrap; }
+        .chip        { display: inline-block; min-width: 2.1em; padding: 0.18em 0.25em;
+                       border-radius: 6px; font-size: 0.62em; text-align: center; }
+        .arow .chip  { margin: 0; }
+        .chip.inS    { background: rgba(120,190,255,0.30); color: #fff;
+                       border: 1px solid rgba(120,190,255,0.75); }
+        .chip.isg    { background: #ff5555; color: #1a1a1a; font-weight: bold;
+                       border: 1px solid #ff5555; }
+        .chip.outS   { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.30);
+                       border: 1px solid rgba(255,255,255,0.12); }
+        .chip.dots   { background: none; border: 1px solid transparent;
+                       color: rgba(255,255,255,0.45); font-size: 0.8em; }
+        .arow .sset  { font-size: 0.52em; color: rgba(255,255,255,0.8);
+                       text-align: left; padding-left: 0.9em; white-space: nowrap; }
+
+        .title-panel {
+        background: rgba(0, 0, 0, 0.45);
+        padding: 1.7rem 2.6rem;   
+        border-radius: 12px;
+        max-width: 95%;          
+        margin: auto;
+        backdrop-filter: blur(2px);
+        }
+
+        .title-panel h2 {
+        color: #ffffff;
+        font-size: 2.1em;        
+        margin-bottom: 0.45em;
+        }
+
+        .title-panel h3 {
+        color: #e0e0e0;
+        font-weight: 300;
+        font-size: 1em;       
+        line-height: 1.3;
+        margin-bottom: 1em;
+        }
+
+        .title-panel .meta {
+        color: #cccccc;
+        font-size: 0.75em;       
+        line-height: 1.4;
+        }
+
+        .title-panel .affiliation {
+        opacity: 0.75;
+        }
+        .title-left-logo {
+            position: absolute;
+            bottom: 15px;   
+            left: 20px;    
+            width: 150px;    
+            height: auto;
+        }
+        .title-right-logo {
+            position: absolute;
+            bottom: 15px;   
+            right: 20px;    
+            width: 150px;    
+            height: auto;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- SHAPLEY VALUES-->
+
+            <!-- Slide 1: intro NNPDF -->
+            <section data-background-image="img_contents/LHC.jpg">
+                <div class="title-panel">
+
+                <h2>Interpreting Parton Distributions with Shapley Values</h2>
+                <span  style="font-size:smaller;"><b><u>Raphaël Bonnet-Guerrini</u></b><sup>1,3</sup>, Stefano Carrazza<sup>2,3</sup>, Stefano Forte<sup>2,3</sup>, Eva Groenendijk<sup>2,3</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2,3</sup></span></span>
+                <br>
+                <br>
+                <span  style="font-size: small; text-align:center"><sup>1</sup>Dipartimento di Informatica, University of Milan;         <sup>2</sup>TIF lab, Physics Department, University of Milan;<br>  <sup>3</sup>Istituto Nazionale di Fisica Nucleare, Sezione di Milano</span>
+                <div><br>
+                    <a href="https://arxiv.org/abs/2607.02647" style="text-align:center">
+                        <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2607.02647-B31B1B?logo=arxiv" height="25">
+                    </a>
+                </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: Context -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <!-- Slide 2.1 -->
+                <section>
+                    <h3 class="slide-title highlight">Parton Distribution Functions (PDFs) and NNPDF</h3>
+                    <div  style="text-align: left;">
+                        <div class="container">
+                            <div class="col text-center">
+                                <img src="img_contents/trained_pdf_flavour_overlay_q10.png" class="framed" style="width: 300px; height: auto; display: block; margin: 0 auto;">
+                                <div style="text-align: center;">
+                                    \[
+                                    f_i(x, Q_0^2) = x^{(1-a)}(\text{NN}_i(x)-\text{NN}_i(1))
+                                    \]
+                                </div>
+                            </div>
+                            <div class="col">
+                                <ul>
+                                    <li><span style="color: rgba(215, 0, 0, 0.95);">Parton carrying a fraction \(x\) of the proton momentum at scale \(Q^2\)</span></li>
+                                    <br>
+                                    <li>Input to every collider prediction</li>
+                                    <br>
+                                    <li>NNPDF: neural net, no functional form assumed</li>
+                                    <br>
+
+                                </ul>
+                                <br>
+                                <div style="text-align:center">
+                                    <a href="https://arxiv.org/abs/2109.02653" style="text-align:center">
+                                        <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2109.02653-B31B1B?logo=arxiv" height="25">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+
+                <!-- Slide 2.2 -->
+                <section>
+                <h3 class="slide-title highlight" style="text-align: left;">PDF fitting: an inverse problem</h3>
+                    <p style="text-align: left;">
+                        NNPDF solves an <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
+                    </p>
+                    <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <p style="text-align: left;">
+                        Theory (QCD, QED) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space, and the inverse is done by fitting precise experimental data.
+                    </p>
+                </section>
+
+                <!-- Slide 2.3 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
+                    <p style="text-align: left;">
+                        The PDF space is a 8-dimensional space (flavor basis or evolution basis). <br>Why does a given flavor look like this in a given \(x\) region? Which datasets are responsible for this behavior?
+                    </p>
+                    <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain framed"></img>
+                    <div class="fragment" style="text-align:center; font-size: larger">  
+                        <span>                
+                        What if we perturb the PDF directly in the <b> <span style="color: rgba(215, 0, 0, 0.95);">PDF space</span> </b>? 
+                        </span>
+                    </div>
+                    <br>
+                    <div class="fragment" style="text-align:left">                  
+                        Multidimensionality of the PDF space,  Rotation and convolutions,  PDF-Observable correlations, DGLAP Evolution.  <br>
+                        Makes it difficult to perform systematic tests and obtain a clear understanding of each flavor on the fit.  
+                    </div>
+                </section>
+                <!-- Slide 2.4 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">NNPDF a black box model ?</h3>
+                    <p style="text-align: left;">
+                        <span style="color: rgba(215, 0, 0, 0.95);">Black-box systems are a recurrent interpretability issue in modern DL.</span> We can take inspiration from the methods developed there to solve the interpretability problem of NNPDF.
+                    </p>
+                    <img data-src="img_contents/NNPDF-blackbox.png" style="width: 700px; height: auto;" class="plain framed"></img>
+                    <p style="text-align: center;">    
+                       XAI answer : What's the impact of one feature on the output of the model ?
+                    </p>
+                </section>
+            </section>
+            
+            <!-- Slide 3: Shapley Values for NNPDF -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+
+                <!-- Slide 3.1 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values</h3>
+                    <p style="text-align: left;">
+                        Game theory: <span style="color: rgba(215, 0, 0, 0.95);">average marginal contribution of player \(i\) across all coalitions \(S\).</span> 
+                    </p>
+                    \[
+                    \phi_i = \sum_{S \subseteq N \setminus \{i\}}  \frac{|S|! \, (|N| - |S| - 1)!}{|N|!} \left[ v(S \cup \{i\}) - v(S) \right]
+                    \]
+                    <p style="text-align: left;"> 
+                        Cost \(\sim 2^N\): intractable for high dimensional attribution.
+                    </p>
+                    <p style="text-align: left;">
+                         SHAP buys tractability by <span style="color: rgba(215, 0, 0, 0.95);">assuming feature independence</span>, known to distort HEP results when features are correlated.
+                    </p>
+
+                    <div style="text-align:center">
+                        
+                                <a href="https://arxiv.org/abs/1705.07874" style="text-align:center">
+                                <img src="https://img.shields.io/badge/cs.AI-arXiv%3A1705.07874-B31B1B?logo=arxiv" height="25">                                </a>
+                                <quad>
+                                <a href="https://arxiv.org/abs/2507.21214" style="text-align:center">
+                                <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2507.21214-B31B1B?logo=arxiv" height="25">                                </a>
+
+                    </div>
+                </section>
+
+                <!-- Slide 3.2 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">PDF flavors as players</h3>
+                    <p style="text-align: left;">
+                        Take a <span style="color: rgba(215, 0, 0, 0.95);">determined PDF set as given</span>, each flavor is a player. Blind to how it was fitted.
+                    </p>
+                    <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain framed"></img>
+                    <ul>
+                        <li>\(\phi_i\): Shapley value of flavor \(i\)</li>
+                        <li>\(S\): subset of flavors, \(i\notin S\)</li>
+                        <li>\(v(S)=\chi^2\) with the flavors in \(S\) perturbed, the rest untouched</li>
+                    </ul>
+                </section>
+            </section>
+            <!-- Slide 4: Shapley analysis in NNPDF -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <!-- Slide 4.1 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">The Shapley analysis in NNPDF</h3>
+                    <p style="text-align: left;">
+                        Load <b>trained PDFs</b> from n3fit.
+                    </p>
+                    <img data-src="img_contents/recap_scheme.png" style="width: 900px; height: auto;" class="plain"></img>
+                    <ol>
+                        <li>Build all coalitions of perturbed PDFs</li>
+                        <li>Compute \(\chi^2\) for each</li>
+                        <li>Per flavor: compare \(\chi^2\) perturbed vs not</li>
+                    </ol>
+                </section>
+
+                <!-- Slide 4.2 -->
+                
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
+                    <div class="container">
+                        <div>   
+                            <span>
+                                How do we perturb a PDF ?
+                                A smooth calibrated Gaussian bump:
+                            </span>
+                            <img data-src="img_contents/cal_perturbation.png" style="width: 800px; height: auto;" class="plain"></img>
+                        </div>
+                    </div>
+                </section>
+                <!-- Slide 4.3 -->
+                
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to perturb the PDF space ?</h3>
+                    <div> 
+                            <span>
+                                How do we perturb a PDF ?
+                                A smooth calibrated Gaussian bump:
+                            </span>
+                        <div class="fragment">
+                            \[
+                                xf_j^{\text{pert}\pm}(x,Q_0^2)=xf_j+\delta_j^\pm,\qquad
+                                \delta_j^\pm(x)=\pm\Delta_j^\pm(x_\mu)\,e^{-\log_{10}^{2}(x/x_\mu)/(2w^{2})}
+                            \]
+                            <p style="text-align:left; font-size: smaller;">
+                                \(\Delta^\pm_j(x_\mu)\) = <span style="color: rgba(215, 0, 0, 0.95);">68% CI bounds of the replicas</span> &rarr; calibrated to the PDF uncertainty, comparable across flavors.
+                            </p>
+                        </div>
+                        <div class="fragment">
+                            <div>   
+                                <span>
+                                    How to avoid directional bias ?
+                                    average the Shapley value of both directions 
+                                </span>
+                                \[
+                                    v(S)=\frac{v_+(S)+v_-(S)}{2}.
+                                \]
+                            </div>
+                        </div>                    
+                    </div>
+
+                </section>
+
+                <!-- Slide 4.4 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Coalitions: what does \(\phi_g\) measure?</h3>
+
+                    <p style="text-align:left;">Flavors join the perturbation one at a time, in a <b>random order</b>.<br>
+                    For each possible \(S\), we ask what \(g\) adds to the \(\chi^2\) <span style="color: rgba(215, 0, 0, 0.95);">at the moment it walks in</span>.</p>
+
+                    <div style="margin: 0.5em 0 0.3em 0;">
+                        <div class="arow"><span class="lbl">order 1</span><span class="chip inS">&#931;</span><span class="chip inS">T3</span><span class="chip isg">g</span><span class="chip outS">V</span><span class="chip outS">V3</span><span class="chip outS">T8</span><span class="chip outS">T15</span><span class="chip outS">V8</span><span class="sset">S = {&#931;, T3}</span></div>
+                        <div class="arow"><span class="lbl">order 2</span><span class="chip isg">g</span><span class="chip outS">V</span><span class="chip outS">T8</span><span class="chip outS">&#931;</span><span class="chip outS">V3</span><span class="chip outS">T15</span><span class="chip outS">V8</span><span class="chip outS">T3</span><span class="sset">S = { }</span></div>
+                        <div class="arow"><span class="lbl">order 3</span><span class="chip inS">V</span><span class="chip inS">T3</span><span class="chip inS">&#931;</span><span class="chip inS">V8</span><span class="chip isg">g</span><span class="chip outS">T8</span><span class="chip outS">T15</span><span class="chip outS">V3</span><span class="sset">S = {V, T3, &#931;, V8}</span></div>
+                        <div class="arow"><span class="lbl">order 4</span><span class="chip inS">V3</span><span class="chip inS">T15</span><span class="chip inS">T8</span><span class="chip inS">V</span><span class="chip inS">&#931;</span><span class="chip inS">V8</span><span class="chip inS">T3</span><span class="chip isg">g</span><span class="sset">S = {V3, T15, T8, V, &#931;, V8, T3}</span></div>
+                        <div class="arow" style="margin-top:0.1em;"><span class="lbl"></span><span class="chip dots">&#8942;</span><span class="chip dots">&#8942;</span><span class="chip dots">&#8942;</span><span class="chip dots">&#8942;</span><span class="chip dots">&#8942;</span><span class="chip dots">&#8942;</span><span class="chip dots">&#8942;</span><span class="chip dots">&#8942;</span><span class="sset">&#8230; all \(8!\) orders</span></div>
+                    </div>
+
+                    <p style="text-align:center; font-size:0.6em; color:rgba(255,255,255,0.7);">
+                        <span class="chip inS" style="font-size:0.85em;">blue</span> perturbed flavor &nbsp;&middot;&nbsp;
+                        <span class="chip outS" style="font-size:0.85em;">grey</span> non-perturbed flavor &nbsp;&middot;&nbsp;
+                        <span class="chip isg" style="font-size:0.85em;">g</span> perturbed flavor \(g\)
+                    </p>
+
+                    <div class="fragment">
+                    \[ \phi_g \;=\; \Big\langle\, \chi^2(S\cup\{g\}) - \chi^2(S) \,\Big\rangle_{\text{all orders}} \]
+                    <p style="text-align:left; font-size:0.62em;">
+                        \(8! = 40320\) orders, but only <b>128</b> distinct \(S\): that degeneracy is the weight \(w(S)\).
+                    </p>
+                    </div>
+                    </section>
+
+                
+                <!-- Slide 4.5 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Correlated perturbation</h3>
+                    <div class="fragment">    
+                    <p style="text-align:left">Correlations between flavors come from the sum rules:</p>
+                    <div class="fragment">    
+                        \[
+                            \text{Momentum sum rule:} \quad\int_0^1dxx(g(x,Q)+\Sigma(x,Q))=1, 
+
+                        \]
+                        \[
+                            \text{Valence sum rule:}    \int_0^1dxV(x,Q)=\int_0^1dxV_8(x,Q)=3, \qquad     \int_0^1dxV_3(x,Q)=1, 
+
+                        \]
+                        <p style="text-align:left">Flavors in \(S\) get the bump; the others have their <span style="color: rgba(215, 0, 0, 0.95);">normalization \(A_i\) readjusted</span> so the rules still hold.</p>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4.6 -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">How to interpret the Shapley values?</h3>
+                    <div class="container">
+                        <div class="col" style="text-align: left;">
+                        <li>\(\phi_j> 0 \): \(\chi^2\) worsens &rarr; flavor <b>constrained</b> there</li>
+                        <li>\(\phi_j\approx 0 \): dataset <b>insensitive</b> to \(j\)</li>
+                        <li>\(\phi_j< 0 \): \(\chi^2\) <b>improves</b> &rarr; hint of <span style="color: rgba(215, 0, 0, 0.95);">data tension</span></li>
+                        <br>
+                        <p>Depends on the \(x\) region (local perturbation) and on the dataset (\(\chi^2\)).</p>
+                        </div>
+                        <div class="col" style="align-items: center;">
+                            <img data-src="img_contents/interpretation_sv.png" style="width: 500px; height: auto;" class="plain"></img>
+                            Completeness:
+                            \[\sum_{j \in N} \phi_j = v(N)-v(\emptyset)\]
+                            \(v=\chi^2\), so \(\phi_j\) is in units of \(\chi^2\).
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4.7: uncertainty quantification -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Uncertainty on the Shapley value</h3>
+                    <p style="text-align: left;">
+                        Replay the whole game on each <span style="color: rgba(215, 0, 0, 0.95);">replica</span> \(f^k\):
+                    </p>
+                    \[
+                        \phi_i^{(k)}=\phi_i(f^k), \qquad
+                        \bar\phi_i = \frac{1}{N_{\text{rep}}}\sum_k \phi_i^{(k)}, \qquad
+                        \sigma^2_{\phi_i}=\frac{1}{N_{\text{rep}}-1}\sum_k\left(\phi_i^{(k)}-\bar\phi_i\right)^2.
+                    \]
+                    <div style="text-align: left;">
+                    <ul>
+                        <li>100 replicas &times; 128 coalitions</li>
+                        <li>Plots: <b>median</b> + 68% band \([\phi^{16},\phi^{84}]\)</li>
+                        <li>Quick scans: <b>central</b> PDF only, no uncertainty</li>
+                    </ul>
+                    </div>
+                </section>
+            </section>
+            <!-- Slide 5: Results -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <!-- Slide 5.1: the scan, sets up everything that follows -->
+                    <h3 class="slide-title highlight" style="text-align: left;">Scanning the whole \(x\) range</h3>
+                    <div style="position: relative; display: inline-block; line-height: 0;">
+                        <img data-src="img_contents/xrange_dense.png" style="width: 760px; height: auto;" class="plain"></img>
+
+                        <!-- ===== dip markers, drawn ON THE HEATMAP ====================== -->
+                        <!-- dip 1, x_mu ~ 1e-2   -- ADJUST left/top HERE -->
+                        <span class="fragment" data-fragment-index="1"
+                              style="position:absolute; left:323px; top:112px;
+                                     width:65px; height:30px; box-sizing:border-box;
+                                     border:3px solid #ff2d2d; border-radius:50%;"></span>
+
+                        <!-- dip 2, x_mu ~ 6e-2   -- ADJUST left/top HERE -->
+                        <span class="fragment" data-fragment-index="1"
+                              style="position:absolute; left:453px; top:112px;
+                                     width:65px; height:30px; box-sizing:border-box;
+                                     border:3px solid #ff2d2d; border-radius:50%;"></span>
+
+                        <!-- ===== gluon zoom ============================================ -->
+                        <!-- MOVE THE ZOOM PLOT WITH THIS ONE LINE: -->
+                        <img data-src="img_contents/NNPDF-g.png"
+                             class="plain fragment" data-fragment-index="1"
+                             style="position: absolute; left: 10px; top: calc(70% - 115px);
+                                    width: 280px; height: auto;
+                                    border: 1px solid rgba(255,255,255,0.55);
+                                    box-shadow: 0 10px 34px rgba(0,0,0,0.8);"></img>
+                        <!-- ============================================================= -->
+                    </div>
+                    <p style="text-align: left; font-size: 0.5em;">
+                        50 log-spaced \(x_\mu\), central NNPDF4.0, flavor basis.
+                    </p>
+                    <p class="fragment" data-fragment-index="1" style="text-align: left;">
+                        One row misbehaves: the <span style="color: rgba(215, 0, 0, 0.95);">gluon dips to zero at \(x\sim0.07\)</span>.
+                    </p>
+            </section>
+
+            <!-- Slide 6: Diagnostics and optimization -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                <!-- Slide 6.1: the dip and its explanation -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">A blind spot in the gluon</h3>
+                    <div class="container">
+                        <div class="col" style="text-align: left;">
+                            <ul>
+                                <li>Gluon fixed by <b>scaling violations</b></li>
+                                <li>Momentum sum rule \(\Rightarrow\) <span style="color: rgba(215, 0, 0, 0.95);">zero eigenvalue at \(N=2\)</span>: a flat direction evolution cannot constrain</li>
+                                <li>Mellin saddle point maps \(N_0\to x\):</li>
+                            </ul>
+                            \[ \ln x = \frac{\mathrm{d}\ln\bar f(N)}{\mathrm{d} N}\Bigg|_{N=N_0} \]
+                            <p><b>\(N_0=2 \;\to\; x\approx7\times10^{-2}\)</b>: the dip.</p>
+                        </div>
+                        <div class="col" style="align-items: center;">
+                            <img data-src="img_contents/saddle-point-analysis-1506.png" style="width: 450px; height: auto;" class="plain"></img>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 6.2: why it matters -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Why this matters</h3>
+                    <div style="text-align: left;">
+                        <ul>
+                            <li>Expect an <b>inflated uncertainty</b> there. It does not happen</li>
+                            <li>Smoothness of the parametrization forbids a localized bump</li>
+                            <li>The band interpolates straight across: <span style="color: rgba(215, 0, 0, 0.95);">new physics in the gluon here could be absorbed with no visible distortion</span></li>
+                            <li>Invisible to standard diagnostics: the Shapley value makes it explicit</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Slide 6.3: PDF set comparison -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Is it universal? NNPDF4.0 vs MSHT20 vs CT18</h3>
+
+                    <div class="container">
+                        <div class="col" style="flex: 0 0 48%;">
+                            <!-- ===== cumulative build: each image fully covers the previous ===== -->
+                            <div style="position: relative; display: inline-block; line-height: 0; width: 100%;">
+                                <img data-src="img_contents/NNPDF-g.png" class="plain"
+                                     style="width: 100%; height: auto; display: block;"></img>
+                                <img data-src="img_contents/MSHT.png" class="plain fragment" data-fragment-index="1"
+                                     style="position:absolute; top:0; left:0; width:100%; height:auto;"></img>
+                                <img data-src="img_contents/ct18.png" class="plain fragment" data-fragment-index="2"
+                                     style="position:absolute; top:0; left:0; width:100%; height:auto;"></img>
+                                <img data-src="img_contents/ct18-corrected.png" class="plain fragment" data-fragment-index="3"
+                                     style="position:absolute; top:0; left:0; width:100%; height:auto;"></img>
+                            </div>
+                            <!-- ================================================================= -->
+                        </div>
+
+                        <div class="col" style="text-align:left;">
+                            <ul style="font-size: smaller;">
+                                <li>The argument is pure QCD evolution \(\Rightarrow\) the dip must be <b>universal</b></li>
+                                <li class="fragment" data-fragment-index="1">MSHT20: same dip</li>
+                                <li class="fragment" data-fragment-index="2">CT18: same dip, but sitting <b>higher</b> \(-\) the perturbation is calibrated to each set's own uncertainty</li>
+                                <li class="fragment" data-fragment-index="3">Rescale CT18 to \(0.5\,\delta_{\text{pert}}\) and it lands on the others: <span style="color: rgba(215, 0, 0, 0.95);">CT18 uncertainties are more conservative</span></li>
+                                <li class="fragment" data-fragment-index="3">Holds for fixed functional forms too, not just the NN</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 6.4: fold design -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">Application: optimizing the hyperopt folds</h3>
+                            <img data-src="img_contents/kfolds.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <div style="text-align: left;">
+                        <ul style="font-size: smaller;">
+                            <li>4 folds, each meant to represent the whole dataset, built by intuition</li>
+                            <li>Profiles are similar across folds \(\Rightarrow\) the design was adequate</li>
+                            <li>At large \(x\), \(T_3,T_8\) go <span style="color: rgba(215, 0, 0, 0.95);">negative for the full set, for no fold</span> &rarr; tension with post-hyperopt data</li>
+                            <li>Next: choose folds minimizing the KL distance between profiles</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Slide 6: Next steps -->
+            <section data-background-image="img_contents/LHC.jpg">
+                <div class="title-panel">
+
+                <h3 class="slide-title highlight" style="text-align: left;">Outlook</h3>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>Exact, <b>methodology-agnostic</b> measure of which flavor is constrained where</li>
+                        <li>Recovers the standard lore, and exposes what it misses: the gluon blind spot at \(x\sim0.07\), universal across all three sets</li>
+                    </ul>
+                </div>
+                <h3 class="slide-title highlight" style="text-align: left;">Future steps</h3>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>Data <b>not</b> in the fit &rarr; impact of a new measurement before including it</li>
+                        <li>PDF benchmarking, combined sets, tension detection</li>
+                        <li>Larger feature space (\(\sim10^9\) coalitions) &rarr; controlled approximation</li>
+                        <li>Not specific to PDFs: any black box with a likelihood</li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+         
+
+
+
+
+
+            <!-- Slide 7: Thank you -->
+            <section  data-background-image="img_contents/LHC.jpg">
+                <div class="title-panel">
+                    
+                    <h1>Thank you ! </h1>
+                
+                <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
+
+                    <img src="img_contents/3.svg" style="width: 200px;">
+                <p class="meta" style="font-size: small; text-align:center">
+                         This work was supported by the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
+                </p>
+            </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Slide 8: Backup slides -->
+            <section>
+                <!-- Slide 8.1 -->
+                <section data-background-image="img_contents/LHC.png" >
+                    <div class="title-panel">
+
+                        <h3>Backup Slides</h3>
+                    </div>
+                </section>
+
+                <!-- Backup: dataset-by-dataset results (moved out of the main line) -->
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <h3 class="slide-title highlight" style="text-align: left;">Replica scan, six values of \(x_\mu\)</h3>
+                            <img data-src="img_contents/x-scan.png" style="width: 1000px; height: auto;" class="plain"></img>
+                </section>
+
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <h3 class="slide-title highlight" style="text-align: left;">DIS: HERA vs fixed target</h3>
+                            <img data-src="img_contents/DIS.png" style="width: 1000px; height: auto;" class="plain"></img>
+                </section>
+
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <h3 class="slide-title highlight" style="text-align: left;">Jets and top pair production</h3>
+                            <img data-src="img_contents/gluon.png" style="width: 1000px; height: auto;" class="plain"></img>
+                </section>
+
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <h3 class="slide-title highlight" style="text-align: left;">Dataset regularization</h3>
+                    <div style="text-align: left;">
+                        <ul>
+                            <li>Perturbation can drive a cross section to \(\sim0\) &rarr; ratio observables blow up</li>
+                            <li>Iteratively drop any \(\mathcal{D}_i\) with \(v_{\mathcal{D}_i}(S)>10^5\)</li>
+                            <li>In practice only <code>DYE906</code> / <code>DYE866</code>, for a few \(x_\mu\)</li>
+                        </ul>
+                    </div>
+                </section>
+
+
+                <!-- Slide 8.2 -->
+                <section data-background-image="img_contents/LHC.jpg">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values Pseudocode</h3>
+
+                    <div style="margin-top:0.6rem; padding:0.6rem; background:#0f1724; color:#e6eef6; border-radius:6px; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace; font-size:0.85rem; line-height:1.25;">
+                    <pre style="margin:0;">
+# INPUT: observables, mu,sigma,amplitude, n_samples, n_flavors = n
+# OUTPUT: shapley_vals[], baseline_chi2, cache
+
+baseline_chi2 = evaluate_chi2(observables, flavor_subset=[])   # v({})
+
+cache = {}   # map subset -> v(S)
+all_subsets = power_set(0..n-1)     # exclude full-set if desired
+
+for i in 0..n-1:
+SV = 0
+for S in all_subsets:
+    if i in S: continue
+
+    # v(S)
+    if S not in cache:
+    cache[S] = evaluate_chi2(observables, flavor_subset=list(S), mu,sigma,amplitude, n_samples)
+    vS = cache[S]
+
+    # v(S ∪ {i})
+    S_with = S ∪ {i}
+    if S_with not in cache:
+    cache[S_with] = evaluate_chi2(observables, flavor_subset=list(S_with), mu,sigma,amplitude, n_samples)
+    vSw = cache[S_with]
+
+    Δ = vSw - vS                                   # marginal contribution
+    s = |S|
+    w = factorial(s) * factorial(n - s - 1) / factorial(n)
+    SV += w * Δ
+
+shapley_vals[i] = SV
+
+# RETURN: shapley_vals, baseline_chi2, evaluated_coalitions=|cache|
+# COMPLEXITY: time ~ O(n · 2^n · cost_eval), space ~ O(2^n) (memoized)
+                    </pre>
+                    </div>
+                </section>
+                <!-- Slide 8.3 -->
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values weight</h3>
+                    <span>
+                        In game theory, Shapley Values represent the contribution \(\phi_i\) of a player \(i\) within a coalition \(S\) by comparing the outcomes of scenarios where the player is present  \(v(S \cup \{i\})\) versus absent \(v(S)\).
+                    </span>
+                    
+                        \[
+                        \phi_i = \sum_{S \subseteq N \setminus \{i\}} \text{w}(S) \left[ v(S \cup \{i\}) - v(S) \right]
+                        \label{eq:comb_SV}
+                        \]
+                    <span>
+                        With:
+                    </span>
+                        \[
+                        w(S) = \frac{|S|! \, (|N| - |S| - 1)!}{|N|!}    
+                        \] 
+                    <span>
+                        \(w(S)\)  weights for the importance of the coalition \(S\) being tested. It is the probability that the set of players who come after \(i\) is exactly \(S\).
+                    </span>
+                        <ul>
+                        <li>\(|S|!\) is the number of ways to order the predecessors of \(i\)</li>
+                        <li>\((|N| - |S| - 1)!\) is the number of ways to order the players before \(i\)</li>
+                        <li>\(|N|!\) is the number of ways to order all players</li>
+                        </ul>
+                </section>
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <h3 class="slide-title highlight" style="text-align: left;">Shapley Values weight</h3>
+                    <span>
+                        This result is derived in the following way: 
+                        Given \( |N| = n \), for a fixed player \(i\), let \( S \subseteq N \setminus \{i\} \) with \( |S| = s \).
+                        The probability that players before \(i\) are exactly \(S\) can be decomposed into two conditions: 
+
+                        First, \(i\) can be in any position in \(N\), so: 
+                    </span>
+                        \[
+                        p(\text{pos}_i = s+1) = \frac{1}{n}
+                        \]
+                    <span>
+                        Second, given that \( i \) is in position \( s+1 \), the \( s \) players before \( i \) form a uniformly random subset of the remaining \( n-1 \) players of size \(\binom{n-1}{s}\):
+                    </span>
+                        \[
+                        p(\text{predecessors} = S \mid \text{pos}_i = s+1) = \frac{1}{\binom{n-1}{s}}
+                        \]
+
+                        <span>To fulfill these conditions, we multiply those probabilities:</span>
+                        \[
+                        \frac{1}{n}\cdot \frac{1}{\binom{n-1}{s}} = \frac{1}{n}\cdot \frac{s!(n-1-s)!}{(n-1)!} = w(S)
+                        \] 
+                </section>
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</body>
+<!-- Include Reveal.js -->
+<script src="../assets/reveal/dist/reveal.js"></script>
+
+<!-- Include Plugins (optional) -->
+<script src="../assets/reveal/plugin/zoom/zoom.js"></script>
+<script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+
+<!-- Include MathJax -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Include Highlight.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+<script>
+    // Initialize Reveal.js with hash and slide number options
+    Reveal.initialize({
+        hash: true,      // Enables URL hash navigation
+        slideNumber: true, // Display slide numbers
+        math: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        },
+        plugins: [RevealZoom, RevealHighlight], // Initialize plugins
+    });
+
+    // Initialize Highlight.js for code blocks
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+
+</body>
+
+</html>
