@@ -235,9 +235,7 @@
                             </div>
                             <div class="col">
                                 <ul>
-                                    <li><span style="color: rgba(215, 0, 0, 0.95);">Parton carrying a fraction \(x\) of the proton momentum at scale \(Q^2\)</span></li>
-                                    <br>
-                                    <li>Input to every collider prediction</li>
+                                    <li><span style="color: rgba(215, 0, 0, 0.95);">Parton carrying a fraction of momentum \(x\) at scale \(Q^2\)</span></li>
                                     <br>
                                     <li>NNPDF: neural net, no functional form assumed</li>
                                     <br>
@@ -258,12 +256,15 @@
                 <!-- Slide 2.2 -->
                 <section>
                 <h3 class="slide-title highlight" style="text-align: left;">PDF fitting: an inverse problem</h3>
-                    <p style="text-align: left;">
-                        NNPDF solves an <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
-                    </p>
+
+                    <div style="text-align:center; font-size: larger">  
+                        <span>                
+                        PDFs groundtruth do not exist <b> <span style="color: rgba(215, 0, 0, 0.95);">they fit from experimental data</span> </b>
+                        </span>
+                    </div>
                     <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: left;">
-                        Theory (QCD, QED) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space, and the inverse is done by fitting precise experimental data.
+                        Theory (QCD, QED) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space.
                     </p>
                 </section>
 
@@ -271,7 +272,7 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">PDF space</h3>
                     <p style="text-align: left;">
-                        The PDF space is a 8-dimensional space (flavor basis or evolution basis). <br>Why does a given flavor look like this in a given \(x\) region? Which datasets are responsible for this behavior?
+                        Why does a given flavor look like this in a given \(x\) region? Which datasets are responsible for this behavior?
                     </p>
                     <img data-src="img_contents/NNPDF-formal.png" style="width: 700px; height: auto;" class="plain framed"></img>
                     <div class="fragment" style="text-align:center; font-size: larger">  
@@ -289,7 +290,7 @@
                 <section>
                     <h3 class="slide-title highlight" style="text-align: left;">NNPDF a black box model ?</h3>
                     <p style="text-align: left;">
-                        <span style="color: rgba(215, 0, 0, 0.95);">Black-box systems are a recurrent interpretability issue in modern DL.</span> We can take inspiration from the methods developed there to solve the interpretability problem of NNPDF.
+                        <span style="color: rgba(215, 0, 0, 0.95);">Black-box systems are a recurrent interpretability issue in modern DL.</span> We can take inspiration from the methods developed there to solve the interpretability problem of PDFs.
                     </p>
                     <img data-src="img_contents/NNPDF-blackbox.png" style="width: 700px; height: auto;" class="plain framed"></img>
                     <p style="text-align: center;">    
@@ -429,7 +430,7 @@
                     <div class="fragment">
                     \[ \phi_g \;=\; \Big\langle\, \chi^2(S\cup\{g\}) - \chi^2(S) \,\Big\rangle_{\text{all orders}} \]
                     <p style="text-align:left; font-size:0.62em;">
-                        \(8! = 40320\) orders, but only <b>128</b> distinct \(S\): that degeneracy is the weight \(w(S)\).
+                        \(8! = 40320\) orders, but only <b>128</b> distinct \(S\).
                     </p>
                     </div>
                     </section>
