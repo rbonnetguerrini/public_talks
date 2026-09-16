@@ -209,7 +209,7 @@
                 <span  style="font-size:smaller;"><b><u>Raphaël Bonnet-Guerrini</u></b><sup>1,3</sup>, Stefano Carrazza<sup>2,3</sup>, Stefano Forte<sup>2,3</sup>, <br> Eva Groenendijk<sup>2,3</sup>, and Ramon Winterhalder<sup>2,3</sup></span></span>
                 <br>
                 <br>
-                <span  style="font-size: small; text-align:center"><sup>1</sup>Dipartimento di Informatica, University of Milan;         <sup>2</sup>TIF lab, Physics Department, University of Milan;<br>  <sup>3</sup>Istituto Nazionale di Fisica Nucleare, Sezione di Milano</span>
+                <span  style="font-size: small; text-align:center"><sup>1</sup>Computer Science department, University of Milan;         <sup>2</sup>TIF lab, Physics Department, University of Milan;<br>  <sup>3</sup>Istituto Nazionale di Fisica Nucleare, Sezione di Milano</span>
                 <div>
                     <a href="https://arxiv.org/abs/2607.02647" style="text-align:center">
                         <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2607.02647-B31B1B?logo=arxiv" height="25">
@@ -538,30 +538,54 @@
                         50 log-spaced \(x_\mu\), central NNPDF4.0, flavor basis.
                     </p>
                     <p class="fragment" data-fragment-index="1" style="text-align: left;">
-                        One row misbehaves: the <span style="color: rgba(215, 0, 0, 0.95);">gluon dips to zero at \(x\sim0.07\)</span>.
+                        One row misbehaves: the <span style="color: rgba(215, 0, 0, 0.95);">gluon dips to zero twice</span>.
                     </p>
             </section>
 
             <!-- Slide 6: Diagnostics and optimization -->
             <section data-background-gradient="linear-gradient(to bottom, black, grey)">
                 <!-- Slide 6.1: the dip and its explanation -->
-                <section>
-                    <h3 class="slide-title highlight" style="text-align: left;">A blind spot in the gluon</h3>
+                 <section>
+                    <h3 class="slide-title highlight" style="text-align: left;">
+                        A blind spot in the gluon
+                    </h3>
+
                     <div class="container">
                         <div class="col" style="text-align: left;">
-                            <ul>
-                                <li>Gluon fixed by <b>scaling violations</b></li>
-                                <li>Momentum sum rule \(\Rightarrow\) <span style="color: rgba(215, 0, 0, 0.95);">zero eigenvalue at \(N=2\)</span>: a flat direction evolution cannot constrain</li>
-                                <li>Mellin saddle point maps \(N_0\to x\):</li>
-                            </ul>
-                            \[ \ln x = \frac{\mathrm{d}\ln\bar f(N)}{\mathrm{d} N}\Bigg|_{N=N_0} \]
-                            <p><b>\(N_0=2 \;\to\; x\approx7\times10^{-2}\)</b>: the dip.</p>
+
+                            <p>
+                                We infer the gluon from how data change with \(Q^2\)
+                                <br>
+                                <small>(scaling violations)</small>
+                            </p>
+
+                            <p>
+                                At \(N=2\), momentum conservation creates a
+                                <b>non-evolving mode</b>
+                            </p>
+
+                            <p style="color: rgba(215, 0, 0, 0.95); font-size: 1.2em;">
+                                <b>No evolution = little signal to constrain the gluon</b>
+                            </p>
+
+                            <p>
+                                Mellin mapping:
+                                <b>\(N_0=2 \;\mapsto\; x\approx0.07\)</b>
+                            </p>
                         </div>
+
                         <div class="col" style="align-items: center;">
-                            <img data-src="img_contents/saddle-point-analysis-1506.png" style="width: 450px; height: auto;" class="plain"></img>
+                            <img data-src="img_contents/saddle-point-analysis-1506.png"
+                                style="width: 450px; height: auto;"
+                                class="plain">
+
+                            <p style="font-size: 0.8em;">
+                                The non-evolving mode lands at the dip
+                            </p>
                         </div>
                     </div>
                 </section>
+                
 
                 <!-- Slide 6.2: why it matters -->
                 <section>
@@ -569,7 +593,6 @@
                     <div style="text-align: left;">
                         <ul>
                             <li>Expect an <b>inflated uncertainty</b> there. It does not happen</li>
-                            <li>Smoothness of the parametrization forbids a localized bump</li>
                             <li>The band interpolates straight across: <span style="color: rgba(215, 0, 0, 0.95);">new physics in the gluon here could be absorbed with no visible distortion</span></li>
                             <li>Invisible to standard diagnostics: the Shapley value makes it explicit</li>
                         </ul>
@@ -617,7 +640,7 @@
                             <li>4 folds, each meant to represent the whole dataset, built by intuition</li>
                             <li>Profiles are similar across folds \(\Rightarrow\) the design was adequate</li>
                             <li>At large \(x\), \(T_3,T_8\) go <span style="color: rgba(215, 0, 0, 0.95);">negative for the full set, for no fold</span> &rarr; tension with post-hyperopt data</li>
-                            <li>Next: choose folds minimizing the KL distance between profiles</li>
+                            <li>Next: choose folds minimizing the distance between profiles</li>
                         </ul>
                     </div>
                 </section>
@@ -642,7 +665,7 @@
                         <li>Data <b>not</b> in the fit &rarr; impact of a new measurement before including it</li>
                         <li>PDF K-folding, combined sets</li>
                         <li>Larger feature space (\(\sim10^9\) coalitions) &rarr; controlled approximation</li>
-                        <li>Not specific to PDFs: any black box with a likelihood </li>
+                        <li>Not specific to PDFs: any black box with a likelihood x </li>
                     </ul>
                 </div>
                 </div>
