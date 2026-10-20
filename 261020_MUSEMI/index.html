@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MUSEMI 2026</title>
+
+    <meta name="description" content="Interpretable Deep Learning for Fundamental Physics">
+    <link rel="stylesheet" href="../assets/reveal/dist/reveal.css">
+    <link rel="stylesheet" href="../assets/reveal/dist/theme/darkenergy.css" id="theme">
+
+    <!-- Highlight.js library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
+    <!-- Include Bokeh CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.css" type="text/css">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js"></script>
+
+    <!-- Include math -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- code rendering-->
+    <link rel="stylesheet" href="../assets/reveal/plugin/highlight/monokai.css" />
+    <script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+
+    <!-- Box creations -->
+    <style>
+        /* Basic styling for the vertical boxes */
+        .double_box_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .double_box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 44%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-title {
+            background: rgba(255, 255, 255, 0.2);
+            /* Lighter background for title */
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* Container to center and stack boxes vertically */
+        .vertical-center-container {
+            display: flex;
+            flex-direction: column;
+            /* Stack children vertically */
+            align-items: center;
+            /* Center children horizontally */
+            gap: 20px;
+            /* Space between boxes */
+            height: 100vh;
+            /* Full viewport height (optional) */
+            padding: 20px;
+        }
+
+        /* Styling for the boxes */
+        .centered-box {
+            background: rgba(0, 0, 0, 0.7);
+            /* Dark background with transparency */
+            color: lightgray;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            /* Width of the boxes */
+            max-width: 800px;
+            /* Max width to limit size */
+        }
+
+        .reveal .slide-title {
+            border-left: 5px solid white;
+            text-align: left;
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        .bokeh-iframe {
+            width: 80vw;
+            height: 80vh;
+            border: none;
+        }
+
+        .reveal mjx-container[display="true"] {
+            display: inline-block !important;
+            width: auto !important;
+            max-width: none !important;
+            background: rgba(0,0,0,0.25);
+            color: #fff;
+            padding: 0.4em 0.65em;
+            border-radius: 12px;
+            border: 1.5px solid rgba(255,255,255,0.45);
+        }
+        .title-panel {
+        background: rgba(0, 0, 0, 0.45);
+        padding: 1.7rem 2.6rem;   
+        border-radius: 12px;
+        max-width: 80%;          
+        margin: auto;
+        backdrop-filter: blur(2px);
+        }
+
+        .title-panel h2 {
+        color: #ffffff;
+        font-size: 2.1em;        
+        margin-bottom: 0.45em;
+        }
+
+        .title-panel h3 {
+        color: #e0e0e0;
+        font-weight: 300;
+        font-size: 1em;       
+        line-height: 1.3;
+        margin-bottom: 1em;
+        }
+
+        .title-panel .meta {
+        color: #cccccc;
+        font-size: 0.75em;       
+        line-height: 1.4;
+        }
+
+        .title-panel .affiliation {
+        opacity: 0.75;
+        }
+        .title-left-logo {
+            position: absolute;
+            bottom: 15px;   
+            left: 20px;    
+            width: 150px;    
+            height: auto;
+        }
+        .title-right-logo {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            width: 150px;
+            height: auto;
+        }
+
+        /* Custom fragments: move elements smoothly between fragment steps */
+        .reveal .slides section .fragment.slide-up {
+            opacity: 1;
+            visibility: inherit;
+            transform: translateY(var(--dy, 0px));
+            transition: transform 0.8s ease;
+        }
+        .reveal .slides section .fragment.slide-up.visible { transform: none; }
+        .reveal .slides section .fragment.travel {
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(var(--dx, 0px), var(--dy, 0px));
+            transition: transform 0.9s ease, opacity 0.5s ease;
+        }
+        .reveal .slides section .fragment.travel.visible {
+            opacity: 1;
+            visibility: inherit;
+            transform: none;
+        }
+
+        /* Branching timeline: ML trunk, each field branches off and stays alive */
+        .branch-tl {
+            position: relative;
+            width: 940px;
+            height: 430px;
+            margin: 0.4rem auto 0;
+            text-align: left;
+        }
+        .branch-tl svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: visible;
+        }
+        .bt-event {
+            position: absolute;
+            top: 0;
+            height: 42px;
+            width: 270px;
+            display: flex;
+            align-items: flex-end;
+            gap: 0.45em;
+            font-size: 0.5em;
+            line-height: 1.2;
+            transform: translateX(-14px);
+        }
+        .bt-year {
+            flex: 0 0 auto;
+            font-weight: bold;
+            padding: 0.1em 0.6em;
+            border-radius: 999px;
+            background: #222;
+            border: 2px solid rgba(255,255,255,0.75);
+            color: #fff;
+        }
+        .bt-card {
+            position: absolute;
+            width: 235px;
+            transform: translateY(-50%);
+            padding: 0.5em 0.7em;
+            border-radius: 10px;
+            background: rgba(22,22,22,0.96);
+            border: 1.5px solid rgba(255,90,90,0.85);
+            font-size: 0.5em;
+            line-height: 1.3;
+        }
+        .bt-card .why { font-style: italic; opacity: 0.7; font-size: 0.9em; }
+        .bt-card h4 {
+            margin: 0.1em 0 0.25em 0;
+            font-size: 1.3em;
+            color: rgba(255,90,90,1);
+            text-transform: none;
+        }
+        .bt-card .q { font-weight: bold; margin-bottom: 0.3em; }
+        .bt-card .m { opacity: 0.8; font-size: 0.92em; }
+        .bt-today {
+            position: absolute;
+            left: 900px;
+            top: 408px;
+            transform: translateX(-50%);
+            font-size: 0.45em;
+            font-weight: bold;
+            opacity: 0.8;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+
+            <body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1 -->
+            <section data-background-image="img_contents/gen_intro_img.png">
+                <div class="title-panel">
+                    <h2>Understanding Physics and AI Through Interpretability</h2>
+
+
+                    <p class="meta">
+                    <strong>Raphaël Bonnet-Guerrini</strong>
+                    <br><br>
+                    <span class="affiliation">
+                        Computer Science Department - University of Milan
+                        <br>
+                        INFN - Istituto Nazionale di Fisica Nucleare 
+                        <br>
+                        Marie Skłodowska-Curie Actions program AIPHY (AI for Physics)
+                    <br><br>
+                    20/10/2026
+                    </span>
+                
+                    </p>
+                    <img src="img_contents/3.svg" class="title-left-logo" alt="">
+                    <img src="img_contents/unimi.svg" class="title-right-logo" style="width: 120px; bottom: 30px;" alt="">
+                </div>
+            </section>
+
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+
+                <section>
+                    <h3 class="slide-title highlight"">Research Focus: interpretability in Deep Learning</h3>
+                    <p style="text-align: left; font-size:0.8em;">Each new modelling power created a new kind of opacity, and a new field to open it.</p>
+
+                    <!-- Branching timeline: main line (interpretable by design) at y=75, branches at x=310/590, lanes at y=230/380, today at x=900 -->
+                    <div class="branch-tl">
+                        <svg width="940" height="430" viewBox="0 0 940 430">
+                            <defs>
+                                <marker id="bt-head-w" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                                    <path d="M0,0 L10,5 L0,10 z" fill="rgba(255,255,255,0.7)"/>
+                                </marker>
+                                <marker id="bt-head-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                                    <path d="M0,0 L10,5 L0,10 z" fill="rgba(255,90,90,0.9)"/>
+                                </marker>
+                            </defs>
+                            <!-- today -->
+                            <line x1="900" y1="60" x2="900" y2="400" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-dasharray="5 5"/>
+                            <!-- main line -->
+                            <line x1="0" y1="75" x2="928" y2="75" stroke="rgba(255,90,90,0.85)" stroke-width="4" marker-end="url(#bt-head-r)"/>
+                            <!-- branch: XAI -->
+                            <g class="fragment" data-fragment-index="1">
+                                <path d="M310,75 L310,200 Q310,230 340,230 L920,230" fill="none" stroke="rgba(255,90,90,0.85)" stroke-width="3" marker-end="url(#bt-head-r)"/>
+                                <circle cx="310" cy="75" r="7" fill="#fff"/>
+                            </g>
+                            <!-- branch: mechanistic interpretability -->
+                            <g class="fragment" data-fragment-index="2">
+                                <path d="M590,75 L590,350 Q590,380 620,380 L920,380" fill="none" stroke="rgba(255,90,90,0.85)" stroke-width="3" marker-end="url(#bt-head-r)"/>
+                                <circle cx="590" cy="75" r="7" fill="#fff"/>
+                            </g>
+                        </svg>
+
+                        <!-- events on the main line -->
+                        <div class="bt-event fragment" data-fragment-index="1" style="left:310px; top:12px;">
+                            <span class="bt-year">2012</span><span><b>Deep Learning</b>: accurate, but a <span style="color: rgba(255,90,90,1);">black box</span></span>
+                        </div>
+                        <div class="bt-event fragment" data-fragment-index="2" style="left:590px; top:12px;">
+                            <span class="bt-year">2018</span><span><b>Foundation Models</b>: one representation, many tasks</span>
+                        </div>
+
+                        <!-- fields: the first one is the main line itself -->
+                        <div class="bt-card" style="left:20px; top:75px;">
+                            <div class="why"><span class="bt-year" style="font-style:normal; font-size:1em;">&lt; 2012</span> Statistical ML: small, readable</div>
+                            <h4>Interpretable by design</h4>
+                            <div class="q">How to make a model transparent?</div>
+                            <div class="m">Small models · Decision trees · concept bottlenecks · calibrated uncertainties</div>
+                        </div>
+                        <div class="bt-card fragment" data-fragment-index="1" style="left:340px; top:230px; width:225px;">
+                            <div class="why">&#8627; explain the output</div>
+                            <h4>Explainable AI</h4>
+                            <div class="q">Why did it make this decision?</div>
+                            <div class="m">Saliency · LIME · SHAP · Integrated Gradients · Grad-CAM</div>
+                        </div>
+                        <div class="bt-card fragment" data-fragment-index="2" style="left:625px; top:380px;">
+                            <div class="why">&#8627; reverse-engineer the inside</div>
+                            <h4>Mechanistic interpretability</h4>
+                            <div class="q">How does it compute, internally?</div>
+                            <div class="m">Circuits · feature visualization · sparse autoencoders · concepts</div>
+                        </div>
+
+                        <div class="bt-today">2026</div>
+                    </div>
+
+                    <p>     
+                        <a href="https://arxiv.org/abs/2501.16496" style="text-align:center">
+                            <img src="https://img.shields.io/badge/cs.LG-arXiv%3A2501.16496-B31B1B?logo=arxiv" height="25">                                
+                        </a>
+                            <a href="https://arxiv.org/abs/2105.07190" style="text-align:center">
+                            <img src="https://img.shields.io/badge/cs.LG-arXiv%3A2105.07190-B31B1B?logo=arxiv" height="25">                                
+                        </a>
+                    </p>
+                </section>
+                <section>
+                <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 100%; margin: auto; backdrop-filter: blur(2px); display: block;">
+                <h3 class="slide-title highlight">Why AI and Fundamental Physics are a good fit?</h3>
+                    <!-- Data volume: industry, then science fades in over it (industry png = left 1112/1824 of science png) -->
+                    <div style="position:relative; width:100%; max-width:780px; aspect-ratio:1824/870; margin:0.4em auto 0;">
+                        <img data-src="plot_contents/data_industry.png" class="plain" style="position:absolute; left:0; top:0; width:60.965%; height:auto; margin:0; max-width:none; max-height:none; border:none; box-shadow:none; background:#fff; border-radius:8px;">
+                        <img data-src="plot_contents/data_science.png" class="plain fragment" data-fragment-index="1" style="position:absolute; left:0; top:0; width:100%; height:auto; margin:0; max-width:none; max-height:none; border:none; box-shadow:none; background:#fff; border-radius:8px; transition-duration:1.2s;">
+                    </div>
+
+                    <!-- The argument: scale -> control -> gap -->
+                    <div style="display:flex; gap:1rem; text-align:left; font-size:0.58em; line-height:1.3; margin-top:0.7em;">
+                        <div class="fragment" data-fragment-index="1" style="flex:1 1 0; padding:0.5em 0.7em; border-top:3px solid rgba(255,90,90,0.9); background:rgba(0,0,0,0.3); border-radius:6px;">
+                            <strong>Scale</strong><br>
+                            Physics produces data at <strong>industry scale</strong>, and beyond.
+                        </div>
+                        <div class="fragment" data-fragment-index="2" style="flex:1 1 0; padding:0.5em 0.7em; border-top:3px solid rgba(255,90,90,0.9); background:rgba(0,0,0,0.3); border-radius:6px;">
+                            <strong>Control</strong><br>
+                            We know the physical process: <strong>simulators</strong> give ground truth.<br> &rarr; Explanations can be <span style="color: rgba(255,90,90,1);">checked</span>.
+                        </div>
+                        <div class="fragment" data-fragment-index="3" style="flex:1 1 0; padding:0.5em 0.7em; border-top:3px solid rgba(255,90,90,0.9); background:rgba(0,0,0,0.3); border-radius:6px;">
+                            <strong>Gap</strong><br>
+                            ML and interpretability is driven by <strong>NLP</strong>. Physics require specific methodology, but offer different opportunities.
+                        </div>
+                    </div>
+                </div>
+                </section>
+            </section>
+
+
+
+            <!-- Project 1: ML4Transients -->
+            <section data-background-image="img_contents/vera_rubin_obs_2.png">
+
+                <!-- 1.0: title / affiliations -->
+                <section data-background-image="img_contents/vera_rubin_obs.png">
+                    <img src="img_contents/3.svg" class="title-left-logo" style="width: 120px; bottom: -50px;" alt="AIPHY">
+                    <img src="img_contents/desc.png" class="title-right-logo" style="width: 150px; bottom: -30px;" alt="">
+                    <h2 style="font-size: 1.6em;">Interpretable Deep Learning for Real/Bogus classification with Uncertainty Quantification</h2>
+                    <span style="font-size: 0.8em;"><b>Raphaël Bonnet-Guerrini</b><sup>1,2</sup>, Dominique Fouchez<sup>3</sup>, Vincenzo Piuri<sup>1</sup>, Benjamin Racine<sup>3</sup>, and Bruno Sanchez<sup>3</sup></span>
+                    <br><br>
+                    <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; &nbsp; <sup>2</sup>INFN, Sezione di Milano; &nbsp; <sup>3</sup>Centre de Physique des Particules de Marseille</span>
+                    <p>
+                        <a href="https://arxiv.org/abs/2607.05393">
+                            <img src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2607.05393-B31B1B?logo=arxiv" height="25">
+                        </a>
+                    </p>
+                </section>
+
+                <!-- 1a: context -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">From anomaly detection to weak supervision</h3>
+                    <div style="display:flex; gap:1.4rem; align-items:center; text-align:left;">
+                        <div style="flex:1 1 48%;">
+                            <div style="border-left:4px solid rgba(255,90,90,0.9); padding:0.2em 0 0.2em 0.7em; margin-bottom:0.7em;">
+                                <b style="display:block; color:#fff; font-size:0.8em; line-height:1.2;">1 &middot; Difference Image Analysis</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.62em; line-height:1.3;"><strong>Vera Rubin / LSST</strong>: one image every 60 s for 10 years.<br> We care about transient objects (e.g. Supernovae).<br> ~10&nbsp;k differences per image.</span>
+                            </div><br>
+                            <div class="fragment" data-fragment-index="1" style="border-left:4px solid rgba(255,90,90,0.9); padding:0.2em 0 0.2em 0.7em; margin-bottom:0.7em;">
+                                <b style="display:block; color:#fff; font-size:0.8em; line-height:1.2;">2 &middot; Real/Bogus is anomaly detection</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.62em; line-height:1.3;"><strong>Mostly artifacts</strong>, and <span style="color: rgba(255,90,90,1);">no labels</span>:<br> &#8627; the real ones are the anomalies.</span>
+                            </div><br>
+                            <div class="fragment" data-fragment-index="2" style="border-left:4px solid rgba(255,90,90,0.9); padding:0.2em 0 0.2em 0.7em; margin-bottom:0.7em;">
+                                <b style="display:block; color:#fff; font-size:0.8em; line-height:1.2;">3 &middot; &hellip; turned into weak supervision</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.62em; line-height:1.3;"><strong>Train</strong> on injected copies vs. all survey detections : <br>&#8627; the real transients are <strong>noisy labels</strong>.<br><span class="fragment" data-fragment-index="3"> <strong>&#8627; Predict</strong> on the survey data: the real transients come out as Transient.</span></span>
+                            </div>
+                        </div>
+                        <!-- right column. idx1: survey set under DIA | idx2: DIA out, survey set slides up into the train row, injection appears | idx3: survey set travels down into the centred predict row -->
+                        <div style="flex:1 1 52%; position:relative; height:470px;">
+                            <img data-src="img_contents/dia.png" class="plain fragment fade-out" data-fragment-index="2" style="position:absolute; left:0; top:0; width:440px; height:auto; max-width:none; max-height:none; margin:0; border-radius:8px;"></img>
+
+                            <!-- train heading + injection -->
+                            <div class="fragment fade-in" data-fragment-index="2" style="position:absolute; left:0; top:0px; font-size:0.55em; font-weight:bold; color:#fff;">&#9312; Train: injections vs. survey</div>
+                            <div class="fragment fade-in" data-fragment-index="2">
+                                <div style="position:absolute; left:6px; top:40px; width:142px; height:140px; border:2px solid #e3b341; border-radius:14px; background:rgba(227,179,65,0.10);"></div>
+                                <div style="position:absolute; left:13px; top:52px; width:130px; text-align:center; font-size:0.5em; line-height:1.2; color:#e6eef6;"><b>Injected copy</b><br>&nbsp;<img data-src="img_contents/cutout_transient.png" class="plain" style="width:76px; height:76px; margin:0.2em auto 0; display:block; border-radius:4px; max-width:none; max-height:none; border:none; box-shadow:none;"></div>
+                                <div style="position:absolute; left:6px; top:184px; width:142px; text-align:center; font-size:0.42em; font-style:italic; color:rgba(255,255,255,0.65);">simulated injection</div>
+                                <div style="position:absolute; left:77px; top:40px; transform:translate(-50%,-50%); padding:0.05em 0.5em; border-radius:999px; background:#1b1b1b; border:1.5px solid #e3b341; color:#e3b341; font-size:0.45em; font-weight:bold; white-space:nowrap;">label: Transient</div>
+                            </div>
+
+                            <!-- survey set: appears under DIA (idx1), slides up into the train row (idx2) -->
+                            <div class="fragment fade-in" data-fragment-index="1">
+                                <div class="fragment slide-up" data-fragment-index="2" style="--dy:170px;">
+                                    <div style="position:absolute; left:151px; top:40px; width:283px; height:140px; border:2px solid rgba(255,90,90,0.9); border-radius:14px; background:rgba(255,90,90,0.08);"></div>
+                                    <div style="position:absolute; left:155px; top:52px; width:130px; text-align:center; font-size:0.5em; line-height:1.2; color:#e6eef6;"><b>Real transient</b><br>~4%<img data-src="img_contents/cutout_transient.png" class="plain" style="width:76px; height:76px; margin:0.2em auto 0; display:block; border-radius:4px; max-width:none; max-height:none; border:none; box-shadow:none;"></div>
+                                    <div style="position:absolute; left:297px; top:52px; width:130px; text-align:center; font-size:0.5em; line-height:1.2; color:#e6eef6;"><b>Bogus</b><br>~96%<img data-src="img_contents/cutout_bogus.png" class="plain" style="width:76px; height:76px; margin:0.2em auto 0; display:block; border-radius:4px; max-width:none; max-height:none; border:none; box-shadow:none;"></div>
+                                    <div style="position:absolute; left:151px; top:184px; width:283px; text-align:center; font-size:0.42em; font-style:italic; color:rgba(255,255,255,0.65);">survey data</div>
+                                    <div class="fragment fade-out" data-fragment-index="2" style="position:absolute; left:293px; top:40px; transform:translate(-50%,-50%); padding:0.05em 0.5em; border-radius:999px; background:#1b1b1b; border:1.5px solid rgba(255,255,255,0.75); color:rgba(255,255,255,0.75); font-size:0.45em; font-weight:bold; white-space:nowrap;">unlabelled</div>
+                                    <div class="fragment fade-in" data-fragment-index="2" style="position:absolute; left:293px; top:40px; transform:translate(-50%,-50%); padding:0.05em 0.5em; border-radius:999px; background:#1b1b1b; border:1.5px solid rgba(255,90,90,0.9); color:rgba(255,90,90,0.9); font-size:0.45em; font-weight:bold; white-space:nowrap;">label: Bogus</div>
+                                </div>
+                            </div>
+
+                            <!-- predict: heading + vertical arrow from the train row -->
+                            <div class="fragment fade-in" data-fragment-index="3">
+                                <div style="position:absolute; left:0; top:240px; font-size:0.55em; font-weight:bold; color:#fff;">&#9313; Predict on the survey data</div>
+                                <svg width="20" height="66" viewBox="0 0 20 66" style="position:absolute; left:210px; top:202px; overflow:visible;"><line x1="10" y1="0" x2="10" y2="56" stroke="#e3b341" stroke-width="3"/><path d="M2,52 L10,66 L18,52 z" fill="#e3b341"/></svg>
+                                <div style="position:absolute; left:234px; top:222px; font-size:0.45em; font-style:italic; color:rgba(255,255,255,0.8);">at inference time</div>
+                            </div>
+
+                            <!-- predict row: the survey set travels down from the train row and re-centres -->
+                            <div class="fragment travel" data-fragment-index="3" style="--dx:73px; --dy:-240px;">
+                                <div style="position:absolute; left:78px; top:280px; width:140px; height:140px; border:2px solid #e3b341; border-radius:14px; background:rgba(227,179,65,0.10);"></div>
+                                <div style="position:absolute; left:221px; top:280px; width:140px; height:140px; border:2px solid rgba(255,90,90,0.9); border-radius:14px; background:rgba(255,90,90,0.08);"></div>
+                                <div style="position:absolute; left:82px; top:292px; width:130px; text-align:center; font-size:0.5em; line-height:1.2; color:#e6eef6;"><b>Real transient</b><br>~4%<img data-src="img_contents/cutout_transient.png" class="plain" style="width:76px; height:76px; margin:0.2em auto 0; display:block; border-radius:4px; max-width:none; max-height:none; border:none; box-shadow:none;"></div>
+                                <div style="position:absolute; left:224px; top:292px; width:130px; text-align:center; font-size:0.5em; line-height:1.2; color:#e6eef6;"><b>Bogus</b><br>~96%<img data-src="img_contents/cutout_bogus.png" class="plain" style="width:76px; height:76px; margin:0.2em auto 0; display:block; border-radius:4px; max-width:none; max-height:none; border:none; box-shadow:none;"></div>
+                                <div style="position:absolute; left:78px; top:424px; width:283px; text-align:center; font-size:0.42em; font-style:italic; color:rgba(255,255,255,0.65);">survey data</div>
+                                <div style="position:absolute; left:148px; top:280px; transform:translate(-50%,-50%); padding:0.05em 0.5em; border-radius:999px; background:#1b1b1b; border:1.5px solid #e3b341; color:#e3b341; font-size:0.45em; font-weight:bold; white-space:nowrap;">predicted Transient</div>
+                                <div style="position:absolute; left:291px; top:280px; transform:translate(-50%,-50%); padding:0.05em 0.5em; border-radius:999px; background:#1b1b1b; border:1.5px solid rgba(255,90,90,0.9); color:rgba(255,90,90,0.9); font-size:0.45em; font-weight:bold; white-space:nowrap;">predicted Bogus</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- 1b: methods + results -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Robust training, uncertainty for free</h3>
+                    <div style="display:flex; gap:1.4rem; align-items:center; text-align:left;">
+                        <div style="flex:1 1 48%;">
+                            <div style="border-left:4px solid rgba(255,90,90,0.9); padding:0.2em 0 0.2em 0.7em; margin-bottom:0.7em;">
+                                <b style="display:block; color:#fff; font-size:0.8em; line-height:1.2;">Asymmetric Co-Teaching</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.62em; line-height:1.3;">Two networks filter each other&rsquo;s <strong>noisy labels</strong>.<br>&#8627; robust to the hidden real transients.</span>
+                            </div><br>
+                            <div class="fragment" data-fragment-index="1" style="border-left:4px solid rgba(255,90,90,0.9); padding:0.2em 0 0.2em 0.7em; margin-bottom:0.7em;">
+                                <b style="display:block; color:#fff; font-size:0.8em; line-height:1.2;">UQ: Mixing ensemble and MC Dropout</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.62em; line-height:1.3;">The two co-trained networks <em>are</em> an <strong>ensemble</strong>:<br>&#8627; <span style="color: rgba(255,90,90,1);">uncertainty for cheap</span>.</span>
+                            </div><br>
+                            <div class="fragment" data-fragment-index="2" style="border-left:4px solid rgba(255,90,90,0.9); padding:0.2em 0 0.2em 0.7em; margin-bottom:0.7em;">
+                                <b style="display:block; color:#fff; font-size:0.8em; line-height:1.2;">Results</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.62em; line-height:1.3;">Best calibration at <span style="color: rgba(255,90,90,1);">~25&times; less compute</span> than deep ensembles.<br>&#8627; uncertainties correlate with physics (SNR, brightness).</span>
+                            </div>
+                        </div>
+                        <div style="flex:1 1 52%; text-align:center;">
+                            <img data-src="img_contents/UQ_calib.png" class="plain" style="width:auto; max-width:100%; max-height:380px; margin:0; border-radius:8px;"></img>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- 1c : interactive UMAP of the latent space -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align:left;">Latent space, interactive UMAP </h3>
+                    <div style="text-align:center;">
+                        <iframe src="plots/umap_UQ.html" class="bokeh-iframe"></iframe>
+                    </div>
+                </section>
+
+            </section>
+
+            <!-- Project 2: MultiCWoLa -->
+            <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+
+                <!-- 2.0: title / affiliations -->
+                <section data-background-gradient="linear-gradient(to bottom, black, grey)">
+                    <div class="title-panel">
+                    <h2 style="font-size:1.6em;">Multiclass Classification without Labels via Posterior Simplex Geometry</h2>
+                    <span style="font-size:0.7em;"><b>Raphaël Bonnet-Guerrini</b><sup>1,2</sup>, Johann Ioannou-Nikolaides<sup>3</sup>, Troels Petersen<sup>3</sup>, and Vincenzo Piuri<sup>1</sup></span>
+
+                    <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; <sup>2</sup>INFN, Sezione di Milano;<br><sup>3</sup>Niels Bohr Institute, University of Copenhagen<br>
+                        <a href="https://arxiv.org/abs/2607.24943">
+                            <img src="https://img.shields.io/badge/cs.LG-arXiv%3A2607.24943-B31B1B?logo=arxiv" height="25">
+                        </a>
+                    </span>
+                        <img src="img_contents/3.svg" class="title-left-logo" style="width: 120px;" alt="AIPHY">
+                        <img src="img_contents/MultiCWoLa_logo.png" class="title-right-logo" style="width: 125px;" alt="">
+                    </div>
+                </section>
+
+                <!-- 2a: intuition, from CWoLa's ratio to a simplex -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align:left;">Intuition: the geometry of the likelihood ratio</h3>
+                    <!-- CWoLa in three steps -->
+                    <div style="text-align:left; font-size:0.7em; line-height:1.35; margin-top:0.2em;">
+                        <p style="margin:0.15em 0;">
+                            <strong style="color: rgba(255,90,90,1);">1 &middot; Mixtures.</strong>
+                            Two unlabeled samples of the same \(S\) and \(B\), with <strong>different signal fractions</strong>:
+                            \(M_i=f_iS+(1-f_i)B\), \(f_1\neq f_2\), both unknown.
+                            <a href="https://arxiv.org/abs/1708.02949"><img src="https://img.shields.io/badge/hep--ph-arXiv%3A1708.02949-B31B1B?logo=arxiv" height="20" style="vertical-align:middle; margin:0;"></a>
+                        </p>
+                        <p class="fragment" data-fragment-index="1" style="margin:0.15em 0;">
+                            <strong style="color: rgba(255,90,90,1);">2 &middot; Train.</strong>
+                            A classifier to tell \(M_1\) from \(M_2\): it only ever sees the <em>mixture ID</em>, never \(S\) or \(B\).
+                        </p>
+                        <p class="fragment" data-fragment-index="2" style="margin:0.15em 0;">
+                            <strong style="color: rgba(255,90,90,1);">3 &middot; Guarantee.</strong>
+                            \(\displaystyle \frac{p_{M_1}(x)}{p_{M_2}(x)}=\frac{f_1\,L_{S/B}(x)+(1-f_1)}{f_2\,L_{S/B}(x)+(1-f_2)}\)
+                            is <strong>monotonic</strong> in \(L_{S/B}=p_S/p_B\) as soon as \(f_1\neq f_2\):
+                            the mixture classifier ranks events exactly like the <span style="color: rgba(255,90,90,1);">optimal S vs B classifier</span>.
+                        </p>
+                    </div>
+
+                    <div class="fragment" data-fragment-index="3" style="position:relative; height:330px; margin-top:0.2em;">
+
+                        <!-- K = 2 -->
+                        <div class="fragment fade-out" data-fragment-index="4" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                            <p style="text-align:center; margin:0 0 0.3em 0; font-size:0.85em;">
+                                \[ g^\star(x)=\alpha(x)\,v_S+\bigl(1-\alpha(x)\bigr)\,v_B \]
+                            </p>
+                            <svg viewBox="0 20 760 175" style="width:80%; height:auto; font-family:sans-serif;">
+                                <defs>
+                                    <linearGradient id="mcw-seg" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#5b8ef5"/>
+                                        <stop offset="100%" stop-color="#e05a9a"/>
+                                    </linearGradient>
+                                </defs>
+                                <line x1="40" y1="90" x2="720" y2="90" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+                                <line x1="181" y1="90" x2="585" y2="90" stroke="url(#mcw-seg)" stroke-width="8" stroke-linecap="round"/>
+                                <circle cx="181" cy="90" r="9" fill="#5b8ef5"/>
+                                <text x="181" y="62" style="font-size:20px; font-weight:bold" fill="#5b8ef5" text-anchor="middle">v<tspan dy="4" style="font-size:14px">B</tspan></text>
+                                <text x="181" y="147" style="font-size:15px" fill="#5b8ef5" text-anchor="middle">pure background</text>
+                                <circle cx="585" cy="90" r="9" fill="#e05a9a"/>
+                                <text x="585" y="62" style="font-size:20px; font-weight:bold" fill="#e05a9a" text-anchor="middle">v<tspan dy="4" style="font-size:14px">S</tspan></text>
+                                <text x="585" y="147" style="font-size:15px" fill="#e05a9a" text-anchor="middle">pure signal</text>
+                                <circle cx="302" cy="90" r="7" fill="#7b8fd0"/>
+                                <circle cx="383" cy="90" r="7" fill="#a97ab8"/>
+                                <circle cx="464" cy="90" r="7" fill="#cf6a9e"/>
+                                <text x="302" y="42" style="font-size:15px" fill="#e6eef6" text-anchor="middle">g*(x&#8321;)</text>
+                                <text x="383" y="42" style="font-size:15px" fill="#e6eef6" text-anchor="middle">g*(x&#8322;)</text>
+                                <text x="464" y="42" style="font-size:15px" fill="#e6eef6" text-anchor="middle">g*(x&#8323;)</text>
+                                <text x="400" y="185" style="font-size:17px; font-weight:bold" fill="#e05a9a" text-anchor="middle">position = &#945;(x), the true signal probability</text>
+                            </svg>
+                            <p style="text-align:center; font-size:0.7em; margin:0.5em 0 0 0;">
+                                <span style="color:#5b8ef5; font-weight:600;">\(K=2\):</span> the mixture posterior is stuck on a segment between two fixed points.
+                            </p>
+                        </div>
+
+                        <!-- K = 3 -->
+                        <div class="fragment fade-in" data-fragment-index="4" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                            <p style="text-align:center; margin:0 0 0.2em 0; font-size:0.85em;">
+                                \[ g^\star(x)=\sum_k \alpha_k(x)\,v_k, \qquad \sum_k\alpha_k(x)=1 \]
+                            </p>
+                            <svg viewBox="60 90 630 440" style="width:auto; height:170px; flex-shrink:0; font-family:sans-serif;">
+                                <g stroke="rgba(255,255,255,0.18)" stroke-width="1.5">
+                                    <line x1="190" y1="410.72" x2="510" y2="410.72"/>
+                                    <line x1="230" y1="341.44" x2="470" y2="341.44"/>
+                                    <line x1="270" y1="272.16" x2="430" y2="272.16"/>
+                                    <line x1="310" y1="202.88" x2="390" y2="202.88"/>
+                                    <line x1="230" y1="480" x2="390" y2="202.88"/>
+                                    <line x1="310" y1="480" x2="430" y2="272.16"/>
+                                    <line x1="390" y1="480" x2="470" y2="341.44"/>
+                                    <line x1="470" y1="480" x2="510" y2="410.72"/>
+                                    <line x1="470" y1="480" x2="310" y2="202.88"/>
+                                    <line x1="390" y1="480" x2="270" y2="272.16"/>
+                                    <line x1="310" y1="480" x2="230" y2="341.44"/>
+                                    <line x1="230" y1="480" x2="190" y2="410.72"/>
+                                </g>
+                                <polygon points="150,480 550,480 350,133.6" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+                                <circle cx="150" cy="480" r="10" fill="#e05c4a"/>
+                                <text x="150" y="512" style="font-size:20px; font-weight:bold" fill="#e05c4a" text-anchor="middle">v&#8321;</text>
+                                <circle cx="550" cy="480" r="10" fill="#e3a72f"/>
+                                <text x="550" y="512" style="font-size:20px; font-weight:bold" fill="#e3a72f" text-anchor="middle">v&#8322;</text>
+                                <circle cx="350" cy="133.6" r="10" fill="#4cb87a"/>
+                                <text x="350" y="112" style="font-size:20px; font-weight:bold" fill="#4cb87a" text-anchor="middle">v&#8323;</text>
+                                <circle cx="280" cy="420" r="7" fill="#e6eef6"/>
+                                <circle cx="370" cy="340" r="7" fill="#e6eef6"/>
+                                <circle cx="340" cy="230" r="7" fill="#e6eef6"/>
+                                <text x="280" y="447" style="font-size:14px" fill="#e6eef6" text-anchor="middle">g*(x&#8321;)</text>
+                                <text x="404" y="342" style="font-size:14px" fill="#e6eef6" text-anchor="middle">g*(x&#8322;)</text>
+                                <text x="374" y="232" style="font-size:14px" fill="#e6eef6" text-anchor="middle">g*(x&#8323;)</text>
+                            </svg>
+                            <p style="text-align:center; font-size:0.7em; margin:0.4em 0 0 0;">
+                                <span style="color:#ff8a8a; font-weight:600;">\(K=3\):</span> same story one dimension up, the cloud fills a \((K-1)\)-simplex whose <strong>vertices are the classes</strong>.<br>
+                                &#8627; <span style="color: rgba(255,90,90,1);">guarantee</span>: the barycentric coordinates \(\alpha_k(x)\) are the <strong>Bayes-optimal multiclass classifier</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="fragment" data-fragment-index="5" style="text-align:left; font-size:0.7em; margin:0.8em 0 0 0;">
+                        Only one assumption: classes look the same in every mixture, only their proportions change,
+                        \(\;p(x\mid Y=k,\,m)=p(x\mid Y=k)\).
+                    </p>
+                </section>
+
+                <!-- 2b: main -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.45); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto;">
+                    <h3 class="slide-title highlight" style="text-align:left;">Multiclass classification without labels</h3>
+                    <p style="text-align:left; font-size:0.8em; margin:0.2em 0 0.3em;">
+                        We propose <strong>two ways</strong> to use this guarantee and recover the simplex: a <strong>post-hoc simplex fit</strong>, or an <strong>architectural bottleneck</strong>.
+                    </p>
+                    <img data-src="plots/mcw_multiclass_cwola_global_scheme.png" class="plain" style="width:100%; max-width:1000px; border-radius:8px; margin-top:0.3em; background:#fff;"></img>
+                    </div>
+                </section>
+
+                <!-- 2c: the geometry is really there -->
+                <section>
+                    <h3 class="slide-title highlight" style="text-align:left;">The geometry is really there</h3>
+                    <img data-src="plots/mcw_simplex_visualization.png" class="plain" style="width:100%; max-width:640px; border-radius:8px; background:#fff;"></img>
+
+                    <!-- Takeaway: back to physics + interpretability -->
+                    <div class="fragment" style="display:flex; gap:1rem; text-align:left; font-size:0.58em; line-height:1.3; margin-top:0.5em;">
+                        <div style="flex:1 1 0; padding:0.5em 0.7em; border-top:3px solid rgba(255,90,90,0.9); background:rgba(0,0,0,0.3); border-radius:6px;">
+                            <strong>Physics &rarr; ML theory</strong><br>
+                            The <strong>likelihood ratio</strong>, a physicist's way of seeing classification, becomes a multiclass guarantee for ML.
+                        </div>
+                        <div style="flex:1 1 0; padding:0.5em 0.7em; border-top:3px solid rgba(255,90,90,0.9); background:rgba(0,0,0,0.3); border-radius:6px;">
+                            <strong>Interpretable by design</strong><br>
+                            Unlike unsupervised clustering, the output \(\alpha_k(x)\) is a <span style="color: rgba(255,90,90,1);">class probability</span> &rarr; probabilistic predictions and <strong>uncertainty quantification</strong> without labels.
+                        </div>
+                    </div>
+                    <p class="fragment" style="font-size:0.75em; margin-top:0.6em;">
+                        Already used in physics:
+                        <a href="https://arxiv.org/abs/2607.24921"><img src="https://img.shields.io/badge/hep--ph-arXiv%3A2607.24921-B31B1B?logo=arxiv" height="22" style="vertical-align:middle; margin:0;"></a>
+                    </p>
+                </section>
+
+
+            </section>
+
+            <!-- Project 3: Shapley meets NNPDF -->
+            <section data-background-image="img_contents/LHC.jpg">
+
+                <!-- 3.0: title / affiliations -->
+                <section data-background-image="img_contents/LHC.jpg">
+                    <div class="title-panel">
+                    <h2>Interpreting Parton Distributions with Shapley Values</h2>
+                    <span style="font-size:smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1,3</sup>, Stefano Carrazza<sup>2,3</sup>, Stefano Forte<sup>2,3</sup>, Eva Groenendijk<sup>2,3</sup>, and Ramon Winterhalder<sup>2,3</sup></span>
+                    <br><br>
+                    <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; <sup>2</sup>TIF lab, Physics Department, University of Milan;<br><sup>3</sup>INFN, Sezione di Milano</span>
+                    <p>
+                        <a href="https://arxiv.org/abs/2607.02647">
+                            <img src="https://img.shields.io/badge/hep--ph-arXiv%3A2607.02647-B31B1B?logo=arxiv" height="25">
+                        </a>
+                    </p>
+                        <img src="img_contents/3.svg" class="title-left-logo" style="width: 120px;" alt="AIPHY">
+                        <img src="img_contents/nnpdf_logo.png" class="title-right-logo" style="width: 170px; bottom: 45px;" alt="">
+                    </div>
+                </section>
+
+                <!-- 3a: context -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Why Parton Distribution Functions (PDFs)?</h3>
+                    <div class="container" style="display:flex; gap:1.4rem; align-items:center; text-align:left;">
+                        <div class="col" style="flex:1 1 50%;">
+                            <ul>
+                                <li>The LHC collides <span style="color: rgba(215, 0, 0, 0.95);">protons</span>, but physics happens between their constituents, the <span style="color: rgba(215, 0, 0, 0.95);">partons</span>.</li>
+                                <li>Partons are <strong>not directly observed</strong> &rarr; PDFs are the <strong>latent model</strong> we infer.</li>
+                                <li>PDF uncertainty directly limits <strong>LHC precision</strong>.</li>
+                            </ul>
+                        </div>
+                        <div class="col" style="flex:1 1 50%; text-align:center;">
+                            <video class="restart-video" src="vid_contents/proton-structure.mp4" data-autoplay autoplay muted loop playsinline preload="auto" style="width:100%; max-width:430px; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.25);"></video>
+                            <p style="font-size:0.75em; opacity:0.75; margin-top:0.4em;">A proton: quarks and gluons, whose momentum distribution is the PDF.</p>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- 3b: method & results -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Method &amp; results: exact Shapley values on NNPDF</h3>
+                    <div style="text-align:left;">
+                        <ul>
+                            <li>Treat each <strong>PDF flavor</strong> as a player; its Shapley value = contribution to the fit quality \(\chi^2\).</li>
+                            <li>Only 8 flavors &rarr; \(2^7=128\) coalitions &rarr; the <strong>exact</strong> value, with <span style="color: rgba(215, 0, 0, 0.95);">no independence assumption</span> (correlations kept) , attribution <strong>per flavor and per dataset</strong>.</li>
+                        </ul>
+                    </div>
+                    <img data-src="img_contents/recap_scheme.png" class="plain" style="width:100%; max-width:900px; border-radius:8px; margin-top:0.3em;"></img>
+                    <p style="font-size:0.8em; opacity:0.85; margin-top:0.3em;">Perturb every coalition of flavors, refit \(\chi^2\), compare with / without each flavor.</p>
+                    </div>
+                </section>
+
+                <!-- 3c: main result, gluon blind spot and PDF-set comparison -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.2rem 2rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">A universal blind spot in the gluon</h3>
+                    <ul style="font-size:0.72em; text-align:left; margin:0.2em 0 0.3em;">
+                        <li>The gluon Shapley value drops to <strong>\(\approx 0\)</strong> at intermediate \(x\) (\(\sim10^{-2}\) and \(\sim0.07\)): the data <strong>barely constrain</strong> the gluon there. QCD explain one dip but not the other.</li>
+                        <li>Yet the uncertainty band does not inflate &rarr; <span style="color: rgba(215, 0, 0, 0.95);">This loss of sensitivy could hid/absorb new physics signal !!!</span></li>
+                    </ul>
+
+                    <!-- PDF-set comparison, cumulative build as in ML4Jets: each image fully covers the previous -->
+                    <div class="container" style="display:flex; gap:1.4rem; align-items:center;">
+                        <div class="col" style="flex:0 0 50%;">
+                            <div style="position: relative; display: inline-block; line-height: 0; width: 100%;">
+                                <img data-src="img_contents/NNPDF-g.png" class="plain"
+                                     style="width: 100%; height: auto; display: block; margin:0;"></img>
+                                <img data-src="img_contents/MSHT.png" class="plain fragment" data-fragment-index="1"
+                                     style="position:absolute; top:0; left:0; width:100%; height:auto; margin:0;"></img>
+                                <img data-src="img_contents/ct18.png" class="plain fragment" data-fragment-index="2"
+                                     style="position:absolute; top:0; left:0; width:100%; height:auto; margin:0;"></img>
+                                <img data-src="img_contents/ct18-corrected.png" class="plain fragment" data-fragment-index="3"
+                                     style="position:absolute; top:0; left:0; width:100%; height:auto; margin:0;"></img>
+                            </div>
+                        </div>
+
+                        <div class="col" style="text-align:left;">
+                            <ul style="font-size:0.7em;">
+                                <li>Is it universal? NNPDF4.0 vs MSHT20 vs CT18</li>
+                                <br>
+                                <li class="fragment" data-fragment-index="1">MSHT20: same dip</li>
+                                <br><li class="fragment" data-fragment-index="2">CT18: same dip, but sitting <b>higher</b></li>
+                                <br><li class="fragment" data-fragment-index="3">Rescale CT18 to \(0.5\,\delta_{\text{pert}}\) and it lands on the others: <span style="color: rgba(215, 0, 0, 0.95);">Shapley informs us about the methods uncertainties.</span></li>
+                                <br><li class="fragment" data-fragment-index="3">Use AI-oriented interpretability to explain purely physics phenomenon.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+            </section>
+
+            <!-- Project 4: Mechanistic Interpretability for PolarBERT -->
+            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+
+                <!-- 4.0: title / affiliations -->
+                <section data-background-image="img_contents/IceCube_neutrino.jpg">
+                    <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 88%; margin: auto; backdrop-filter: blur(2px);">
+                        <h2 style="color: #ffffff; font-size: 1.5em; margin-bottom: 0.45em;">Finding and using interpretable latents in a neutrino foundation model with sparse autoencoders</h2>
+                        <span style="font-size: 0.8em;"><b>Raphaël Bonnet-Guerrini</b><sup>1,2</sup>, Johann Ioannou-Nikolaides<sup>3</sup>, Inar Timiryasov<sup>3</sup>, and Vincenzo Piuri<sup>1</sup></span>
+                        <br><br>
+                        <span style="font-size: small; text-align:center"><sup>1</sup>Computer Science Department, University of Milan; &nbsp; <sup>2</sup>INFN, Sezione di Milano; &nbsp; <sup>3</sup>Niels Bohr Institute, University of Copenhagen</span>
+                        <p>
+                            <a href="https://arxiv.org/abs/2608.26090">
+                                <img src="https://img.shields.io/badge/hep--ex-arXiv%3A2608.26090-B31B1B?logo=arxiv" height="25">
+                            </a>
+                        </p>
+                        <br>
+                        <img src="img_contents/3.svg" class="title-left-logo" style="width: 120px;" alt="AIPHY">
+                        <img src="img_contents/icecube_logo.png" class="title-right-logo" style="width: 100px;" alt="">
+                    </div>
+                </section>
+
+                <!-- 4a: polysemanticity and SAEs (from EuCAIFCon) -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Polysemanticity and Sparse Autoencoders</h3>
+                    <div style="display:grid; grid-template-columns:0.9fr 1.25fr; gap:1.4rem; align-items:center; text-align:left;">
+                        <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                            <div style="border-left:4px solid rgba(255,90,90,0.9); padding:0.15em 0 0.15em 0.6em;">
+                                <b style="display:block; color:#fff; font-size:0.75em; line-height:1.2;">XAI fails to explain global behavior</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.6em; line-height:1.25;">Attributions explain one decision at a time.</span>
+                            </div>
+                            <div style="color:rgba(255,90,90,0.9); font-weight:900; font-size:0.65em; line-height:1; padding-left:0.55em;">&#8595;</div>
+                            <div style="border-left:4px solid rgba(255,90,90,0.9); padding:0.15em 0 0.15em 0.6em;">
+                                <b style="display:block; color:#fff; font-size:0.75em; line-height:1.2;">Reverse engineering with mechanistic interpretability</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.6em; line-height:1.25;">Read the concepts the model represents internally.</span>
+                            </div>
+                            <div style="color:rgba(255,90,90,0.9); font-weight:900; font-size:0.65em; line-height:1; padding-left:0.55em;">&#8595;</div>
+                            <div style="border-left:4px solid rgba(255,90,90,0.9); padding:0.15em 0 0.15em 0.6em;">
+                                <b style="display:block; color:#fff; font-size:0.75em; line-height:1.2;">But neurons are polysemantic</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.6em; line-height:1.25;">Features live in superposition: one neuron fires for many unrelated concepts.</span>
+                            </div>
+                            <div style="color:rgba(255,90,90,0.9); font-weight:900; font-size:0.65em; line-height:1; padding-left:0.55em;">&#8595;</div>
+                            <div style="border-left:4px solid rgba(255,90,90,0.9); padding:0.15em 0 0.15em 0.6em;">
+                                <b style="display:block; color:#fff; font-size:0.75em; line-height:1.2;">Sparse autoencoder</b>
+                                <span style="display:block; color:#d9dee7; font-size:0.6em; line-height:1.25;">Re-express activations in a larger, sparse dictionary &rarr; one latent &asymp; one concept.</span>
+                            </div>
+                        </div>
+                        <div>
+                            <img data-src="plots/sparse_dictionary_learning.svg" class="plain fragment" style="background:#ffffff99; padding:1rem 1.2rem; box-sizing:border-box; width:100%; max-height:340px; object-fit:contain; margin:0 auto; border-radius:8px;" alt="Sparse dictionary learning: polysemantic inputs, sparse hidden latents, reconstructed outputs">
+                        </div>
+                    </div>
+                    <p style="margin:0.6em 0 0;">
+                        <a href="https://arxiv.org/abs/2209.10652"><img src="https://img.shields.io/badge/cs.LG-arXiv%3A2209.10652-B31B1B?logo=arxiv" height="22" style="margin:0;" alt="Toy Models of Superposition"></a>
+                        <a href="https://arxiv.org/abs/2406.04093"><img src="https://img.shields.io/badge/cs.LG-arXiv%3A2406.04093-B31B1B?logo=arxiv" height="22" style="margin:0;" alt="Scaling and evaluating sparse autoencoders"></a>
+                    </p>
+                    </div>
+                </section>
+
+                <!-- 4b: context -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Opening the black box of a foundation model</h3>
+                    <div style="text-align:left;">
+                        <ul>
+                            <li><strong>PolarBERT</strong>: 8M-parameter foundation model pretrained on 100M IceCube events &mdash; powerful, but opaque.</li>
+                            <li>A <span style="color: rgba(215, 0, 0, 0.95);">Sparse Autoencoder</span> on the <code>CLS</code> state untangles them into candidate interpretable latents.</li>
+                        </ul>
+                    </div>
+                    <img data-src="plots/neutrino_mechanistic_interpretability_overview.png" class="plain" style="width:100%; max-width:900px; max-height:330px; object-fit:contain; border-radius:8px; margin-top:0.3em; background:#fff;"></img>
+                    </div>
+                </section>
+
+                <!-- 4b: methods & expected results -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">A validated atlas of physical concepts</h3>
+                    <div style="text-align:left;">
+                        <ul style="font-size:0.85em;">
+                            <li>SAE interpretability is a <strong>hypothesis to test</strong>: association (AUROC) &rarr; selectivity (matched controls) &rarr; intervention.</li>
+                            <li>Validated latents: <strong>bright + clean</strong> events (AUROC .91, 4/4 seeds), auxiliary activity, detector depth (AUROC .986).</li>
+                        </ul>
+                    </div>
+                    <img data-src="plots/events_ladder_zbc.png" class="plain" style="width:100%; max-width:950px; max-height:300px; object-fit:contain; border-radius:8px; background:#fff;"></img>
+                    <p style="font-size:0.8em; opacity:0.85; margin-top:0.3em;">Events ordered by increasing activation of the bright-clean latent \(z_{bc}\).</p>
+                    </div>
+                </section>
+
+                <!-- 4c: causal test -->
+                <section>
+                    <div style="background: rgba(0,0,0,0.55); padding: 1.5rem 2.4rem; border-radius: 12px; max-width: 95%; margin: auto; backdrop-filter: blur(2px);">
+                    <h3 class="slide-title highlight" style="text-align:left;">Who actually uses the atlas?</h3>
+                    <p style="text-align:left; font-size:0.85em;">Zero the latent, decode, push through the <strong>frozen</strong> heads; compare with 20 firing-rate-matched control latents.</p>
+                    <table style="width:100%; border-collapse:collapse; font-size:0.7em; text-align:left;">
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.3);">
+                            <th style="padding:0.3em 0.6em;">Intervention</th><th style="padding:0.3em 0.6em;">Direction head \(\Delta\psi\)</th><th class="fragment" data-fragment-index="1" style="padding:0.3em 0.6em;">Uncertainty head</th>
+                        </tr>
+                        <tr><td style="padding:0.25em 0.6em;">remove \(z_{bc}\)</td><td style="padding:0.25em 0.6em;">+0.06° <span style="opacity:0.7;">null</span></td><td class="fragment" data-fragment-index="1" style="padding:0.25em 0.6em;">+0.31 <span style="color: rgba(215, 0, 0, 0.95);">causal</span></td></tr>
+                        <tr><td style="padding:0.25em 0.6em;">remove clean pair</td><td style="padding:0.25em 0.6em;">+0.03° <span style="opacity:0.7;">null</span></td><td class="fragment" data-fragment-index="1" style="padding:0.25em 0.6em;">+0.32 <span style="color: rgba(215, 0, 0, 0.95);">causal</span></td></tr>
+                        <tr><td style="padding:0.25em 0.6em;">remove clean family (194)</td><td style="padding:0.25em 0.6em;">&minus;0.02° <span style="opacity:0.7;">null</span></td><td class="fragment" data-fragment-index="1" style="padding:0.25em 0.6em;">+0.78 <span style="color: rgba(215, 0, 0, 0.95);">causal</span></td></tr>
+                    </table>
+                    <p class="fragment" data-fragment-index="1" style="text-align:left; font-size:0.85em; margin-top:0.6em;">
+                        The direction head barely reads the atlas &hellip; but an <strong>uncertainty head</strong> on the same <code>CLS</code> state does &rarr; <span style="color: rgba(215, 0, 0, 0.95);">interpretable latents become usable</span>.
+                    </p>
+
+                    <!-- Takeaway: science as a rigorous testbed for mechanistic interpretability -->
+                    <div class="fragment" data-fragment-index="2" style="display:flex; gap:1rem; text-align:left; font-size:0.58em; line-height:1.3; margin-top:0.6em;">
+                        <div style="flex:1 1 0; padding:0.5em 0.7em; border-top:3px solid rgba(255,90,90,0.9); background:rgba(0,0,0,0.3); border-radius:6px;">
+                            <strong>Science makes mechanistic interpretability rigorous:</strong><br>
+                            Physics concepts are <strong>quantitative</strong> (energy, depth, event quality) with simulated ground truth &rarr; every latent is <span style="color: rgba(255,90,90,1);">tested</span>: association, selectivity, causal intervention.
+                        </div>
+                        <div style="flex:1 1 0; padding:0.5em 0.7em; border-top:3px solid rgba(255,90,90,0.9); background:rgba(0,0,0,0.3); border-radius:6px;">
+                            <strong>Back to LLMs:</strong><br>
+                            LLM concepts are fuzzy and judged by eye. Scientific foundation models are a <strong>testbed</strong> where interpretability methods can be validated, and the lessons <span style="color: rgba(255,90,90,1);">transferred back</span>.
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+            </section>
+            <section  data-background-image="img_contents/gen_intro_img.png">
+                <div class="title-panel">
+
+                    <h1>Thank you ! </h1>
+                
+                <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
+
+                    <img src="img_contents/3.svg" style="width: 200px;">
+                <p class="meta" style="font-size: small; text-align:center">
+                         This work was supported by from the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
+                </p>
+            </div>
+            </section>
+
+        </div>
+    </div>
+</body>
+<!-- Include Reveal.js -->
+<script src="../assets/reveal/dist/reveal.js"></script>
+
+<!-- Include Plugins (optional) -->
+<script src="../assets/reveal/plugin/zoom/zoom.js"></script>
+<script src="../assets/reveal/plugin/highlight/highlight.js"></script>
+
+<!-- Include MathJax -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Include Highlight.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+<script>
+    // Initialize Reveal.js with hash and slide number options
+    Reveal.initialize({
+        hash: true,      // Enables URL hash navigation
+        slideNumber: true, // Display slide numbers
+        math: {
+            mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        },
+        plugins: [RevealZoom, RevealHighlight], // Initialize plugins
+    });
+
+    // Initialize Highlight.js for code blocks
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+
+</body>
+
+</html>
