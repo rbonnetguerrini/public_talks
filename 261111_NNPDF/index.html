@@ -369,14 +369,14 @@
                     <h3 class="slide-title">Results: \(J = 2.16 \rightarrow 1.06\)</h3>
                     <div class="fgrid">
                         <div>
-                            <div class="fhead"><span></span><span>original (J = 2.16)</span><span>optimised (J = 1.06)</span></div>
+                            <div class="fhead"><span></span><span>original (J = 2.16)</span><span>optimized (J = 1.06)</span></div>
                             <div class="ftile"><div class="fl">\(\Sigma\)<span class="fd">singlet</span></div><img data-src="img_folds/fl_Sigma.png" class="plain"></div>
                             <div class="ftile"><div class="fl">\(g\)<span class="fd">gluon</span></div><img data-src="img_folds/fl_g.png" class="plain"></div>
                             <div class="ftile"><div class="fl">\(V\)<span class="fd">valence</span></div><img data-src="img_folds/fl_V.png" class="plain"></div>
                             <div class="ftile"><div class="fl">\(V_3\)<span class="fd">valence</span></div><img data-src="img_folds/fl_V3.png" class="plain"></div>
                         </div>
                         <div>
-                            <div class="fhead"><span></span><span>original (J = 2.16)</span><span>optimised (J = 1.06)</span></div>
+                            <div class="fhead"><span></span><span>original (J = 2.16)</span><span>optimized (J = 1.06)</span></div>
                             <div class="ftile"><div class="fl">\(V_8\)<span class="fd">valence</span></div><img data-src="img_folds/fl_V8.png" class="plain"></div>
                             <div class="ftile"><div class="fl">\(T_3\)<span class="fd">triplet</span></div><img data-src="img_folds/fl_T3.png" class="plain"></div>
                             <div class="ftile"><div class="fl">\(T_8\)<span class="fd">octet</span></div><img data-src="img_folds/fl_T8.png" class="plain"></div>
@@ -390,7 +390,6 @@
                             </div></div>
                         </div>
                     </div>
-                    <p class="fragment" style="font-size:0.7em; margin-top:0.4em;">Optimised folds follow the target more closely, for every flavor.</p>
                     <aside class="notes">chi2/N per fold: the smallest fold (fold 2, 1008 pts) is amplified.</aside>
                 </section>
 
@@ -398,7 +397,7 @@
                 <section>
                     <h3 class="slide-title">Blind spots of the hand-made folds</h3>
                     <div style="width:1000px; margin-left:-20px;">
-                        <div class="fhead big"><span></span><span>original</span><span>optimised</span></div>
+                        <div class="fhead big"><span></span><span>original</span><span>optimized</span></div>
                         <div class="ftile big"><div class="fl">\(V\)<span class="fd">valence</span></div>
                             <div class="anno">
                                 <img data-src="img_folds/fl_V.png" class="plain">
@@ -415,7 +414,7 @@
                         </div>
                     </div>
                     <div class="cols fragment" style="font-size:0.72em; margin-top:0.3em; text-align:left;">
-                        <div class="c">&#10003; Optimised: every fold sensitive wherever the target is</div>
+                        <div class="c">&#10003; optimized: every fold sensitive wherever the target is</div>
                         <div class="c">&#9888; Peaks still differ: <span class="red">datasets are indivisible</span></div>
                     </div>
                     <aside class="notes">Holding out original fold 1 tests nothing on valence. original fold 4 also loses Sigma below x ~ 1e-2. Residual: e.g. V8, fold 2 at >2x target.</aside>
@@ -447,7 +446,7 @@
                     <h3 class="slide-title" style="text-align: left;">Summary</h3>
                     <ul style="text-align:left; display:block; width:100%; box-sizing:border-box;">
                         <li>Shapley maps turn "each fold represents the data" into a <b>quantitative objective</b></li>
-                        <li>Optimised folds: Objectif function close to optimal, valence and \(T_3\) blind spots removed</li>
+                        <li>optimized folds: Objectif function close to optimal, valence and \(T_3\) blind spots removed</li>
                         <li>The limit is <b>granularity</b> (indivisible datasets), not the optimizer</li>
                         <li>What matters is <b>how \(J\) is defined</b>, not how it is minimized</li>
                     </ul>
