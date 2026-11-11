@@ -96,15 +96,15 @@
             height: 80vh;
             border: none;
         }
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h1,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h2,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h3,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h4,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h5,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h6,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] p,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] span,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] li {
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h1,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h2,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h3,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h4,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h5,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h6,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] p,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] span,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] li {
             background: rgba(0, 0, 0, 0.45);
             padding: 0.1em 0.25em;
             border-radius: 4px;
@@ -122,7 +122,7 @@
             border-radius: 12px;
             border: 1.5px solid rgba(255,255,255,0.45);
         }
-        .reveal section[data-background-image="img_contents/LHC.jpg"]
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"]
         mjx-container[display="false"] {
             background: none;
             padding: 0;
@@ -182,7 +182,7 @@
     <div class="reveal">
         <div class="slides">
             <!-- Slide 1 -->
-            <section data-background-image="img_contents/gen_intro_img.png">
+            <section data-background-image="../assets/shared/gen_intro_img.png">
                 <div class="title-panel">
                     <h2>Interpretable Deep Learning for Fundamental Physics</h2>
                     <h3>
@@ -196,7 +196,7 @@
                         Computer Science Department, University of Milan
                     </span>
                     </p>
-                    <img src="img_contents/3.svg" class="title-left-logo" alt="">
+                    <img src="../assets/shared/3.svg" class="title-left-logo" alt="">
                     <img src="img_contents/unimi.svg" class="title-right-logo" style="width: 120px; bottom: 30px;" alt="">
                 </div>
             </section>
@@ -301,7 +301,7 @@
 
             <!-- PART A: ML4TRANSIENTS-->
             <!-- Slide 2 ML4transients title -->
-            <section data-background-image="img_contents/vera_rubin_obs.png">
+            <section data-background-image="../assets/shared/vera_rubin_obs.png">
                 <h2>Interpretable Deep Learning for Real/Bogus classification with Uncertainty Quantification</h2>
                 <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Dominique Fouchez<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, Benjamin Racine<sup>2</sup>, and Bruno Sanchez<sup>2</sup></span>
                 <br>
@@ -315,7 +315,7 @@
 
             <!-- Slide 3 SN and LSST presentation title -->
              <section>
-                <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
+                <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs.png">
                     <h3 class="slide-title">Cosmology: a data driven era</h3>
                     <div style="text-align:left">
                         Vera Rubin Observatory started operations in 2025. 10-year survey. Expectations are up to 100k spectroscopically confirmed Type Ia supernovae, up to 1M in total. 15 PB of data.
@@ -344,7 +344,7 @@
             </section>
 
             <!-- Slide 4 DIA -->
-            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
+            <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs_2.png">
                 <!-- Slide 4.1 -->
                 <section >
                     <h3 class="slide-title">Difference Image analysis</h3>
@@ -361,7 +361,7 @@
                 </section>
 
                 <!-- Slide 4.2 -->      
-                <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Weakly supervised learning problem</h3>
                     <div style="text-align: left;">
                         No ground truth. During training, we are interested in the <b>False Positives</b>
@@ -384,7 +384,7 @@
             <!-- Slide 5 : Data Presentation -->
             <section>      
                 <!-- Slide 5.1 Training data -->
-                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Training Data Presentation</h3>
                     The HSC RC2 subset is composed of 6 detectors, with 8 visits per filter.
                     <div class="container" style="align-items: start; text-align: left;">
@@ -406,7 +406,7 @@
                     </div>
                 </section>
                 <!-- Slide 5.2 Evaluation data -->
-                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Evaluation Data Presentation</h3>
                     <div class="container" style="align-items: start; text-align: left;">
                     We use the full UDEEP dataset to build light curves. It is composed of 862 visits across 103 detectors. Those light curves are first filtered and then manually inspected for transient identification.
@@ -433,7 +433,7 @@
 
             <!-- Slide 6 : Network presentation -->
             <section>
-                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Network Architecture</h3>
                     <div style='text-align: left'>
                         A simple CNN architecture:
@@ -447,7 +447,7 @@
             <!-- Slide 7 : WSL -->
             <section>
                 <!-- Slide 7.1 -->
-               <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+               <section data-background-image="../assets/shared/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">Co-Teaching: A Self-Event-Selection Strategy for Weakly Supervised Learning</h3>
                     <p>Two models are trained simultaneously with different views on the same dataset.</p>
                     <div class="container" style="align-items: start; text-align: left">
@@ -478,7 +478,7 @@
                     </div>
                 </section>
             <!-- Slide 7.2 -->
-               <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+               <section data-background-image="../assets/shared/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">Asymmetrical Co-Teaching</h3>
                     <p>Two models are trained simultaneously with different views on the same dataset.</p>
                     <div class="container" style="align-items: start; text-align: left">
@@ -499,7 +499,7 @@
             </section>
 
             <!-- Slide 8 : Result WSL -->
-            <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+            <section data-background-image="../assets/shared/vera_rubin_obs_2.png" style="text-align:left">
                 <h3 class="slide-title">WSL analysis</h3>
                 <div class="container" style="align-items: start; text-align: left">
                     <div class="col">
@@ -517,7 +517,7 @@
 
 
             <!-- Slide 9 : Uncertainty Quantification -->
-            <section data-background-image="img_contents/vera_rubin_obs_2.png">
+            <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                 <!-- Slide 9.1 Ensembles and MC Dropout -->
                 <section>
                     <h3 class="slide-title">Ensembles and MC Dropout</h3>
@@ -622,7 +622,7 @@
             </section>
             
             <!-- Slide 10: Results of the UQ -->
-            <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+            <section data-background-image="../assets/shared/vera_rubin_obs_2.png" style="text-align:left">
                 <h3 class="slide-title">UQ analysis</h3>
                 <div class="container" style="align-items: start; text-align: left">
                     <div class="col">
@@ -640,7 +640,7 @@
              </section>
             
             <!-- Slide 11: Interpretability -->
-            <section data-background-image="img_contents/vera_rubin_obs_2.png">
+            <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                 <!-- Slide 11.1 -->
                 <section>
                         <h3 class="slide-title">Using UMAP for NN Latent Space visualization</h3>
@@ -667,25 +667,25 @@
                 <section>
                     <h3 class="slide-title">UMAP Results</h3>
                     <div style="text-align:center">
-                        <iframe src="plot_contents/umap_classes.html" class="bokeh-iframe"></iframe>
+                        <iframe src="../assets/shared/umap_classes.html" class="bokeh-iframe"></iframe>
                     </div>
                 </section>
                 <section>
                     <h3 class="slide-title">UMAP Results: SNR overlay</h3>
                     <div style="text-align:center">
-                        <iframe src="plot_contents/umap_SNR.html" class="bokeh-iframe"></iframe>
+                        <iframe src="../assets/shared/umap_SNR.html" class="bokeh-iframe"></iframe>
                     </div>
                 </section>
                 <section>
                     <h3 class="slide-title">UMAP Results: UQ overlay</h3>
                     <div style="text-align:center">
-                        <iframe src="plot_contents/umap_UQ.html" class="bokeh-iframe"></iframe>
+                        <iframe src="../assets/shared/umap_UQ.html" class="bokeh-iframe"></iframe>
                     </div>
                 </section>
              </section>
 
             <!-- Slide 12: Outcomes --> 
-            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
+            <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs.png">
                 <h3 class="slide-title">Outcomes of the project</h3>
                 <div class="fragment" style="text-align: left;">
                     Conclusions:
@@ -731,7 +731,7 @@
             <!-- PART B: SHAPLEY VALUES-->
 
             <!-- Slide 13: intro NNPDF -->
-            <section data-background-image="img_contents/LHC.jpg">
+            <section data-background-image="../assets/shared/LHC.jpg">
                 <h2>Shapley Values meet NNPDF</h2>
                 <span  style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Stefano Carrazza<sup>2</sup>, Dakshansh Chawda <sup>2</sup>, Stefano Forte<sup>2</sup>, Eva Groenendijk<sup>2</sup>, Vincenzo Piuri<sup>1</sup>, and Ramon Winterhalder<sup>2</sup></span>
                 <br>
@@ -783,7 +783,7 @@
                     <p style="text-align: left;">
                         NNPDF solves an <span style="color: rgba(215, 0, 0, 0.95);">inverse problem</span>: we have a set of experimental data and we want to find the underlying PDFs that best explain the data.
                     </p>
-                    <img data-src="img_contents/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <img data-src="../assets/shared/NNPDF.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: left;">
                         Theory (QCD, QED, EW) allows us to compute the observable values \(\mathcal{O}_n\) from the PDF space, and the inverse is done by fitting precise experimental data from the LHC.
                     </p>
@@ -813,7 +813,7 @@
                     <p style="text-align: left;">
                         <span style="color: rgba(215, 0, 0, 0.95);">Black-box systems are a recurrent interpretability issue in modern DL.</span> We can take inspiration from the methods developed there to solve the interpretability problem of NNPDF.
                     </p>
-                    <img data-src="img_contents/blackbox_nnpdf.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <img data-src="../assets/shared/blackbox_nnpdf.png" style="width: 700px; height: auto;" class="plain"></img>
                     <p style="text-align: center;">    
                        XAI answer : What's the impact of one feature on the output of the model ?
                     </p>
@@ -855,7 +855,7 @@
                     <p style="text-align: left;">
                         Applying Shapley Values to NNPDF, we treat each flavor as a feature of our black-box model.
                     </p>
-                    <img data-src="img_contents/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
+                    <img data-src="../assets/shared/NNPDF-shapley.png" style="width: 700px; height: auto;" class="plain"></img>
                     <ul>
                         <li>\(\phi_i\) is the Shapley Value for flavor \(i\).</li>
                         <li>\(N\) is the total number of flavors.</li>
@@ -934,7 +934,7 @@
             </section>
 
             <!-- Slide 16: Next steps -->
-            <section data-background-image="img_contents/LHC.jpg">
+            <section data-background-image="../assets/shared/LHC.jpg">
                 <h3 class="slide-title highlight" style="text-align: left;">Next steps</h3>
                 <div style="text-align: left;">   
                     <ul>             
@@ -972,7 +972,7 @@
  
 
             <!-- Slide 17: Intro -->
-            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+            <section data-background-image="../assets/shared/IceCube_neutrino.jpg">
                 <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 68%; margin: auto; backdrop-filter: blur(2px);">
                     <h2 style="color: #ffffff; font-size: 2.1em; margin-bottom: 0.45em;">Mechanistic Interpretability for a Neutrino Foundation Model</h2>
                     <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1</sup>, Johann Ioannou-Nikolaides<sup>2</sup>, Troels Petersen<sup>2</sup>, Vincenzo Piuri <sup>1</sup>, Jean-Loup Tastet<sup>2</sup> and Inar Timiryasov<sup>2</sup></span>
@@ -983,7 +983,7 @@
             </section>
 
             <!-- Slide 18.1: Foundation model -->
-            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+            <section data-background-image="../assets/shared/IceCube_neutrino.jpg">
             <section>
                 <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px);">
                 <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Foundation models</h3>
@@ -1036,7 +1036,7 @@
             </section>    
             </section>    
             <!-- Slide 19.1: Mechanistic Interpretability -->
-            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+            <section data-background-image="../assets/shared/IceCube_neutrino.jpg">
                 <section>
                     <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 90%; margin: auto; backdrop-filter: blur(2px);">
                     <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;"> Interpretability at the era of Foundation Models</h3>
@@ -1087,7 +1087,7 @@
             </section>
 
             <!-- Slide 20: Potential behavior to investigate -->
-            <section data-background-image="img_contents/IceCube_neutrino.jpg">
+            <section data-background-image="../assets/shared/IceCube_neutrino.jpg">
                 <div style="background: rgba(0, 0, 0, 0.45); padding: 1.7rem 2.6rem; border-radius: 12px; max-width: 80%; margin: auto; backdrop-filter: blur(2px);">
                     <h3 class="slide-title highlight" style="text-align: left; color: #e0e0e0; font-weight: 300; font-size: 1em; line-height: 1.3; margin-bottom: 1em;">Potential behavior to investigate</h3>
                     <ul>
@@ -1113,7 +1113,7 @@
 
 
             <section>
-                <section data-background-image="img_contents/gen_intro_img.png" >
+                <section data-background-image="../assets/shared/gen_intro_img.png" >
                     <div class="title-panel">
 
                         <h3>Backup Slides</h3>
@@ -1124,7 +1124,7 @@
                     
                     <img data-src="img_contents/asym_coteaching.png" style="width: 800px; height: auto;" class="plain"></img>
                 </section>
-                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3>Calibration Metrics</h3>
                         <ul>
                             <li>Negative Log-Likelihood (NLL): quality of probabilistic predictions.</li>
@@ -1147,7 +1147,7 @@
                 </section>
             
 
-                <section data-background-image="img_contents/LHC.jpg">
+                <section data-background-image="../assets/shared/LHC.jpg">
                     <h3 class="slide-title highlight" style="text-align: left;">Shapley Values Pseudo code</h3>
 
                     <div style="margin-top:0.6rem; padding:0.6rem; background:#0f1724; color:#e6eef6; border-radius:6px; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace; font-size:0.85rem; line-height:1.25;">
@@ -1188,7 +1188,7 @@ shapley_vals[i] = SV
                     </pre>
                     </div>
                 </section>
-                <section data-background-image="img_contents/LHC.jpg">
+                <section data-background-image="../assets/shared/LHC.jpg">
                     <h3 class="slide-title highlight" style="text-align: left;">Shapley Values weight</h3>
                     <span>
                         In game theory, Shapley Values represent the contribution \(\phi_i\) of a player \(i\) within a coalition \(S\) by comparing the outcomes of scenarios where the player is present  \(v(S \cup \{i\})\) versus absent \(v(S)\).
@@ -1213,7 +1213,7 @@ shapley_vals[i] = SV
                         <li>\(|N|!\) is the number of way to order all players</li>
                         </ul>
                 </section>
-                <section data-background-image="img_contents/LHC.jpg">
+                <section data-background-image="../assets/shared/LHC.jpg">
                     <h3 class="slide-title highlight" style="text-align: left;">Shapley Values weight</h3>
                     <span>
                         This result is derived in the following way: 
@@ -1237,7 +1237,7 @@ shapley_vals[i] = SV
                         \frac{1}{n}\cdot \frac{1}{\binom{n-1}{s}} = \frac{1}{n}\cdot \frac{s!(n-1-s)!}{(n-1)!} = w(S)
                         \] 
                 </section>
-                 <section data-background-image="img_contents/LHC.jpg">
+                 <section data-background-image="../assets/shared/LHC.jpg">
 
                  </section>
 
@@ -1264,14 +1264,14 @@ shapley_vals[i] = SV
 
 
 
-            <section  data-background-image="img_contents/gen_intro_img.png">
+            <section  data-background-image="../assets/shared/gen_intro_img.png">
                 <div class="title-panel">
                     
                     <h1>Thank you ! </h1>
                 
                 <p class="meta">Contact : raphael.bonnet-guerrini@unimi.it</p>
 
-                    <img src="img_contents/3.svg" style="width: 200px;">
+                    <img src="../assets/shared/3.svg" style="width: 200px;">
                 <p class="meta" style="font-size: small; text-align:center">
                          This work was supported by from the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
                 </p>

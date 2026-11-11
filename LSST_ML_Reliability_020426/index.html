@@ -107,15 +107,15 @@
             height: 80vh;
             border: none;
         }
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h1,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h2,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h3,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h4,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h5,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] h6,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] p,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] span,
-        .reveal section[data-background-image="img_contents/LHC.jpg"] li {
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h1,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h2,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h3,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h4,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h5,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] h6,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] p,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] span,
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"] li {
             background: rgba(0, 0, 0, 0.45);
             padding: 0.1em 0.25em;
             border-radius: 4px;
@@ -133,7 +133,7 @@
             border-radius: 12px;
             border: 1.5px solid rgba(255,255,255,0.45);
         }
-        .reveal section[data-background-image="img_contents/LHC.jpg"]
+        .reveal section[data-background-image="../assets/shared/LHC.jpg"]
         mjx-container[display="false"] {
             background: none;
             padding: 0;
@@ -195,7 +195,7 @@
 
         <!-- PART A: ML4TRANSIENTS -->
             <!-- Slide 1: ML4Transients title -->
-            <section data-background-image="img_contents/vera_rubin_obs.png">
+            <section data-background-image="../assets/shared/vera_rubin_obs.png">
                 <h2>Interpretable Human Labeling-Free Real-Bogus Deep Learning classification with Uncertainty Quantification</h2>
                 <span style="font-size: smaller;"><b>Raphaël Bonnet-Guerrini</b><sup>1, 2 </sup>, Bruno Sanchez<sup>2 </sup>, Dominique Fouchez<sup>2 </sup>, Benjamin Racine<sup>2 </sup> and Vincenzo Piuri<sup>1 </sup></span>
                 <br>
@@ -203,14 +203,14 @@
                 <span style="font-size: small; text-align:center"><sup>1 </sup>Computer Science Department, University of Milan;       <sup>2 </sup>Centre de Physique des Particules de Marseille</span>
                 <p>
                 <img src="img_contents/desc.png" style="width: 150px;">
-                <img src="img_contents/3.svg" style="width: 150px;">
+                <img src="../assets/shared/3.svg" style="width: 150px;">
                 <img src="img_contents/cppm.png" style="width: 100px;">
                 </p>
 
             </section>
 
             <!-- Slide 2: Difference Image Analysis (DIA) -->
-            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
+            <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs_2.png">
                 <!-- Slide 2.1 -->
                 <section >
                     <h3 class="slide-title">Difference Image Analysis</h3>
@@ -227,7 +227,7 @@
                 </section>
 
                 <!-- Slide 2.2 -->      
-                <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Weakly Supervised Learning Problem</h3>
                     <div style="text-align: left;">
                         Using <b>Injection</b> vs <b>Survey</b> as training classes.
@@ -251,7 +251,7 @@
             <!-- Slide 3: Data Presentation -->
             <section>      
                 <!-- Slide 3.1: Training data -->
-                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Training set</h3>
                     The <b>HSC RC2 subset</b> is composed of 6 detectors, with 8 visits per filter.
                     <div class="container" style="align-items: start; text-align: left;">
@@ -273,7 +273,7 @@
                     </div>
                 </section>
                 <!-- Slide 3.2: Evaluation data -->
-                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Construction of the evaluation set</h3>
                     <div class="container" style="align-items: start; text-align: left;">
                         <div class="col" style="margin-top: 10px;">
@@ -301,7 +301,7 @@
 
             <!-- Slide 4: Network presentation -->
             <section>
-                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3 class="slide-title">Network Architecture</h3>
                     <div style='text-align: left'>
                         A simple CNN architecture:
@@ -315,7 +315,7 @@
             <!-- Slide 5: Weakly Supervised Learning (WSL) -->
             <section>
                 <!-- Slide 5.1 -->
-               <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+               <section data-background-image="../assets/shared/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">Co-Teaching: A Self-Event-Selection Strategy for Weakly Supervised Learning</h3>
                     <p>Two models are initialized and trained simultaneously on the same dataset.</p>
                     <div class="container" style="align-items: start; text-align: left">
@@ -336,7 +336,7 @@
                     </div>
                 </section>
                 <!-- Slide 5.2 -->
-               <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+               <section data-background-image="../assets/shared/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">Asymmetrical Co-Teaching</h3>
                     <p>Two models are initialized and trained simultaneously on the same dataset.</p>
                     <div class="container" style="align-items: start; text-align: left">
@@ -359,7 +359,7 @@
             
 
             <!-- Slide 6: Uncertainty Quantification -->
-            <section data-background-image="img_contents/vera_rubin_obs_2.png">
+            <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                 <!-- Slide 6.1: Ensembles and MC Dropout -->
                 <section>
                     <h3 class="slide-title">Ensembles and MC Dropout for Uncertainty Quantification</h3>
@@ -462,7 +462,7 @@
             </section>
             
             <!-- Slide 7: UQ analysis -->
-            <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+            <section data-background-image="../assets/shared/vera_rubin_obs_2.png" style="text-align:left">
                 <h3 class="slide-title">UQ analysis</h3>
                 <div class="container" style="align-items: start; text-align: left">
                     <div class="col">
@@ -483,7 +483,7 @@
             
 
             <!-- Slide 8: From source identification to light curve classification -->
-            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
+            <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs.png">
                 <h3 class="slide-title">From source identification to light curve classification</h3>
                     <img src="img_contents/lightcurve_id.png" style="width: 600px; height: auto;"></img>
                 <div style="text-align: left;">
@@ -498,7 +498,7 @@
             </section>
             
             <!-- Slide 9: Interpretability -->
-            <section data-background-image="img_contents/vera_rubin_obs_2.png">
+            <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                 <!-- Slide 9.1 -->
                 <section>
                         <h3 class="slide-title">Using UMAP for NN latent space visualization</h3>
@@ -525,21 +525,21 @@
                 <section>
                     <h3 class="slide-title">UMAP projection of the validation set:</h3>
                     <div style="text-align:center">
-                        <iframe src="plot_contents/umap_classes.html" class="bokeh-iframe"></iframe>
+                        <iframe src="../assets/shared/umap_classes.html" class="bokeh-iframe"></iframe>
                     </div>
                 </section>
                 <!-- Slide 9.3 -->
                 <section>
                     <h3 class="slide-title">UMAP projection of the validation set with SNR overlay</h3>
                     <div style="text-align:center">
-                        <iframe src="plot_contents/umap_SNR.html" class="bokeh-iframe"></iframe>
+                        <iframe src="../assets/shared/umap_SNR.html" class="bokeh-iframe"></iframe>
                     </div>
                 </section>
                 <!-- Slide 9.4 -->
                 <section>
                     <h3 class="slide-title">UMAP projection of the validation set with UQ overlay</h3>
                     <div style="text-align:center">
-                        <iframe src="plot_contents/umap_UQ.html" class="bokeh-iframe"></iframe>
+                        <iframe src="../assets/shared/umap_UQ.html" class="bokeh-iframe"></iframe>
                     </div>
                 </section>
              </section>
@@ -548,7 +548,7 @@
 
 
             <!-- Slide 10: Outcomes -->
-            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs.png">
+            <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs.png">
                 <h3 class="slide-title">Outcomes of the project</h3>
                 <div class="fragment content-box" style="text-align: left;">
                     Conclusions:
@@ -578,14 +578,14 @@
 
 
             <!-- Slide 11: Thank you -->
-            <section data-auto-animate data-background-image="img_contents/vera_rubin_obs_2.png">
+            <section data-auto-animate data-background-image="../assets/shared/vera_rubin_obs_2.png">
                 <div class="title-panel">
                     
                     <h1>Thank you!</h1>
                 
                 <p class="meta">Contact: raphael.bonnet-guerrini@unimi.it</p>
 
-                    <img src="img_contents/3.svg" style="width: 200px;">
+                    <img src="../assets/shared/3.svg" style="width: 200px;">
                 <p class="meta" style="font-size: small; text-align:center">
                          This work was supported by the European Union's Horizon Europe research and innovation programme under the Marie Sklodowska-Curie grant agreement No 101168829, Challenging AI with Challenges from Physics: How to solve fundamental problems in Physics by AI and vice versa (AIPHY). 
                 </p>
@@ -599,7 +599,7 @@
             <!-- Slide 12: Backup slides -->
             <section>
                 <!-- Slide 12.1 -->
-                <section data-background-image="img_contents/vera_rubin_obs_2.png" >
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png" >
                     <div class="title-panel">
 
                         <h3>Backup Slides</h3>
@@ -612,7 +612,7 @@
                     <img data-src="img_contents/asym_coteaching.png" style="width: 800px; height: auto;" class="plain"></img>
                 </section>
                 <!-- Slide 12.3: WSL analysis -->
-                <section data-background-image="img_contents/vera_rubin_obs_2.png" style="text-align:left">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png" style="text-align:left">
                     <h3 class="slide-title">WSL analysis</h3>
                     <div class="container" style="align-items: start; text-align: left">
                         <div class="col">
@@ -629,7 +629,7 @@
                 </section>
 
                 <!-- Slide 12.4 -->
-                <section data-background-image="img_contents/vera_rubin_obs_2.png">
+                <section data-background-image="../assets/shared/vera_rubin_obs_2.png">
                     <h3>Calibration Metrics</h3>
                         <ul>
                             <li>Negative Log-Likelihood (NLL): quality of probabilistic predictions.</li>
